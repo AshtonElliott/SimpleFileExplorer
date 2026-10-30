@@ -39,7 +39,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | Austin Robson | axr230166 | austin-robson |
 | Yukai Ma | dal833810 |  |
 | Ashton Elliot | aee230007 | AshtonElliott |
-| George Chakiath Dani | gnc230001 |  |
+| George Chakiath Dani | gnc230001 | gchakiathUTDallas |
 | Rowan Egan | rje240001 |  |
 
 ---
