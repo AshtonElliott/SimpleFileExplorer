@@ -30,7 +30,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | **Team** | Team [NN], section [.003 / .005 / .010] |
 | **Document version** | 1.0 (baseline for P2; grows from your P1 version 0.x) |
 | **Date** | 10/29/2026 |
-| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/ |
+| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/p2 |
 | **Git tag for this milestone** | `p2` (points at the commit that contains this exact PDF) |
 | **Submitted on Canvas by** | Austin Robson |
 
