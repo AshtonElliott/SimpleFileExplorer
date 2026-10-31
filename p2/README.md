@@ -184,17 +184,17 @@ GUIDANCE
 
 | Actor input / action | System response |
 |---|---|
-| (what the actor sees before touching anything) | (0) |
-| (1) | (2) |
-| (3) | (4) |
+| (what the actor sees before touching anything) | (0) The system displays the contents of the currently selected folder. |
+| (1) The user selects a different folder.  | (2) The system displays the contents of the selected folder. |
+| (3) The user views the contents of the newly selected folder. | (4) |
 | (5) | (6) |
 
 **Alternate flows**
 
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
-| A1 | | | | |
-| A2 | | | | |
+| A1 | 1 | The selected folder cannot be accessed because of permissions set by the admin. | The system informs the user that the folder couldn't be accessed. The previously displayed folder remains unchanged.  | Ends |
+| A2 | 1 | The selected folder is not longer available. | The system informs the user that the folder is unavailable and keeps the previous folder displayed. | Ends |
 
 <!--
 GUIDANCE: rules from Lesson 13, all of which are checked
