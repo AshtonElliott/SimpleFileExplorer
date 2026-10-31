@@ -125,61 +125,42 @@ The Simple File Explorer system allows users to search for files through a user 
 
 #### 3.1 [Functional requirements]
 
-ID
-Requirement — one “shall” sentence
-Priority
-Source
-Acceptance criterion
-FR-01
-The file information displayed in the GUI shall be accurate to its actual data
-MUST
-Devs
-Verify displayed information with what is shown by command line tools
-FR-02
-Folders shall be navigable via mouse or keyboard actions (double click, arrows, enter, backspace, etc)
-MUST
-Devs
-GUI navigates through directories and displays new contents without error 
-FR-03
-Users shall search for strings in directory/file names/contents
-MUST
-Devs
-File searches in the GUI are accurate with results from command line tools
-FR-04
-Drives, commonly used folders, and folder history shall be displayed in a sidebar
-MUST
-Devs
-SFE includes a sidebar for quick access to drives, common folders (such as Documents, Downloads, etc), and recent folders.
-FR-05
-Errors shall be reported within the GUI
-SHOULD
-Devs
-Test errors display correctly when triggered and cancels the action
-FR-06
-Images shall display with thumbnails
-COULD
-Devs
-Images have a smaller version (a thumbnail) generated and cached to display alongside their information
-FR-07
-Users shall be able to create, delete, and rename files.
-WON’T
-Devs
-Users are able to create/delete/rename files within the GUI
-FR-08
-Users shall be able to move files from one directory to another.
-WON’T
-Devs
-Files are able to be transferred to other directories, by copy-paste or drag ‘n’ drop, without loss of file/directory sanity.
 
+**FR-01** - The file information displayed in the GUI shall be accurate to its actual data - MUST - Devs - Verify displayed -information with what is shown by command line tools
 
+**FR-02** - Folders shall be navigable via mouse or keyboard actions (double click, arrows, enter, backspace, etc) - MUST- Devs - GUI navigates through directories and displays new contents without error 
+
+**FR-03** - Users shall search for strings in directory/file names/contents - MUST - Devs- File searches in the GUI are accurate with results from command line tools
+
+**FR-04** - Drives, commonly used folders, and folder history shall be displayed in a sidebar - MUST- Devs - SFE includes a sidebar for quick access to drives, common folders (such as Documents, Downloads, etc), and recent folders.
+
+**FR-05**- Errors shall be reported within the GUI - SHOULD - Devs - Test errors display correctly when triggered and cancels the action
+
+**FR-06** - Images shall display with thumbnails - COULD - Devs - Images have a smaller version (a thumbnail) generated and cached to display alongside their information
+
+**FR-07** - Users shall be able to create, delete, and rename files. - WON’T - Devs- Users are able to create/delete/rename files within the GUI
+
+**FR-08** - Users shall be able to move files from one directory to another. - WON’T - Devs - Files are able to be transferred to other directories, by copy-paste or drag ‘n’ drop, without loss of file/directory sanity.
 
 #### 3.2 [Quality requirements]
 
-[Carried forward from P1]
+**QR-01** - Searches must complete within 10 minutes of their initialization - MUST - Devs- A tester can confirm this by tracking load times while searching files.
+
+**QR-02** - Entering new folders should load their new content within 5 minutes of their opening - MUST - Devs - A tester can check whether the folder and documents are displayed in time
+
+**QR-03** - Search results shall contain 20 results before needing to scroll - SHOULD - Devs - Search results containing >20 entries will create a scroll bar in the window
+
+**QR-04** - The app shall open within 5 minutes of its starting - SHOULD - Devs  - Start times for the app will be measured to find if it successfully boots in under 5 minutes
+
+**QR-05** - Errors shall be logged within 1 minute of their occurrence  - SHOULD - Maintenance Team - A tester can trigger 10 different errors and verify that each is recorded in the system within 10 seconds. 
 
 #### 3.3 [Constraints]
 
-[Carried forward from P1]
+**CON-01** - Must run locally - Devs - Running with or through a third-party service creates unnecessary load times and opens up vulnerabilities
+
+**CON-02** - The system doesn’t write, move or delete any user file - Devs - Read-only access removes the risk of data loss
+
+**CON-03** - Must use Linux commands to make system calls - Devs - Use Linux commands that can achieve fast access to the file in memory
 
 #### 3.4 Use cases
 
@@ -187,7 +168,7 @@ Files are able to be transferred to other directories, by copy-paste or drag ‘
 
 #### 3.5 Traceability
 
-See section 9.1.
+See section 9.1. for the requrirements traceability matrix.
 
 ---
 
