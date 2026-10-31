@@ -186,8 +186,7 @@ Use Case Information:
 |---|---|
 | (what the actor sees before touching anything) | (0) The system displays the contents of the currently selected folder. |
 | (1) The user selects a different folder.  | (2) The system displays the contents of the selected folder. |
-| (3) The user views the contents of the newly selected folder. | (4) |
-| (5) | (6) |
+| (3) The user views the contents of the newly selected folder.
 
 **Alternate flows**
 
@@ -195,6 +194,58 @@ Use Case Information:
 |---|---|---|---|---|
 | A1 | 1 | The selected folder cannot be accessed because of permissions set by the admin. | The system informs the user that the folder couldn't be accessed. The previously displayed folder remains unchanged.  | Ends |
 | A2 | 1 | The selected folder is not longer available. | The system informs the user that the folder is unavailable and keeps the previous folder displayed. | Ends |
+
+#### UC-[03] [Search terms]
+Use Case Information:
+| | |
+|---|---|
+| **Primary actor** | End User |
+| **Supporting actors and external systems** | File System |
+| **TUCBW** (this use case begins when) | The user enters a search term to find matching files or folders.|
+| **TUCEW** (this use case ends when) | The system displays the matching search results, and the user has viewed them. |
+| **Preconditions** | - The application has started successfully. The user has access to the application. |
+| **Postconditions** | - Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
+| **Traces to requirements** | FR-[03], QR-[01], CON-[01], CON-[02] |
+
+| Actor input / action | System response |
+|---|---|
+| (what the actor sees before touching anything) | (0) The system displays the current location and provides the user with the ability to search for files and folders. |
+| (1) The user enters a search term. | (2) The system displays files and folders matching the entered term, including thier locations. |
+| (3) The user reviews the displayed search results. |
+
+**Alternate flows**
+
+| Alt. flow | At step | Condition | What happens | Ends or rejoins at |
+|---|---|---|---|---|
+| A1 | 2 | No matching files or folders are found | The system informs the user that no matching results were found | Ends |
+| A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Ends |
+
+
+#### UC-[04] [View quick access]
+Use Case Information:
+| | |
+|---|---|
+| **Primary actor** | End User |
+| **Supporting actors and external systems** | File System |
+| **TUCBW** (this use case begins when) | The user selects a commonly used or recently visited location.|
+| **TUCEW** (this use case ends when) | The system displays the contents of the selected location, and the user has viewed them. |
+| **Preconditions** | - The application has started successfully. The user has access to the aplication. |
+| **Postconditions** | - The selected location is displayed correctly. The contents of the selected location are displayed accurately. |
+| **Traces to requirements** | FR-[04], QR-[02], CON-[01], CON-[02] |
+
+| Actor input / action | System response |
+|---|---|
+| (what the actor sees before touching anything) | (0) The system displays available drives, commonly used folders, and recently visited folders.  |
+| (1) The user selects a location from the available quick-access locations. | (2) The system displays the selected location and its contents. |
+| (3) The user reviews the displayed contents. |
+
+**Alternate flows**
+
+| Alt. flow | At step | Condition | What happens | Ends or rejoins at |
+|---|---|---|---|---|
+| A1 | 1 | The selected location is no longer available | The system informs the user that the locations cannot be accesed. | Ends |
+| A2 | 1 | The user does not have permission to access the selected location. | The system informs the user that access is denied | Ends |
+
 
 <!--
 GUIDANCE: rules from Lesson 13, all of which are checked
@@ -224,9 +275,9 @@ turnover and the visitor option · ends.
 
 | Use case | Check from the Lesson 13 review checklist | Defect found | How it was fixed |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+|UC-02 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 90) describing the currently displayed folder contents.  |
+|UC-03 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | Seperated the user's search input from the system's response.|
+|UC-04 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
 
 <!--
 GUIDANCE
