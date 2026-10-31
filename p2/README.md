@@ -115,17 +115,63 @@ GUIDANCE
 
 ### 1 Introduction
 
-[Carried forward from P1]
+Simple File Explorer (SFE) is a slimmed down reimagining of the stock file explorer on Windows, reducing lag and long loading times by leveraging linux commands in a simple GUI. 
 
 ### 2 Overall Description
 
-[Carried forward from P1]
+The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
 
 ### 3 Requirements
 
 #### 3.1 [Functional requirements]
 
-[Carried forward from P1]
+ID
+Requirement — one “shall” sentence
+Priority
+Source
+Acceptance criterion
+FR-01
+The file information displayed in the GUI shall be accurate to its actual data
+MUST
+Devs
+Verify displayed information with what is shown by command line tools
+FR-02
+Folders shall be navigable via mouse or keyboard actions (double click, arrows, enter, backspace, etc)
+MUST
+Devs
+GUI navigates through directories and displays new contents without error 
+FR-03
+Users shall search for strings in directory/file names/contents
+MUST
+Devs
+File searches in the GUI are accurate with results from command line tools
+FR-04
+Drives, commonly used folders, and folder history shall be displayed in a sidebar
+MUST
+Devs
+SFE includes a sidebar for quick access to drives, common folders (such as Documents, Downloads, etc), and recent folders.
+FR-05
+Errors shall be reported within the GUI
+SHOULD
+Devs
+Test errors display correctly when triggered and cancels the action
+FR-06
+Images shall display with thumbnails
+COULD
+Devs
+Images have a smaller version (a thumbnail) generated and cached to display alongside their information
+FR-07
+Users shall be able to create, delete, and rename files.
+WON’T
+Devs
+Users are able to create/delete/rename files within the GUI
+FR-08
+Users shall be able to move files from one directory to another.
+WON’T
+Devs
+Files are able to be transferred to other directories, by copy-paste or drag ‘n’ drop, without loss of file/directory sanity.
+
+
 
 #### 3.2 [Quality requirements]
 
