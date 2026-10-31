@@ -174,13 +174,13 @@ GUIDANCE
 
 | | |
 |---|---|
-| **Primary actor** | |
-| **Supporting actors and external systems** | |
-| **TUCBW** (this use case begins when) | |
-| **TUCEW** (this use case ends when) | |
-| **Preconditions** | |
-| **Postconditions** | |
-| **Traces to requirements** | FR-[ ], QR-[ ], CON-[ ] |
+| **Primary actor** | End User |
+| **Supporting actors and external systems** | File System |
+| **TUCBW** (this use case begins when) | The user selects a folder to view its contents |
+| **TUCEW** (this use case ends when) | The user has viewed the contents of the selected folder |
+| **Preconditions** | - The application was initiated successfully. The user has access to the applicaton.  |
+| **Postconditions** | - The selected folder's contents are displayed accurately. The user can view the contents of the new folder. |
+| **Traces to requirements** | FR-[02], QR-[02], CON-[01], CON-[02] |
 
 | Actor input / action | System response |
 |---|---|
