@@ -153,7 +153,7 @@ See section 9.1.
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-[xx] | | | |
+| UC-[01] | View Folders | Allows users to navigate between different folders on their computer  | Selecting a folder and retrieving its contents. |
 | UC-[xx] | | | |
 | UC-[xx] | | | |
 
