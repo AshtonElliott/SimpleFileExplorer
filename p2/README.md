@@ -153,9 +153,9 @@ See section 9.1.
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-[01] | View Folders | Allows users to navigate between different folders on their computer  | Selecting a folder and retrieving its contents. |
-| UC-[xx] | | | |
-| UC-[xx] | | | |
+| UC-[02] | View Folders | Allows users to navigate between different folders on their computer  | Selecting a folder and retrieving its contents. |
+| UC-[03] |Search terms | Searching is one the main purposes of the application | Accepting a search term, finding matching files and folders, and finally displaying results. |
+| UC-[04] | View quick access |  Allows users to reach commonly used and recently visited locations more easily. | Selecting a location and displaying its contents. |
 
 <!--
 GUIDANCE
