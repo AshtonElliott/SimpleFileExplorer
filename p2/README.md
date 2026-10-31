@@ -170,8 +170,8 @@ GUIDANCE
 
 <!-- Copy the block below once for each use case in 4.1. -->
 
-#### UC-[xx] [Use case name]
-
+#### UC-[02] [View folders]
+Use Case Information:
 | | |
 |---|---|
 | **Primary actor** | End User |
