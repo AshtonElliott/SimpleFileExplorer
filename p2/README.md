@@ -60,7 +60,7 @@ must agree with your repository history.
 
 | Team member | Sections and artifacts this person produced for P2 | Evidence in the repository (commit hashes, PR numbers) | Reviews given (PR numbers) |
 |---|---|---|---|
-| | | | |
+| George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indenified in P1| Added commit hash(es) for Section 4 documentation changes and PR number(s) if applicable. | Add PR number(s) for reviews provided, or N/A if none. |
 | | | | |
 | | | | |
 | | | | |
