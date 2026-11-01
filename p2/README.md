@@ -53,13 +53,14 @@ must agree with your repository history.
 
 | Version | Date | Author | Summary of change |
 |---|---|---|---|
-| 0.x | | | P1 baseline (copy your last P1 row) |
+| 0.10 | 10/18/26 | Austin Robson | Added more quality requirements, reviewed and finalized content before submission |
 | 1.0 | | | P2 baseline: analysis and high-level design added |
 
 ### 0.1 Individual contribution record (P2)
 
 | Team member | Sections and artifacts this person produced for P2 | Evidence in the repository (commit hashes, PR numbers) | Reviews given (PR numbers) |
 |---|---|---|---|
+| Austin Robson | Added .md for P2 document | c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
 | George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indenified in P1| Added commit hash(es) for Section 4 documentation changes and PR number(s) if applicable. | Add PR number(s) for reviews provided, or N/A if none. |
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
 | | | | |
@@ -125,42 +126,34 @@ The Simple File Explorer system allows users to search for files through a user 
 
 #### 3.1 [Functional requirements]
 
-
-**FR-01** - The file information displayed in the GUI shall be accurate to its actual data - MUST - Devs - Verify displayed -information with what is shown by command line tools
-
-**FR-02** - Folders shall be navigable via mouse or keyboard actions (double click, arrows, enter, backspace, etc) - MUST- Devs - GUI navigates through directories and displays new contents without error 
-
-**FR-03** - Users shall search for strings in directory/file names/contents - MUST - Devs- File searches in the GUI are accurate with results from command line tools
-
-**FR-04** - Drives, commonly used folders, and folder history shall be displayed in a sidebar - MUST- Devs - SFE includes a sidebar for quick access to drives, common folders (such as Documents, Downloads, etc), and recent folders.
-
-**FR-05**- Errors shall be reported within the GUI - SHOULD - Devs - Test errors display correctly when triggered and cancels the action
-
-**FR-06** - Images shall display with thumbnails - COULD - Devs - Images have a smaller version (a thumbnail) generated and cached to display alongside their information
-
-**FR-07** - Users shall be able to create, delete, and rename files. - WON’T - Devs- Users are able to create/delete/rename files within the GUI
-
-**FR-08** - Users shall be able to move files from one directory to another. - WON’T - Devs - Files are able to be transferred to other directories, by copy-paste or drag ‘n’ drop, without loss of file/directory sanity.
+| ID | Requirement | Priority | Source | Acceptance |
+| --- | --- | --- | --- | --- |
+| FR-01 | The file information displayed in the GUI shall be accurate to its actual data | MUST | Devs | Verify that displayed information matches what is shown by command line tools (ls -l) |
+| FR-02 | Folders shall be navigable via mouse or keyboard actions (double click, arrows, enter, backspace, etc) | MUST | Devs | GUI navigates through directories and displays new contents without error | 
+| FR-03 | Users shall search for strings in directory/file names/contents | MUST | Devs | File searches in the GUI are accurate with results from command line tools |
+| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar | MUST | Devs | SFE includes a sidebar for quick access to drives, common folders (such as Documents, Downloads, etc), and recent folders. |
+| FR-05 | Errors shall be reported within the GUI | SHOULD | Devs | Test errors display correctly when triggered and cancels the action |
+| FR-06 | Images shall display with thumbnails | COULD | Devs | Images have a smaller version (a thumbnail) generated and cached to display alongside their information |
+| FR-07 | Users shall be able to create, delete, and rename files. | WON’T | Devs | Users are able to create/delete/rename files within the GUI |
+| FR-08 | Users shall be able to move files from one directory to another. | WON’T | Devs | Files are able to be transferred to other directories, by copy-paste or drag ‘n’ drop, without loss of file/directory sanity. |
 
 #### 3.2 [Quality requirements]
 
-**QR-01** - Searches must complete within 10 minutes of their initialization - MUST - Devs- A tester can confirm this by tracking load times while searching files.
-
-**QR-02** - Entering new folders should load their new content within 5 minutes of their opening - MUST - Devs - A tester can check whether the folder and documents are displayed in time
-
-**QR-03** - Search results shall contain 20 results before needing to scroll - SHOULD - Devs - Search results containing >20 entries will create a scroll bar in the window
-
-**QR-04** - The app shall open within 5 minutes of its starting - SHOULD - Devs  - Start times for the app will be measured to find if it successfully boots in under 5 minutes
-
-**QR-05** - Errors shall be logged within 1 minute of their occurrence  - SHOULD - Maintenance Team - A tester can trigger 10 different errors and verify that each is recorded in the system within 10 seconds. 
+| ID | Requirement | Priority | Source | Verification |
+| --- | --- | --- | --- | --- |
+| QR-01 | Searches must complete within 10 minutes of their initialization | MUST | Devs | A tester can confirm this by tracking load times while searching files. |
+| QR-02 | Entering new folders should load their new content within 5 minutes of their opening | MUST | Devs | A tester can check whether the folder and documents are displayed in time |
+| QR-03 | Search results shall contain 20 results before needing to scroll | SHOULD | Devs | Search results containing >20 entries will create a scroll bar in the window |
+| QR-04 | The app shall open within 5 minutes of its starting | SHOULD | Devs | Start times for the app will be measured to find if it successfully boots in under 5 minutes |
+| QR-05 | Errors shall be logged within 1 minute of their occurrence | SHOULD | Maintenance Team | A tester can trigger 10 different errors and verify that each is recorded in the system within 1 minute. |
 
 #### 3.3 [Constraints]
 
-**CON-01** - Must run locally - Devs - Running with or through a third-party service creates unnecessary load times and opens up vulnerabilities
-
-**CON-02** - The system doesn’t write, move or delete any user file - Devs - Read-only access removes the risk of data loss
-
-**CON-03** - Must use Linux commands to make system calls - Devs - Use Linux commands that can achieve fast access to the file in memory
+| ID | Constraint | Source | Why |
+| --- | --- | --- | --- |
+| CON-01 | Must run locally | Devs | Running with or through a third-party service creates unnecessary load times and opens up vulnerabilities |
+| CON-02 | The system doesn’t write, move or delete any user file | Devs | Read-only access removes the risk of data loss |
+| CON-03 | Must use Linux commands to make system calls | Devs | Use Linux commands that can achieve fast access to the file in memory |
 
 #### 3.4 Use cases
 
@@ -181,7 +174,7 @@ See section 9.1. for the requrirements traceability matrix.
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
 | UC-[02] | View Folders | Allows users to navigate between different folders on their computer  | Selecting a folder and retrieving its contents. |
-| UC-[03] |Search terms | Searching is one the main purposes of the application | Accepting a search term, finding matching files and folders, and finally displaying results. |
+| UC-[03] | Search terms | Searching is one the main purposes of the application | Accepting a search term, finding matching files and folders, and finally displaying results. |
 | UC-[04] | View quick access |  Allows users to reach commonly used and recently visited locations more easily. | Selecting a location and displaying its contents. |
 
 <!--
@@ -212,8 +205,9 @@ Use Case Information:
 | Actor input / action | System response |
 |---|---|
 | (what the actor sees before touching anything) | (0) The system displays the contents of the currently selected folder. |
-| (1) The user selects a different folder.  | (2) The system displays the contents of the selected folder. |
-| (3) The user views the contents of the newly selected folder.
+| (1) The user selects a different folder.  |  |
+|  | (2) The system displays the contents of the selected folder. |
+| (3) The user views the contents of the newly selected folder. |  |
 
 **Alternate flows**
 
@@ -230,8 +224,8 @@ Use Case Information:
 | **Supporting actors and external systems** | File System |
 | **TUCBW** (this use case begins when) | The user enters a search term to find matching files or folders.|
 | **TUCEW** (this use case ends when) | The system displays the matching search results, and the user has viewed them. |
-| **Preconditions** | - The application has started successfully. The user has access to the application. |
-| **Postconditions** | - Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
+| **Preconditions** | The application has started successfully. The user has access to the application. |
+| **Postconditions** | Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
 | **Traces to requirements** | FR-[03], QR-[01], CON-[01], CON-[02] |
 
 | Actor input / action | System response |
@@ -256,15 +250,16 @@ Use Case Information:
 | **Supporting actors and external systems** | File System |
 | **TUCBW** (this use case begins when) | The user selects a commonly used or recently visited location.|
 | **TUCEW** (this use case ends when) | The system displays the contents of the selected location, and the user has viewed them. |
-| **Preconditions** | - The application has started successfully. The user has access to the aplication. |
-| **Postconditions** | - The selected location is displayed correctly. The contents of the selected location are displayed accurately. |
+| **Preconditions** | The application has started successfully. The user has access to the aplication. |
+| **Postconditions** | The selected location is displayed correctly. The contents of the selected location are displayed accurately. |
 | **Traces to requirements** | FR-[04], QR-[02], CON-[01], CON-[02] |
 
 | Actor input / action | System response |
 |---|---|
 | (what the actor sees before touching anything) | (0) The system displays available drives, commonly used folders, and recently visited folders.  |
-| (1) The user selects a location from the available quick-access locations. | (2) The system displays the selected location and its contents. |
-| (3) The user reviews the displayed contents. |
+| (1) The user selects a location from the available quick-access locations. |  |
+|  | (2) The system displays the selected location and its contents. |
+| (3) The user reviews the displayed contents. |  |
 
 **Alternate flows**
 
