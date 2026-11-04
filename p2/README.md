@@ -63,7 +63,8 @@ must agree with your repository history.
 | Austin Robson | Added .md for P2 document | c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
 | George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indenified in P1| Added commit hash(es) for Section 4 documentation changes and PR number(s) if applicable. | Add PR number(s) for reviews provided, or N/A if none. |
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
-| Ashton Elliott | Created basic JAVA GUI as a base to start from; added GUI File Search | Commit 9a5e323; Commit 82f3d2d | No PR reviews as of 11/3/26. |
+| Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323 | No PR reviews as of 11/3/26. |
+| Ashton Elliott | added GUI File Search | Commit 82f3d2d | No PR reviews as of 11/4/26. |
 | | | | |
 | | | | |
 
