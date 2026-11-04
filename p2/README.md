@@ -63,7 +63,7 @@ must agree with your repository history.
 | Austin Robson | Added .md for P2 document | c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
 | George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indenified in P1| Added commit hash(es) for Section 4 documentation changes and PR number(s) if applicable. | Add PR number(s) for reviews provided, or N/A if none. |
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
-| Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323, "Created initial Java GUI (app.java)." | No PR reviews as of 11/3/26. |
+| Ashton Elliott | Created basic JAVA GUI as a base to start from; added GUI File Search | Commit 9a5e323; Commit 82f3d2d | No PR reviews as of 11/3/26. |
 | | | | |
 | | | | |
 
@@ -671,6 +671,7 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 | Member | Tool | What it was used for | What you checked or changed |
 |---|---|---|---|
 | Austin Robson | Claude | Converting P2 template pdf into markdown | Verify that formatting such as tables and headings match up with original pdf |
+| Ashton Elliott | Claude Opus 5.5 | Assisted in creation of Search Engine to app.java | Verified that the code worked as expected as well as added additional comments for team members to be able to identify what happens where in the code.
 | | | | |
 
 <!--
