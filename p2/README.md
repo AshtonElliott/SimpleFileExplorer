@@ -322,9 +322,7 @@ acceptable when it is true. Budget: a quarter of a page.
 
 ### 5.1 Domain model
 
-![Figure 5.1 Domain model (conceptual classes, attributes, associations with multiplicities)](diagrams/domain-model.png)
-
-*Figure 5.1 Domain model (conceptual classes, attributes, associations with multiplicities)*
+<img src="domain-model.png" width="500" height="500">
 
 | Class | What it represents (one line) | Key attributes | Associations (with multiplicity) |
 |---|---|---|---|
