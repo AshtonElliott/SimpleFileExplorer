@@ -159,7 +159,8 @@ The Simple File Explorer system allows users to search for files through a user 
 
 #### 3.4 Use cases
 
-[Use-case diagram and actor-goal list. Detailed expansion is in section 4.]
+<!-- [Use-case diagram and actor-goal list. Detailed expansion is in section 4.] -->
+![Use-case diagram (to be updated)](uc-diagram-v1.png)
 
 #### 3.5 Traceability
 
@@ -175,9 +176,9 @@ See section 9.1. for the requrirements traceability matrix.
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-[02] | View Folders | Allows users to navigate between different folders on their computer  | Selecting a folder and retrieving its contents. |
-| UC-[03] | Search terms | Searching is one the main purposes of the application | Accepting a search term, finding matching files and folders, and finally displaying results. |
-| UC-[04] | View quick access |  Allows users to reach commonly used and recently visited locations more easily. | Selecting a location and displaying its contents. |
+| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes
+| UC-02 | View Folders | "Explorer" part of file explorer, needed to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
+| UC-03 | Search terms | Prove that searching with simpler tools allows for faster results | Accepting a search term, finding matching files and folders, and finally displaying results. |
 
 <!--
 GUIDANCE
@@ -192,23 +193,51 @@ GUIDANCE
 
 <!-- Copy the block below once for each use case in 4.1. -->
 
-#### UC-[02] [View folders]
+#### UC-01 **View files**
 Use Case Information:
 | | |
 |---|---|
-| **Primary actor** | End User |
-| **Supporting actors and external systems** | File System |
-| **TUCBW** (this use case begins when) | The user selects a folder to view its contents |
-| **TUCEW** (this use case ends when) | The user has viewed the contents of the selected folder |
-| **Preconditions** | - The application was initiated successfully. The user has access to the applicaton.  |
-| **Postconditions** | - The selected folder's contents are displayed accurately. The user can view the contents of the new folder. |
-| **Traces to requirements** | FR-[02], QR-[02], CON-[01], CON-[02] |
+| Primary actor | End User |
+| Supporting actors and external systems | WSL, GUI |
+| TUCBW (this use case begins when) | The user clicks on a file to view its details |
+| TUCEW (this use case ends when) | The user sees the selected file's attributes |
+| Preconditions | - The application was initiated successfully. The user has permission to read the file.  |
+| **Postconditions** | - The file's attributes are displayed on the GUI and are accurate to command line results. |
+| **Traces to requirements** | FR-01, CON-02 |
+
+| Actor input / action | System response |
+|---|---|
+| (what the actor sees before touching anything) | (0) The system displays the contents of the currently selected folder. |
+| (1) The user selects a file.  |  |
+|  | (2) The system finds and displays attributes for the selected file. |
+| (3) The user views the file attributes on the GUI. |  |
+
+**Alternate flows**
+
+| Alt. flow | At step | Condition | What happens | Ends or rejoins at |
+|---|---|---|---|---|
+| A1 | 1 | The selected file cannot be accessed because of permissions set by the admin. | The system informs the user that the file couldn't be accessed. GUI directory remains unchanged.  | Ends |
+| A2 | 1 | The selected file is not longer available. | The system informs the user that the file is unavailable. | Ends |
+
+
+
+#### UC-02 **View folders**
+Use Case Information:
+| | |
+|---|---|
+| Primary actor | End User |
+| Supporting actors and external systems | File System |
+| TUCBW (this use case begins when) | The user selects a folder to navigate to |
+| TUCEW (this use case ends when) | The user sees the contents of the new folder |
+| Preconditions | The application was initiated successfully. The user has access to the applicaton.  |
+| Postconditions | The selected folder's contents are displayed accurately. The user can view the contents of the new folder. |
+| Traces to requirements | FR-02, QR-02, CON-01, CON-02 |
 
 | Actor input / action | System response |
 |---|---|
 | (what the actor sees before touching anything) | (0) The system displays the contents of the currently selected folder. |
 | (1) The user selects a different folder.  |  |
-|  | (2) The system displays the contents of the selected folder. |
+|  | (2) The system redirects the GUI's current directory to the selected folder. |
 | (3) The user views the contents of the newly selected folder. |  |
 
 **Alternate flows**
@@ -218,22 +247,25 @@ Use Case Information:
 | A1 | 1 | The selected folder cannot be accessed because of permissions set by the admin. | The system informs the user that the folder couldn't be accessed. The previously displayed folder remains unchanged.  | Ends |
 | A2 | 1 | The selected folder is not longer available. | The system informs the user that the folder is unavailable and keeps the previous folder displayed. | Ends |
 
-#### UC-[03] [Search terms]
+
+
+#### UC-03 **Search terms**
 Use Case Information:
 | | |
 |---|---|
-| **Primary actor** | End User |
-| **Supporting actors and external systems** | File System |
-| **TUCBW** (this use case begins when) | The user enters a search term to find matching files or folders.|
-| **TUCEW** (this use case ends when) | The system displays the matching search results, and the user has viewed them. |
-| **Preconditions** | The application has started successfully. The user has access to the application. |
-| **Postconditions** | Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
-| **Traces to requirements** | FR-[03], QR-[01], CON-[01], CON-[02] |
+| Primary actor | End User |
+| Supporting actors and external systems | File System |
+| TUCBW (this use case begins when) | The user enters a search term to find matching files or folders.|
+| TUCEW (this use case ends when) | The user sees all the search results for their term. |
+| Preconditions | The application has started successfully. The user has access to the application. |
+| Postconditions | Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
+| Traces to requirements | FR-[03], QR-[01], CON-[01], CON-[02] |
 
 | Actor input / action | System response |
 |---|---|
 | (what the actor sees before touching anything) | (0) The system displays the current location and provides the user with the ability to search for files and folders. |
-| (1) The user enters a search term. | (2) The system displays files and folders matching the entered term, including thier locations. |
+| (1) The user enters a search term. |  |
+|  | (2) The system executes a search with the given term and displays files and folders matching the entered term, including thier locations. |
 | (3) The user reviews the displayed search results. |
 
 **Alternate flows**
@@ -242,34 +274,6 @@ Use Case Information:
 |---|---|---|---|---|
 | A1 | 2 | No matching files or folders are found | The system informs the user that no matching results were found | Ends |
 | A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Ends |
-
-
-#### UC-[04] [View quick access]
-Use Case Information:
-| | |
-|---|---|
-| **Primary actor** | End User |
-| **Supporting actors and external systems** | File System |
-| **TUCBW** (this use case begins when) | The user selects a commonly used or recently visited location.|
-| **TUCEW** (this use case ends when) | The system displays the contents of the selected location, and the user has viewed them. |
-| **Preconditions** | The application has started successfully. The user has access to the aplication. |
-| **Postconditions** | The selected location is displayed correctly. The contents of the selected location are displayed accurately. |
-| **Traces to requirements** | FR-[04], QR-[02], CON-[01], CON-[02] |
-
-| Actor input / action | System response |
-|---|---|
-| (what the actor sees before touching anything) | (0) The system displays available drives, commonly used folders, and recently visited folders.  |
-| (1) The user selects a location from the available quick-access locations. |  |
-|  | (2) The system displays the selected location and its contents. |
-| (3) The user reviews the displayed contents. |  |
-
-**Alternate flows**
-
-| Alt. flow | At step | Condition | What happens | Ends or rejoins at |
-|---|---|---|---|---|
-| A1 | 1 | The selected location is no longer available | The system informs the user that the locations cannot be accesed. | Ends |
-| A2 | 1 | The user does not have permission to access the selected location. | The system informs the user that access is denied | Ends |
-
 
 <!--
 GUIDANCE: rules from Lesson 13, all of which are checked
@@ -299,9 +303,9 @@ turnover and the visitor option · ends.
 
 | Use case | Check from the Lesson 13 review checklist | Defect found | How it was fixed |
 |---|---|---|---|
-|UC-02 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 90) describing the currently displayed folder contents.  |
-|UC-03 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | Seperated the user's search input from the system's response.|
-|UC-04 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
+| UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 0, describing the currently displayed folder contents.  |
+| UC-02 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | Seperated the user's search input from the system's response.|
+| UC-03 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
 
 <!--
 GUIDANCE
@@ -567,9 +571,9 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | | |
 |---|---|
-| **Spike ID and title** | S-01 |
+| **Spike ID and title** | S-01: ls parsing |
 | **Risk or decision it addresses** | R[ ] / ADR-[ ] / QAS-[ ] |
-| **Question (answerable yes or no)** | |
+| **Question (answerable yes or no)** | No |
 | **Set-up** | Stack, data, what was simulated; folder in the repository |
 | **How it was measured** | |
 | **Result (numbers)** | |
@@ -688,8 +692,8 @@ Write "None" if no tool was used.
 
 | ID | Question | Raised by | Owner and due date | Status or answer | Assumption meanwhile |
 |---|---|---|---|---|---|
-| Q[ ] | | | | | |
-| Q[ ] | | | | | |
+| Q1 | As the file explorer needs to run on Linux in Windows, why don't we just use Windows local commands? | Yukai Ma | Austin Robson - 10/18 | Windows commands alone tend to be slow. Dedicated tools, such as bash, java, or even powershell, can be used to achieve the same behavior with better speed. | Users will only be able to use the app if linux subsystem is installed |
+| Q2 | Do we need to add a tutorial to teach users to download WSL before using this file explorer? | Yukai Ma | Austin Robson - 10/18 | Windows susbsystem linux, and/or any other dependencies, will be included in the app README.md with intallation instructions | Users will have to learn how to install WSL themselves |
 
 <!--
 GUIDANCE
@@ -706,7 +710,7 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 
 | Team member | Signature or initials | Date |
 |---|---|---|
-| | | |
+| Austin Robson | | |
 | | | |
 | | | |
 | | | |
