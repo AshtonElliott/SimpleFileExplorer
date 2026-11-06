@@ -322,14 +322,15 @@ acceptable when it is true. Budget: a quarter of a page.
 
 ### 5.1 Domain model
 
-<img src="domain-model.png" width="500" height="500">
+![Figure 5.1 Domain model (conceptual classes, attributes, associations with multiplicities)](domain-model.png)
 
 | Class | What it represents (one line) | Key attributes | Associations (with multiplicity) |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| File | Individual files in the file system | Name, path, Attribute set | File 1:1 Attributes. File 1:1 Folder. |
+| Folder | Folders/directories within the file system | Name, path, contents, Attributes | 1 Folder 1:1 Attributes. Folder 1:0..* File |
+| Attributes | Set of details every file/folder has | Date last modified, size | File 1:1 Attributes. Folder 1:1 Attributes |
+| Search results| Files and folders listed after searching | List of search results | Search results 1:0..* File. Search results 1:0..* Folder. |
+| Quick Access | Easy access to drive folders and recent folders | Lists drive folders and recent folders | Quick access 1:1..* Folder |
 
 <!--
 GUIDANCE
@@ -347,7 +348,24 @@ OccupancyReading (time, state); Permit (type, valid until) * ── 1..* Lot "is
 
 <!-- Copy the block below for at least two of the use cases in 4.1; preferably including your riskiest. -->
 
-#### 5.2.x UC-[xx] [Use case name]
+#### 5.2.1 UC-01 **View Files**
+
+**(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
+
+**(b) Scenario table.**
+
+| Step | Subject (who acts) | Subject action (what it does) | Other data / objects (what is used) | Object acted upon (who receives) |
+|---|---|---|---|---|
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+
+**(c) Analysis sequence diagram.**
+
+![Figure 5.2.x Analysis sequence diagram for UC-xx](diagrams/uc-xx-sequence.png)
+
+#### 5.2.2 UC-2 **View Folders**
 
 **(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
 
