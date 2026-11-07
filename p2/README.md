@@ -60,13 +60,14 @@ must agree with your repository history.
 
 | Team member | Sections and artifacts this person produced for P2 | Evidence in the repository (commit hashes, PR numbers) | Reviews given (PR numbers) |
 |---|---|---|---|
-| Austin Robson | Added .md for P2 document | c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
-| George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indenified in P1| Added commit hash(es) for Section 4 documentation changes and PR number(s) if applicable. | Add PR number(s) for reviews provided, or N/A if none. |
-| George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
+| Austin Robson | Added .md for P2 document | Commit: c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
+| George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indemnified in P1| 497108a, a1091e7| No PR reviews as of 10/31/26. |
+| George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Commits: 4bea388, e8b085e, 5fa1711, 2ff27a7, 6383af3, e032a95, 78242bf |No PR reviews as of 10/31/26. |
 | Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323 | No PR reviews as of 11/3/26. |
 | Ashton Elliott | added GUI File Search | Commit 82f3d2d | No PR reviews as of 11/4/26. |
-| George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | 273fb19, 86deee0, dcf7f83, 24d4394 | No reviews as of 11/6/26 |
-| | | | |
+| George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | Commits: 273fb19, 86deee0, dcf7f83, 24d4394 | No PR reviews as of 11/6/26 |
+| George Chakiath Dani | Section 8 - Prototype Evidence: Architecture Spike (S-01: ls parsing) | 30f03ac | No PR reviews as of 11/7/26 |
+| George Chakiath Dani | Section 9.1 - Extended Traceability Matrix: Section 9.2 - Gap Analysis | Commits: 2a64472, 9f791bc, e6cb1c7 | No PR reviews as of 11/7/26 |
 
 <!--
 GUIDANCE
@@ -625,13 +626,14 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | | |
 |---|---|
 | **Spike ID and title** | S-01: ls parsing |
-| **Risk or decision it addresses** | R[ ] / ADR-[ ] / QAS-[ ] |
-| **Question (answerable yes or no)** | No |
-| **Set-up** | Stack, data, what was simulated; folder in the repository |
-| **How it was measured** | |
-| **Result (numbers)** | |
-| **What it changed or confirmed** | Which ADR, QAS or requirement |
-| **Where to see it** | Commit hash, `/spikes/S-01/`, screenshot or log file |
+| **Risk or decision it addresses** | R[2] / ADR-[01]|
+| **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
+| **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
+| **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
+| **Result (numbers)** | Numeric measurements were not recorded |
+| **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
+| **Where to see it** | Pending - test evidence and repository location have not yet been added. |
+
 
 <!--
 GUIDANCE
@@ -655,10 +657,13 @@ GUIDANCE
 
 | Requirement | Use case | Analysis classes | Component(s) | QAS / ADR | Evidence |
 |---|---|---|---|---|---|
-| FR-01 | | | | | |
-| FR-02 | | | | | |
-| QR-01 | | | | | |
-| CON-01 | | | | | |
+| FR-01 | UC-01: View Files | File, File system | To be confirmed in Section 6  | ADR-01, ADR-03 | UC-01 analysis; ls -l acceptance test |
+| FR-02 | UC-02: View Folders | Folder, File system | To be confirmed in Section 6 | ADR-02, ADR-03 | UC-02: use-case analysis |
+| FR-03 | UC-03: Search Terms | File, Folder, Search Results | To be confirmed in Section 6 | ADR-01 | UC-03: analysis; P1 grep feasibility test |
+| FR-04 | No dedicated use case currently | Quick Access Folder | To be confirmed in Section 6 | To be determined | FR-04 acceptance criteria |
+| QR-01 | UC-03: Search Terms | Search Results, File, Folder | To be confirmed in Section 6 | ADR-01 | P1 grep feasibility test |
+| QR-02 | UC-02: View Folders | Folder, File system | To be confirmed in Section 6 | ADR-01 | UC-02 analysis |
+| CON-01 | UC-02, UC-03 | File system, Search Results | To be confirmed in Section 6 | ADR-02 | Local Java GUI implementation |
 
 <!--
 GUIDANCE
@@ -674,9 +679,9 @@ GUIDANCE
 
 | Gap | Items | What you did about it |
 |---|---|---|
-| Requirements with no component | | |
-| Components with no requirement, QAS or ADR | | |
-| Use cases not analyzed (and why that is acceptable) | | |
+| Requirements with no component | Component assignments for  FR-01, FR-02, QR-01, CON-01 are not yet confirmed. | Identified the Java GUI and WSL command execution as candidate components. These mappings need to be confirmed in Section 6 and added to the traceability matrix |
+| Components with no requirement, QAS or AD | Cannot determine until the component view in Section 6 is completed | Review each component after completing the architecture and link it to a requirement, QAS, or ADR. |
+| Use cases not analyzed (and why that is acceptable) | None, UC-01, and UC-02, and UC-03 have all been expanded in Section 4.2 | All three selected use cases were analyzed because they represent the main file viewing, folder navigation, and search functions. |
 
 <!--
 GUIDANCE
@@ -731,6 +736,9 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 | Austin Robson | Claude | Converting P2 template pdf into markdown | Verify that formatting such as tables and headings match up with original pdf |
 | Ashton Elliott | Claude Opus 5.5 | Assisted in creation of Search Engine to app.java | Verified that the code worked as expected as well as added additional comments for team members to be able to identify what happens where in the code.
 | George Chakiath Dani | ChatGPT | Adding in information for information Sections 1-3 and also including new information for Section 4: Use Case Analysis | Helped give me ideas on how I could fill in each of the blank spaces based on information in P1 and used it accordingly to the instructions at hand. |
+| George Chakiath Dani | ChatGPT | Assisted with drafting ADR-01, ADR-02, ADR-03, and the Section 72 - Trade-off Summary | Reviewed and edited the proposed decisions, checked them against project constraints and requirements, and adjusted wording to reflect the team's actual decisions and approval status.|
+| George Chakiath Dani | ChatGPT | Assisted with drafting Section 8 - Prototype Evidence: Architecture Spike. |Reviewed the spike description, checked its connection to ADR-01 and R2, and clarified that missing measurement and test evidence should not be fabricated |
+| George Chakiath Dani | ChatGPT | Assisted with drafting Section 9 - Traceability Matrix and Gap Analysis | Reviewed requirement-to-use-case mappings, analysis classes, ADR references, and identified gaps requiring confirmation in Section 6 |
 
 <!--
 GUIDANCE
