@@ -625,13 +625,14 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | | |
 |---|---|
 | **Spike ID and title** | S-01: ls parsing |
-| **Risk or decision it addresses** | R[ ] / ADR-[ ] / QAS-[ ] |
-| **Question (answerable yes or no)** | No |
-| **Set-up** | Stack, data, what was simulated; folder in the repository |
-| **How it was measured** | |
-| **Result (numbers)** | |
-| **What it changed or confirmed** | Which ADR, QAS or requirement |
-| **Where to see it** | Commit hash, `/spikes/S-01/`, screenshot or log file |
+| **Risk or decision it addresses** | R[2] / ADR-[01]|
+| **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
+| **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
+| **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
+| **Result (numbers)** | Numeric measurements were not recorded |
+| **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
+| **Where to see it** | Pending - test evidence and repository location have not yet been added. |
+
 
 <!--
 GUIDANCE
