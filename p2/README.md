@@ -37,7 +37,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | Team member | NetID | GitHub username |
 |:---:|:---:|:---:|
 | Austin Robson | axr230166 | austin-robson |
-| Yukai Ma | dal833810 |  |
+| Yukai Ma | dal833810 | yukaima |
 | Ashton Elliot | aee230007 | AshtonElliott |
 | George Chakiath Dani | gnc230001 | gchakiathUTDallas |
 | Rowan Egan | rje240001 |  |
