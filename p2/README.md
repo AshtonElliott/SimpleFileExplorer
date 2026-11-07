@@ -93,7 +93,7 @@ GUIDANCE
 GUIDANCE
 - Start with your P1 feedback. Every point raised in your P1 comment should appear here as a change, or
   with one sentence explaining why you kept the original.
-- Requirement IDs are never reused. A removed requirement stays in section 3 marked "Withdrawn (CH-nn)"
+- Requirement IDs are never reused. A removed requirement stays in section 3 marked "Withdrawn (CH-nn)"  
   so the traceability matrix does not silently lose it.
 - Budget: half a page.
 EXAMPLE (CometPark): CH-02 · QR-02 rewritten as quality-attribute scenario QAS-01 · Why: P1 feedback said
@@ -408,14 +408,14 @@ permit type, destination · Object acted upon: PermitRules.
 
 ### 5.3 Consistency cross-check
 
-| Check | | Result (pass, or what failed) | Fixed in |
-|---|---|---|---|
-| K1 | Every item in an actor column (4.2) is an attribute in the domain model (5.1) | | |
-| K2 | Every object on a sequence diagram is a domain class or a declared interaction object | | |
-| K3 | Every message on a sequence diagram corresponds to exactly one scenario-table row | | |
-| K4 | Every non-trivial step in 5.2 (a) has at least one scenario-table row | | |
-| K5 | Every analyzed use case traces to at least one functional requirement | | |
-| K6 | The last messages of each diagram make the use case postcondition true | | |
+| Check | Result (pass, or what failed) | Fixed in |
+|---|---|---|
+| K1 | Every item in an actor column (4.2) is an attribute in the domain model (5.1) | Pass | |
+| K2 | Every object on a sequence diagram is a domain class or a declared interaction object | Pass | |
+| K3 | Every message on a sequence diagram corresponds to exactly one scenario-table row | Pass | |
+| K4 | Every non-trivial step in 5.2 (a) has at least one scenario-table row | Pass | |
+| K5 | Every analyzed use case traces to at least one functional requirement | Pass | |
+| K6 | The last messages of each diagram make the use case postcondition true | Pass | |
 
 <!--
 GUIDANCE
@@ -655,10 +655,10 @@ GUIDANCE
 
 | Requirement | Use case | Analysis classes | Component(s) | QAS / ADR | Evidence |
 |---|---|---|---|---|---|
-| FR-01 | | | | | |
-| FR-02 | | | | | |
-| QR-01 | | | | | |
-| CON-01 | | | | | |
+| FR-01 | UC-01 | File |  |  |  |
+| FR-02 | UC-02 | Folder | | | |
+| QR-01 | UC-03 | Search results | | | |
+| CON-01 |  | File system | | | |
 
 <!--
 GUIDANCE
