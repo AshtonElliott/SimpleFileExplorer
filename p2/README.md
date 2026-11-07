@@ -563,7 +563,7 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | | |
 |---|---|
 | **Status** | Accepted |
-| **Date and owner** | Place Holder - Development Team |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
 | **Context (drivers)** | The application needed to search for files and retrieve folder information efficiently. CON-03 requires the application to use Linux commands for system calls. QR-01 requires searches to complete within 10 minutes. |
 | **Options considered** | 1. Use Windows native commands. 2. Execute Linux commands through Windows Subsystems for Linux (WSL).  |
 | **Decision** | Use WSL to execute Linux commands, such as grep and ls, to search for files and retrieve file information. |
@@ -572,20 +572,32 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | **Related** |QR-01, FR-03, CON-03, R2 |
 
 
-
-#### ADR-[01] [Using WSL Linux Commands]
+#### ADR-[02] [Running the Application Locally]
 
 | | |
 |---|---|
-| **Status** | Accepted / Superseded by ADR-[ ] |
-| **Date and owner** | |
-| **Context (drivers)** | Which QAS, use cases and constraints force a decision here |
-| **Options considered** | At least two, each in one line |
-| **Decision** | |
-| **Consequences** | Name the quality it favors, the move, and the cost you accept |
-| **Evidence** | Spike result (section 8), measurement, documentation, or "none yet" with an open question |
-| **Related** | ADR-[ ], QAS-[ ], R[ ] (risk), CH-[ ] (change) |
+| **Status** | Accepted |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Context (drivers)** | The application needed to run on the user's computer and access local files. CON-01 requires the application to run locally rather than relying on an external server. |
+| **Options considered** | At least two, each in one line server. 2. Run the application locally using Java and WSL (Linux). |
+| **Decision** | Rin the application locally as a Java application that communicates with WSL to execute Linux commands. |
+| **Consequences** | Favors local accessibility and allows the application to work with files on the user's computer. The accepted cost is that users must have Java and WSL installed and properly configured. |
+| **Evidence** | CON-01 establishes the requirement for local execution. The project also includes an implementation of a Java GUI. |
+| **Related** | CON-01, CON-03, FR-02, R1 |
 
+
+#### ADR-[03] [Read-Only File System Access]
+
+| | |
+|---|---|
+| **Status** |Proposed |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Context (drivers)** | The application needs to allow users to browse folders and search for files without modifying their existing data. CON-02 requires the application not to write, move, or delete file access. |
+| **Options considered** | 1. Allow users to view and modify files. 2. Restrict the application to read-only file access. |
+| **Decision** | Restrict the application to read-only access, allowing users to browse folders, view file information, and search for files without modifying them. |
+| **Consequences** | Favors data safety and prevents accidental modifications to user files. The accepted cost is that users cannot create, rename, move, delete files through the application. |
+| **Evidence** | CON-02 establishes the read-only restriction. The project scope also excludes file movement and other file-modification features. |
+| **Related** | CON-02, FR-01, FR-02, FR-03, FR-07, FR-08 |
 
 
 ### 7.2 Trade-off summary
