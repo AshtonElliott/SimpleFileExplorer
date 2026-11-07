@@ -558,7 +558,22 @@ connection · Decision: server push · Consequences: favors performance and fres
 management on the occupancy service and a fallback when push fails (A2 in UC-02) · Evidence: spike S-01.
 -->
 
-#### ADR-[xx] [Decision title]
+#### ADR-[01] [Using WSL Linux Commands]
+
+| | |
+|---|---|
+| **Status** | Accepted |
+| **Date and owner** | Place Holder - Development Team |
+| **Context (drivers)** | The application needed to search for files and retrieve folder information efficiently. CON-03 requires the application to use Linux commands for system calls. QR-01 requires searches to complete within 10 minutes. |
+| **Options considered** | 1. Use Windows native commands. 2. Execute Linux commands through Windows Subsystems for Linux (WSL).  |
+| **Decision** | Use WSL to execute Linux commands, such as grep and ls, to search for files and retrieve file information. |
+| **Consequences** | Favors performance and satisfies the Linux-command constraint. The accepted cost is that users must have WSL installed and configured on their computers.  |
+| **Evidence** | The team conducted a Linux grep feasibility test using the keyword "BERT", demonstrating that Linux-based searching was technically feasible. |
+| **Related** |QR-01, FR-03, CON-03, R2 |
+
+
+
+#### ADR-[01] [Using WSL Linux Commands]
 
 | | |
 |---|---|
@@ -570,6 +585,8 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | **Consequences** | Name the quality it favors, the move, and the cost you accept |
 | **Evidence** | Spike result (section 8), measurement, documentation, or "none yet" with an open question |
 | **Related** | ADR-[ ], QAS-[ ], R[ ] (risk), CH-[ ] (change) |
+
+
 
 ### 7.2 Trade-off summary
 
