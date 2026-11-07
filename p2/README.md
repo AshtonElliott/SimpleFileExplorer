@@ -604,9 +604,9 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | Quality favored | Architectural move | Cost accepted | Recorded in |
 |---|---|---|---|
-| | | | ADR-[ ] |
-| | | | ADR-[ ] |
-| | | | ADR-[ ] |
+| Performance | Using WSL Linux commands (grep, ls) for searching and retrieving file information. | Users must have WSL installed and configured | ADR-[01] |
+| Local accessibility | Running the application locally using Java and WSL | Users must have Java and WSL installed and configured. | ADR-[02] |
+| Data safety | Restricting the application to read-only file access | Users cannot create, rename, move, or delete files through the application.| ADR-[03] |
 
 <!-- GUIDANCE: One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page. -->
 
