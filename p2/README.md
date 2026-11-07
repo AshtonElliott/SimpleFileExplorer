@@ -37,7 +37,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | Team member | NetID | GitHub username |
 |:---:|:---:|:---:|
 | Austin Robson | axr230166 | austin-robson |
-| Yukai Ma | dal833810 |  |
+| Yukai Ma | dal833810 | yukaima |
 | Ashton Elliot | aee230007 | AshtonElliott |
 | George Chakiath Dani | gnc230001 | gchakiathUTDallas |
 | Rowan Egan | rje240001 |  |
@@ -65,7 +65,7 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
 | Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323 | No PR reviews as of 11/3/26. |
 | Ashton Elliott | added GUI File Search | Commit 82f3d2d | No PR reviews as of 11/4/26. |
-| | | | |
+| George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | 273fb19, 86deee0, dcf7f83, 24d4394 | No reviews as of 11/6/26 |
 | | | | |
 
 <!--
@@ -566,26 +566,55 @@ connection · Decision: server push · Consequences: favors performance and fres
 management on the occupancy service and a fallback when push fails (A2 in UC-02) · Evidence: spike S-01.
 -->
 
-#### ADR-[xx] [Decision title]
+#### ADR-[01] [Using WSL Linux Commands]
 
 | | |
 |---|---|
-| **Status** | Accepted / Superseded by ADR-[ ] |
-| **Date and owner** | |
-| **Context (drivers)** | Which QAS, use cases and constraints force a decision here |
-| **Options considered** | At least two, each in one line |
-| **Decision** | |
-| **Consequences** | Name the quality it favors, the move, and the cost you accept |
-| **Evidence** | Spike result (section 8), measurement, documentation, or "none yet" with an open question |
-| **Related** | ADR-[ ], QAS-[ ], R[ ] (risk), CH-[ ] (change) |
+| **Status** | Accepted |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Context (drivers)** | The application needed to search for files and retrieve folder information efficiently. CON-03 requires the application to use Linux commands for system calls. QR-01 requires searches to complete within 10 minutes. |
+| **Options considered** | 1. Use Windows native commands. 2. Execute Linux commands through Windows Subsystems for Linux (WSL).  |
+| **Decision** | Use WSL to execute Linux commands, such as grep and ls, to search for files and retrieve file information. |
+| **Consequences** | Favors performance and satisfies the Linux-command constraint. The accepted cost is that users must have WSL installed and configured on their computers.  |
+| **Evidence** | The team conducted a Linux grep feasibility test using the keyword "BERT", demonstrating that Linux-based searching was technically feasible. |
+| **Related** |QR-01, FR-03, CON-03, R2 |
+
+
+#### ADR-[02] [Running the Application Locally]
+
+| | |
+|---|---|
+| **Status** | Accepted |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Context (drivers)** | The application needed to run on the user's computer and access local files. CON-01 requires the application to run locally rather than relying on an external server. |
+| **Options considered** | At least two, each in one line server. 2. Run the application locally using Java and WSL (Linux). |
+| **Decision** | Rin the application locally as a Java application that communicates with WSL to execute Linux commands. |
+| **Consequences** | Favors local accessibility and allows the application to work with files on the user's computer. The accepted cost is that users must have Java and WSL installed and properly configured. |
+| **Evidence** | CON-01 establishes the requirement for local execution. The project also includes an implementation of a Java GUI. |
+| **Related** | CON-01, CON-03, FR-02, R1 |
+
+
+#### ADR-[03] [Read-Only File System Access]
+
+| | |
+|---|---|
+| **Status** |Proposed |
+| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Context (drivers)** | The application needs to allow users to browse folders and search for files without modifying their existing data. CON-02 requires the application not to write, move, or delete file access. |
+| **Options considered** | 1. Allow users to view and modify files. 2. Restrict the application to read-only file access. |
+| **Decision** | Restrict the application to read-only access, allowing users to browse folders, view file information, and search for files without modifying them. |
+| **Consequences** | Favors data safety and prevents accidental modifications to user files. The accepted cost is that users cannot create, rename, move, delete files through the application. |
+| **Evidence** | CON-02 establishes the read-only restriction. The project scope also excludes file movement and other file-modification features. |
+| **Related** | CON-02, FR-01, FR-02, FR-03, FR-07, FR-08 |
+
 
 ### 7.2 Trade-off summary
 
 | Quality favored | Architectural move | Cost accepted | Recorded in |
 |---|---|---|---|
-| | | | ADR-[ ] |
-| | | | ADR-[ ] |
-| | | | ADR-[ ] |
+| Performance | Using WSL Linux commands (grep, ls) for searching and retrieving file information. | Users must have WSL installed and configured | ADR-[01] |
+| Local accessibility | Running the application locally using Java and WSL | Users must have Java and WSL installed and configured. | ADR-[02] |
+| Data safety | Restricting the application to read-only file access | Users cannot create, rename, move, or delete files through the application.| ADR-[03] |
 
 <!-- GUIDANCE: One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page. -->
 
@@ -701,7 +730,7 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 |---|---|---|---|
 | Austin Robson | Claude | Converting P2 template pdf into markdown | Verify that formatting such as tables and headings match up with original pdf |
 | Ashton Elliott | Claude Opus 5.5 | Assisted in creation of Search Engine to app.java | Verified that the code worked as expected as well as added additional comments for team members to be able to identify what happens where in the code.
-| | | | |
+| George Chakiath Dani | ChatGPT | Adding in information for information Sections 1-3 and also including new information for Section 4: Use Case Analysis | Helped give me ideas on how I could fill in each of the blank spaces based on information in P1 and used it accordingly to the instructions at hand. |
 
 <!--
 GUIDANCE

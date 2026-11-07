@@ -1,0 +1,12 @@
+11/07/2026 06:13pm Yukai: 
+    We may first need to make some change to p1 and p2 according to the professor's comment.
+
+    1. I think we should make some change to the functional requirements, 
+    as some of the current functional requirements are NFR(Maybe rethink FR-01?), 
+    and some are not requirements for the project(May be rethink FR-03?).
+
+    2. For the testing part, from the professor's comments on P1, we need to add further details about test conditions, 
+    especially for the folder size and hardware. 
+    And maybe? (how deep the file inside folders/how detailed message are given during the search) 
+    So we can make compare with the WFESE.
+    
