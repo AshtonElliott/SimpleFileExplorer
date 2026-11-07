@@ -65,7 +65,7 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Added my actual hash(es) for these changes. Included Pr number(s), if applicable. | N/A - No PR reviews peformed. |
 | Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323 | No PR reviews as of 11/3/26. |
 | Ashton Elliott | added GUI File Search | Commit 82f3d2d | No PR reviews as of 11/4/26. |
-| | | | |
+| George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | 273fb19, 86deee0, dcf7f83, 24d4394 | No reviews as of 11/6/26 |
 | | | | |
 
 <!--
@@ -195,9 +195,8 @@ GUIDANCE
 
 #### UC-01 **View files**
 Use Case Information:
-| | |
-|---|---|
 | Primary actor | End User |
+|---|---|
 | Supporting actors and external systems | WSL, GUI |
 | TUCBW (this use case begins when) | The user clicks on a file to view its details |
 | TUCEW (this use case ends when) | The user sees the selected file's attributes |
@@ -223,9 +222,8 @@ Use Case Information:
 
 #### UC-02 **View folders**
 Use Case Information:
-| | |
-|---|---|
 | Primary actor | End User |
+|---|---|
 | Supporting actors and external systems | File System |
 | TUCBW (this use case begins when) | The user selects a folder to navigate to |
 | TUCEW (this use case ends when) | The user sees the contents of the new folder |
@@ -251,9 +249,8 @@ Use Case Information:
 
 #### UC-03 **Search terms**
 Use Case Information:
-| | |
-|---|---|
 | Primary actor | End User |
+|---|---|
 | Supporting actors and external systems | File System |
 | TUCBW (this use case begins when) | The user enters a search term to find matching files or folders.|
 | TUCEW (this use case ends when) | The user sees all the search results for their term. |
@@ -326,9 +323,9 @@ acceptable when it is true. Budget: a quarter of a page.
 
 | Class | What it represents (one line) | Key attributes | Associations (with multiplicity) |
 |---|---|---|---|
-| File | Individual files in the file system | Name, path, Attribute set | File 1:1 Attributes. File 1:1 Folder. |
-| Folder | Folders/directories within the file system | Name, path, contents, Attributes | 1 Folder 1:1 Attributes. Folder 1:0..* File |
-| Attributes | Set of details every file/folder has | Date last modified, size | File 1:1 Attributes. Folder 1:1 Attributes |
+| File | Individual files in the file system | Name, path | File 1..\*:1 File system. File 0..*:1 Folder |
+| Folder | Folders/directories within the file system | Name, path | 1 Folder 1..\*:1 File system. Folder 1:0..* File |
+| File system | Abstraction of what handles file specifics | Date last modified, size, children | File 1..\*:1 File system. Folder 1..\*:1 File system |
 | Search results| Files and folders listed after searching | List of search results | Search results 1:0..* File. Search results 1:0..* Folder. |
 | Quick Access | Easy access to drive folders and recent folders | Lists drive folders and recent folders | Quick access 1:1..* Folder |
 
@@ -351,38 +348,49 @@ OccupancyReading (time, state); Permit (type, valid until) * ── 1..* Lot "is
 #### 5.2.1 UC-01 **View Files**
 
 **(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
+(1) The user selects a file.
+(2) The system finds and displays attributes for the selected file.
+(3) The user views the file attributes on the GUI.
+
+"(0) The system displays the contents of the currently selected folder." is trivial because it is implied as the current state of the program, before interaction takes place.
 
 **(b) Scenario table.**
 
 | Step | Subject (who acts) | Subject action (what it does) | Other data / objects (what is used) | Object acted upon (who receives) |
 |---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
+| 1 | User | Click file | File's path | GUI |
+| 2 | GUI | Get filepath | File's filepath | File |
+| 3 | GUI | Fetch file attributes | File's filepath | File system |
+| 4 | GUI | Display file attributes | File's attributes | User |
 
 **(c) Analysis sequence diagram.**
 
-![Figure 5.2.x Analysis sequence diagram for UC-xx](diagrams/uc-xx-sequence.png)
+![Figure 5.2.1 Analysis sequence diagram for UC-01](uc-01-sequence.png)
 
 #### 5.2.2 UC-2 **View Folders**
 
 **(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
+(1) The user selects a different folder.
+(2) The system redirects the GUI's current directory to the selected folder.
+(3) The user views the contents of the newly selected folder.
+
+"(0) The system displays the contents of the currently selected folder." is trivial because it is the default state before any interaction.
 
 **(b) Scenario table.**
 
 | Step | Subject (who acts) | Subject action (what it does) | Other data / objects (what is used) | Object acted upon (who receives) |
 |---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
+| 1 | User | Double-click folder | folder's path | GUI |
+| 2 | GUI | Fetch folder path | folder's path | Folder |
+| 3 | GUI | Fetch folder children | folder's path | File system |
+| 4 | GUI | Change directory | folder's children | GUI |
+| 5 | GUI | Display contents | folder's children | User |
 
 **(c) Analysis sequence diagram.**
 
-![Figure 5.2.x Analysis sequence diagram for UC-xx](diagrams/uc-xx-sequence.png)
+![Figure 5.2.x Analysis sequence diagram for UC-02](uc-02-sequence.png)
 
-*Figure 5.2.x Analysis sequence diagram for UC-xx; message numbers match the scenario table*
+*Figure 5.2.2 Analysis sequence diagram for UC-02; message numbers match the scenario table*
 
 <!--
 GUIDANCE
