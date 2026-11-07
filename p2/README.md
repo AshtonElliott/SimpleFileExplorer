@@ -731,6 +731,8 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 | Austin Robson | Claude | Converting P2 template pdf into markdown | Verify that formatting such as tables and headings match up with original pdf |
 | Ashton Elliott | Claude Opus 5.5 | Assisted in creation of Search Engine to app.java | Verified that the code worked as expected as well as added additional comments for team members to be able to identify what happens where in the code.
 | George Chakiath Dani | ChatGPT | Adding in information for information Sections 1-3 and also including new information for Section 4: Use Case Analysis | Helped give me ideas on how I could fill in each of the blank spaces based on information in P1 and used it accordingly to the instructions at hand. |
+| George Chakiath Dani | ChatGPT | Assisted with drafting ADR-01, ADR-02, ADR-03, and the Section 72 - Trade-off Summary,  
+| Reviewed and edited the proposed decisions, checked them against project constraints and requirements, and adjusted wording to reflect the team's actual decisions and approval status. | 
 
 <!--
 GUIDANCE
