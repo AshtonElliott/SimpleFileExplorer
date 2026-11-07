@@ -656,10 +656,13 @@ GUIDANCE
 
 | Requirement | Use case | Analysis classes | Component(s) | QAS / ADR | Evidence |
 |---|---|---|---|---|---|
-| FR-01 | | | | | |
-| FR-02 | | | | | |
-| QR-01 | | | | | |
-| CON-01 | | | | | |
+| FR-01 | UC-01: View Files | File, File system | To be confirmed in Section 6  | ADR-01, ADR-03 | UC-01 analysis; ls -l acceptance test |
+| FR-02 | UC-02: View Folders | Folder, File system | To be confirmed in Section 6 | ADR-02, ADR-03 | UC-02: use-case analysis |
+| FR-03 | UC-03: Search Terms | File, Folder, Search Results | To be confirmed in Section 6 | ADR-01 | UC-03: analysis; P1 grep feasibility test |
+| FR-04 | No dedicated use case currently | Quick Access Folder | To be confirmed in Section 6 | To be determined | FR-04 acceptance criteria |
+| QR-01 | UC-03: Search Terms | Search Results, File, Folder | To be confirmed in Section 6 | ADR-01 | P1 grep feasibility test |
+| QR-02 | UC-02: View Folders | Folder, File system | To be confirmed in Section 6 | ADR-01 | UC-02 analysis |
+| CON-01 | UC-02, UC-03 | File system, Search Results | To be confirmed in Section 6 | ADR-02 | Local Java GUI implementation |
 
 <!--
 GUIDANCE
@@ -675,9 +678,9 @@ GUIDANCE
 
 | Gap | Items | What you did about it |
 |---|---|---|
-| Requirements with no component | | |
-| Components with no requirement, QAS or ADR | | |
-| Use cases not analyzed (and why that is acceptable) | | |
+| Requirements with no component | Component assignments for  FR-01, FR-02, QR-01, CON-01 are not yet confirmed. | Identified the Java GUI and WSL command execution as candidate components. These mappings need to be confirmed in Section 6 and added to the traceability matrix |
+| Components with no requirement, QAS or AD | Cannot determine until the component view in Section 6 is completed | Review each component after completing the architecture and link it to a requirement, QAS, or ADR. |
+| Use cases not analyzed (and why that is acceptable) | None, UC-01, and UC-02, and UC-03 have all been expanded in Section 4.2 | All three selected use cases were analyzed because they represent the main file viewing, folder navigation, and search functions. |
 
 <!--
 GUIDANCE
