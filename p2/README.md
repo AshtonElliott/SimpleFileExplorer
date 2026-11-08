@@ -756,9 +756,10 @@ you did. Budget: a quarter of a page.
 
 | Milestone | Date | Owner | Done when |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| Finalize P2 architecture and design | P2 submission date | Entire team | P2 documentation is reviewed and submitted. |
+| Implement core application functionality | Team-agreed date | Assigned developers | File viewing, folder navigation, quick access, and search are implemented. |
+| Integrate components and perform testing | Team-agreed date | Entire team | Components work together and acceptance tests are completed. |
+| Finalize P3 deliverables | P3 submission date | Entire team | Implementation, documentation, testing evidence, and required deliverables are complete. |
 
 ### 10.3 Risks (updated)
 
