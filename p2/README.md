@@ -113,7 +113,7 @@ GUIDANCE
 
 | Change ID | What changed (IDs affected) | Why (P1 feedback, new finding, spike result) | Knock-on effect | Agreed on |
 |---|---|---|---|---|
-| CH-01 | Added spike S-02 comparing Windows File Explorer and WSL search performance. | The comparison recorded Windows File Explorer at 39 seconds and WSL at 12 seconds, with 14 versus 223 results. | Supports the decision to use WSL commands in ADR-04. | 11/7/26 |
+| CH-01 | Added spike S-02 comparing Windows File Explorer and WSL search performance. | The comparison recorded Windows File Explorer at 39 seconds and WSL at 12 seconds, with 14 versus 223 results. | Supports the decision to use command line tools in ADR-04. | 11/7/26 |
 | CH-02 | Added new risk R6 concerning whether Linux command output can be converted into data usable by the GUI. | Identified an additional integration risk during P2 design. | Added a mitigation task for Ashton | 11/7/26 |
 | CH-03 | Added architectural decisions ADR-01 through ADR-04, covering MVC, local Java/command execution, read-only access, and command line tools. | Limiting file access to linux commands only was found to be difficult due to how linux commands display file info. P2 design work clarified how the application will meet its functional requirements and constraints through other means such as Java or powershell. | App will require different dependencies to run. Established architecture and component responsibilities in Sections 6 and 7. | 11/8/26 |
 
@@ -146,14 +146,76 @@ GUIDANCE
 
 ### 1 Introduction
 
+#### 1.1 [Purpose of this document and the system]
 Simple File Explorer (SFE) is a slimmed down reimagining of the stock file explorer on Windows, reducing lag and long loading times by leveraging linux commands in a simple GUI. 
+
+#### 1.2 [Scope]
+| In scope | Out of scope |
+| --- | --- |
+| GUI | Drive manager |
+| File probing | Settings |
+| Quick access sidebar | Networking |
+| Searching | File movement |
+
+Why the exclusions were excluded:
+Drive management and file movement outside of the dedicated operating system methods is tricky and potentially dangerous, and therefore out of scope for this file reader app. Network connectivity introduces vulnerabilities, and there are no options to necessitate a settings menu.
+
+#### 1.3 [Definitions, acronyms, and abbreviations
+| Term or abbreviation | Meaning as used in this project |
+| --- | --- |
+| SFE | Simplified File Explorer; Name of app |
+| WSL | Windows Subsystem Linux; App relies on it for linux use |
+| WFESE | Windows File Explorer Search Engine; Windows File Searcher that comes with all windows computers.  |
+
+#### 1.4 [References]
+1. Windows File Explorer (WFE)
+2. Windows Subsystem Linux (WSL)
+3. Java
+4. Powershell
 
 ### 2 Overall Description
 
+#### 2.1 [Product perspective and context]
 
 ![Context Diagram](Context_Diagram.jpg)
 
 The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
+
+#### 2.2 [Stakeholders and how you reached them]
+| Stakeholder | Role | What they need | How we learned this |
+| --- | --- | --- | --- |
+| End users | Downloads and uses the app | A file searcher that takes less than 10 minutes to find the desired file from 300,000 files with the right path | We ran a test on Window’s File Explorer search engine to see how long it would take to find a file with the keyword “BERT”. It took 11 minutes and 9 seconds to find a file with the keyword “BERT”, but it was a cached path and not the actual file path. |
+| Software Testers | Tests functionality and performance of app | The app must return the accurate file paths and accurately find files within the required time. | Based on the Windows File Explorer test, which took 11 minutes and 9 seconds and returned a cached path. |
+| Regulator | Check if the app is legal | Need the app to obey the law (e.p protect private information) | To check all related law requirements before programming |
+| Software developers | Design, build and maintain the app | Develop a reliable and efficient file search app that demonstrates fast searching times for each file searched | Based on responsibilities of the development team and our group members |
+| Maintenance Team | Fixes Bugs and updates the app after release | Code that can be easy to maintain, along with useful messages and comments for future debugging. | Based on the need to keep the app working after development |
+
+#### 2.3 [User characteristics]
+
+The users are individuals who want to find files within their computer as soon as possible. They should know how to use a search engine and that Windows has a file search engine. What cannot be assumed that they know is the fact that said Windows file search engine is inefficient as it takes 11 minutes and 9 seconds to find a single result.
+
+#### 2.4 [Constraints]
+
+Must run locally
+Must follow the law to protect users’ information and documents.
+Must use functions and commands to make system calls
+
+#### 2.5 [Assumptions and dependencies]
+
+| '#' | Assumption/Dependency | What breaks if it does not hold |
+| --- | --- | --- |
+| A1 | WSL installed | The system will not be able to execute Linux comands, and the program will fail |
+| A2 | Java installed | The system will not be able to execute the program |
+| A3 | Java is able to interface with command line | Java will not be usable for completing this project |
+
+#### 2.6 [Feasibility Summary]
+
+| Feasibility gate | Verdict | Evidence behind the verdict |
+| --- | --- | --- |
+| Technical | Yes | A small test was conducted within a Linux Virtual Machine where the keyword “BERT” was searched throughout the entire Virtual Machine with grep. |
+| Operational | Yes | From the test, the system does increase the loading speed a lot. The end users who really want fast access to the file will choose to use it. |
+| Schedule | Yes | Through the team discussion, the estimated time is within the deadline. |
+| Economic / resource | Yes | Because this is a small app with no paid external dependencies, the economic cost will be little to none |
 
 ### 3 Requirements
 
@@ -180,13 +242,13 @@ The Simple File Explorer system allows users to search for files through a user 
 | QR-04 | The app shall open within 5 minutes of its starting | SHOULD | Devs | Start times for the app will be measured to find if it successfully boots in under 5 minutes in a folder of 250 children. |
 | QR-05 | Errors shall be logged within 1 minute of their occurrence | SHOULD | Maintenance Team | A tester can trigger 10 different errors and verify that each is recorded in the system within 1 minute. |
 
-#### 3.3 [Constraints]
+#### 3.3 [Constraint requirements]
 
 | ID | Constraint | Source | Why |
 | --- | --- | --- | --- |
 | CON-01 | Must run locally | Devs | Running with or through a third-party service creates unnecessary load times and opens up vulnerabilities |
 | CON-02 | The system doesn’t write, move or delete any user file | Devs | Read-only access removes the risk of data loss |
-| CON-03 | Must use commands to make system calls | Devs | Use Java, Linux, or other command line tools that can achieve fast access to the file in memory |
+| CON-03 | Must use commands or functions to make system calls | Devs | Use Java, Linux, or other command line tools that can achieve fast access to the file in memory |
 
 #### 3.4 Use cases
 
