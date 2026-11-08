@@ -179,7 +179,7 @@ See section 9.1. for the requrirements traceability matrix.
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
 | UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes
-| UC-02 | View Folders | "Explorer" part of file explorer, needed to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
+| UC-02 | View Folders | "Explorer" part of file explorer, needs to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
 | UC-03 | Search terms | Prove that searching with simpler tools allows for faster results | Accepting a search term, finding matching files and folders, and finally displaying results. |
 
 <!--
@@ -303,7 +303,7 @@ turnover and the visitor option · ends.
 | Use case | Check from the Lesson 13 review checklist | Defect found | How it was fixed |
 |---|---|---|---|
 | UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 0, describing the currently displayed folder contents.  |
-| UC-02 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | Seperated the user's search input from the system's response.|
+| UC-02 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | separated the user's search input from the system's response.|
 | UC-03 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
 
 <!--
@@ -581,18 +581,18 @@ connection · Decision: server push · Consequences: favors performance and fres
 management on the occupancy service and a fallback when push fails (A2 in UC-02) · Evidence: spike S-01.
 -->
 
-#### ADR-[01] [Using WSL Linux Commands]
+#### ADR-[01] [Using Model-View-Controller Architecture]
 
 | | |
 |---|---|
 | **Status** | Accepted |
 | **Date and owner** | 11/06/2026 - George (Drafted) |
-| **Context (drivers)** | The application needed to search for files and retrieve folder information efficiently. CON-03 requires the application to use Linux commands for system calls. QR-01 requires searches to complete within 10 minutes. |
-| **Options considered** | 1. Use Windows native commands. 2. Execute Linux commands through Windows Subsystems for Linux (WSL).  |
-| **Decision** | Use WSL to execute Linux commands, such as grep and ls, to search for files and retrieve file information. |
-| **Consequences** | Favors performance and satisfies the Linux-command constraint. The accepted cost is that users must have WSL installed and configured on their computers.  |
-| **Evidence** | The team conducted a Linux grep feasibility test using the keyword "BERT", demonstrating that Linux-based searching was technically feasible. |
-| **Related** |QR-01, FR-03, CON-03, R2 |
+| **Context (drivers)** | The application contains a GUI, file navigation, and searching functionality. These responsibilities need to be separated to improve maintainability and make future changes easier |
+| **Options considered** | 1. Use a Pipe-and-Filter architecture. 2. Use an Event-Driven architecture. 3. Use Model-View-Controller (MVC) architecture. |
+| **Decision** | Use MVC architecture. The GUI acts as the View, File Explorer acts as the Controller, and file/folder data and WSL operations are handled by the Model. |
+| **Consequences** | Improves separation of concerns and maintainability because changes to the GUI and backend logic can be made more independently. The accepted cost is additional coordination between components and the need to maintain clear interfaces between the View, Controller, and Model. |
+| **Evidence** | Section 6.2 identifies MVC as the chosen architectural style. Section 6.3 defines separate GUI Presentation, File Explorer, Search, Sidebar, and WSL Translator.   |
+| **Related** | QAS-01, QAS-02, FR-01, FR-02, FR-03 |
 
 
 #### ADR-[02] [Running the Application Locally]
@@ -601,11 +601,11 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 |---|---|
 | **Status** | Accepted |
 | **Date and owner** | 11/06/2026 - George (Drafted) |
-| **Context (drivers)** | The application needed to run on the user's computer and access local files. CON-01 requires the application to run locally rather than relying on an external server. |
-| **Options considered** | At least two, each in one line server. 2. Run the application locally using Java and WSL (Linux). |
-| **Decision** | Rin the application locally as a Java application that communicates with WSL to execute Linux commands. |
+| **Context (drivers)** | The application needs to run on the user's computer and access local files. CON-01 requires the application to run locally rather than relying on an external server. |
+| **Options considered** | 1. Host the application on an external server and access it remotely. 2. Run the application locally using Java and WSL (Linux). |
+| **Decision** | Run the application locally as a Java application that communicates with WSL to execute Linux commands. |
 | **Consequences** | Favors local accessibility and allows the application to work with files on the user's computer. The accepted cost is that users must have Java and WSL installed and properly configured. |
-| **Evidence** | CON-01 establishes the requirement for local execution. The project also includes an implementation of a Java GUI. |
+| **Evidence** | CON-01 establishes the requirement for local execution. Section 6.3 identifies the Java GUI and application components, while Section 6.4 shows that the application runs on the user's PC. |
 | **Related** | CON-01, CON-03, FR-02, R1 |
 
 
@@ -613,23 +613,37 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | | |
 |---|---|
-| **Status** |Proposed |
+| **Status** | Accepted |
 | **Date and owner** | 11/06/2026 - George (Drafted) |
-| **Context (drivers)** | The application needs to allow users to browse folders and search for files without modifying their existing data. CON-02 requires the application not to write, move, or delete file access. |
+| **Context (drivers)** | The application needs to allow users to browse folders and search for files without modifying their existing data. CON-02 requires the application not to write, move, or delete files. |
 | **Options considered** | 1. Allow users to view and modify files. 2. Restrict the application to read-only file access. |
 | **Decision** | Restrict the application to read-only access, allowing users to browse folders, view file information, and search for files without modifying them. |
-| **Consequences** | Favors data safety and prevents accidental modifications to user files. The accepted cost is that users cannot create, rename, move, delete files through the application. |
+| **Consequences** | Favors data safety and prevents accidental modifications to user files. The accepted cost is that users cannot create, rename, move, or delete files through the application. |
 | **Evidence** | CON-02 establishes the read-only restriction. The project scope also excludes file movement and other file-modification features. |
 | **Related** | CON-02, FR-01, FR-02, FR-03, FR-07, FR-08 |
+
+#### ADR-[04] [Using WSL Linux Commands]
+
+| | |
+|---|---|
+| **Status** | Accepted |
+| **Date and owner** | 11/07/2026 - George (Drafted) |
+| **Context (drivers)** | The application needs to search for files and retrieve folder information efficiently. CON-03 establishes the use of Linux commands through WSL. |
+| **Options considered** | 1. Use native Windows commands for searching and retrieving file information. 2. Use Linux commands through WSL, such as grep and ls. |
+| **Decision** | Use WSL Linux commands, including grep for searching and ls for retrieving file information. |
+| **Consequences** | Favors performance and supports file searching and folder retrieval. The accepted cost is that users must have WSL installed and configured. |
+| **Evidence** | A test using the Linux grep command successfully searched for the keyword "BERT". Section 6.3 also identifies WSL execution as part of the application architecture. |
+| **Related** | QR-01, FR-03, CON-03, R2 |
 
 
 ### 7.2 Trade-off summary
 
 | Quality favored | Architectural move | Cost accepted | Recorded in |
 |---|---|---|---|
-| Performance | Using WSL Linux commands (grep, ls) for searching and retrieving file information. | Users must have WSL installed and configured | ADR-[01] |
-| Local accessibility | Running the application locally using Java and WSL | Users must have Java and WSL installed and configured. | ADR-[02] |
-| Data safety | Restricting the application to read-only file access | Users cannot create, rename, move, or delete files through the application.| ADR-[03] |
+| Maintainability | Using MVC architecture to separate presentation, application control, and backend operations. | Additional coordination between components and the need to maintain clear interfaces. | ADR-[01] |
+| Local accessibility | Running the application locally using Java and WSL. | Users must have Java and WSL installed and configured. | ADR-[02] |
+| Data safety | Restricting the application to read-only file access. | Users cannot create, rename, move, or delete files through the application. | ADR-[03] |
+| Performance | Using WSL Linux commands (grep, ls) for searching and retrieving file information. | Users must have WSL installed and configured. | ADR-[04] |
 
 <!-- GUIDANCE: One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page. -->
 
