@@ -54,21 +54,37 @@ must agree with your repository history.
 | Version | Date | Author | Summary of change |
 |---|---|---|---|
 | 0.10 | 10/18/26 | Austin Robson | Added more quality requirements, reviewed and finalized content before submission |
-| 1.0 | | | P2 baseline: analysis and high-level design added |
+| 1.0 | 10/30/26 | Austin Robson | P2 template translated into markdown for github usage |
+| 1.1 | 10/31/26 | George Chakiath Dani | Ported sections 1-3 from P1 |
+| 1.2 | 11/3/26 | Ashton Elliot | Began work on prototype app |
+| 1.3 | 11/6/26 | Austin Robson | Updated section 3 and 5, added sequence diagrams |
+| 1.4 | 11/6/26 | George Chakiath Dani | Updated section 7 |
+| 1.5 | 11/7/26 | George Chakiath Dani | Updated section 8,9, added spike s-01 |
+| 1.6 | 11/7/26 | Yukai Ma | Updated section 6, added Component and Deployment diagrams, updated use case diagram |
+| 1.7 | 11/7/26 | Austin Robson | Added spike s-02 |
 
 ### 0.1 Individual contribution record (P2)
 
 | Team member | Sections and artifacts this person produced for P2 | Evidence in the repository (commit hashes, PR numbers) | Reviews given (PR numbers) |
 |---|---|---|---|
-| Austin Robson | Added .md for P2 document | Commit: c7bac055277845b4b76c7bc56cd9d15303db2ac3 | N/A |
+| Austin Robson | Added .md for P2 document | Commit c7bac05 | N/A |
 | George Chakiath Dani  | Prepared Section 4 - Use-Cases Analysis, using information and requirements indemnified in P1| 497108a, a1091e7| No PR reviews as of 10/31/26. |
 | George Chakiath Dani | Updated Sections 1-3 (Introduction, Overall Description, and Requirements) from P1. | Commits: 4bea388, e8b085e, 5fa1711, 2ff27a7, 6383af3, e032a95, 78242bf |No PR reviews as of 10/31/26. |
+| Austin Robson | Updated formatting for information imported from P1 | Commit 12a3fe3 | N/A |
 | Ashton Elliott | Created basic JAVA GUI as a base to start from | Commit 9a5e323 | No PR reviews as of 11/3/26. |
 | Ashton Elliott | added GUI File Search | Commit 82f3d2d | No PR reviews as of 11/4/26. |
+| Austin Robson | Updated use cases in section 3 | Commit 55508fc | N/A |
+| Austin Robson | Added domain model | Commit 937c8f4 | N/A |
+| Ashton Elliot | Implemented Domain Model PNG to P2 Report | Commit 6359ff7 | N/A |
+| Austin Robson | Updated section 5 Analysis models | Commit cb6eaf | N/A |
 | George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | Commits: 273fb19, 86deee0, dcf7f83, 24d4394 | No PR reviews as of 11/6/26 |
+| Austin Robson | Updated section 5 and added sequence diagrams | Commit 5b8800e0 | N/A |
 | George Chakiath Dani | Section 8 - Prototype Evidence: Architecture Spike (S-01: ls parsing) | 30f03ac | No PR reviews as of 11/7/26 |
 | George Chakiath Dani | Section 9.1 - Extended Traceability Matrix: Section 9.2 - Gap Analysis | Commits: 2a64472, 9f791bc, e6cb1c7 | No PR reviews as of 11/7/26 |
-|Yukai Ma |Finish Section 6, remade some previous diagrams,come out some suggestions for modifications| Commits: the merge history|No PR reviews as for 11/8/2026|
+| Austin Robson | Updated section 5 | Commit 2f81e8f | N/A |
+| Yukai Ma | Finish Section 6, remade some previous diagrams,come out some suggestions for modifications | Commits: the merge history, 8470ba3, 6613443 | No PR reviews as for 11/8/2026 |
+| Austin Robson | Updated diagrams, added spike images | Commit 3b30dc6 | N/A |
+| George Chakiath Dani | Fixed Section 9: Traceability Matrix and Gap Analysis | Commit 5d788ea | N/A |
 
 <!--
 GUIDANCE
@@ -87,7 +103,7 @@ GUIDANCE
 
 | Change ID | What changed (IDs affected) | Why (P1 feedback, new finding, spike result) | Knock-on effect | Agreed on |
 |---|---|---|---|---|
-| CH-01 | | | | |
+| CH-01 |  | | | |
 | CH-02 | | | | |
 | CH-03 | | | | |
 
