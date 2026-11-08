@@ -1,4 +1,4 @@
-11/07/2026 06:13pm Yukai: 
+11/06/2026 06:13pm Yukai: 
     We may first need to make some change to p1 and p2 according to the professor's comment.
 
     1. I think we should make some change to the functional requirements, 
@@ -10,3 +10,8 @@
     And maybe? (how deep the file inside folders/how detailed message are given during the search) 
     So we can make compare with the WFESE.
     
+11/07/2026 06:45pm Yukai:
+    I made some possible_remake for these previous diagrams. Maybe we can make decisions on which version 
+    of the diagram to choose and then make some change to the tables related to these diagrams, in this way, 
+    we can fix the problem from p1. And I think we do need a person to read through the whole p2 to make sure 
+    all diagrams and design are chained together and built step by step without conflicts. 
