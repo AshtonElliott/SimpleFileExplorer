@@ -63,6 +63,7 @@ must agree with your repository history.
 | 1.5 | 11/7/26 | George Chakiath Dani | Updated section 8,9, added spike s-01 |
 | 1.6 | 11/7/26 | Yukai Ma | Updated section 6, added Component and Deployment diagrams, updated use case diagram |
 | 1.7 | 11/7/26 | Austin Robson | Added spike s-02 |
+| 1.8 | 11/8/26 | Austin Robson | Updated spike s-01 |
 
 ### 0.1 Individual contribution record (P2)
 
@@ -93,6 +94,7 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 646713c | No PR reviews as of 11/8/26 |
 | Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
+| Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
 
 <!--
 GUIDANCE
