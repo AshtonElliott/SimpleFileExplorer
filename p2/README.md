@@ -653,14 +653,14 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | | |
 |---|---|
-| **Spike ID and title** | S-01: ls parsing |
-| **Risk or decision it addresses** | R[2] / ADR-[01]|
-| **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
-| **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
-| **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
-| **Result (numbers)** | Numeric measurements were not recorded |
-| **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
-| **Where to see it** | Pending - test evidence and repository location have not yet been added. |
+| **Spike ID and title** | S-01: WSL ls command execution |
+| **Risk or decision it addresses** | R2 / ADR-[04]|
+| **Question (answerable yes or no)** | Can the Java application execute the WSL ls command and retrieve folder and file information? |
+| **Set-up** | A Java application was used to execute the Linux ls command through WSL to retrieve folder and file information. |
+| **How it was measured** | Checked whether the command executed successfully and whether Java captured the command output. |
+| **Result (numbers)** | [State whether execution and output capture succussed.] (Pending..) |
+| **What it changed or confirmed** | if successful, confirms that WSL Linux commands can be used by the application to retrieve folder and file information. |
+| **Where to see it** | Add the screenshot of the successful test (Pending..) |
 
 
 <!--
