@@ -513,9 +513,6 @@ GUIDANCE
 
 | Component | Responsibility (one sentence) | Provides | Requires | Answers to (UC / QAS / ADR) |
 |---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
 |GUI Presentation |Captures user inputs and renders file lists, search results, sidebar links, and preview images on screen. |User Interaction |ExplorerControl, FileSearch, QuickAccess |UC: View Folders/Files, View Quick Access Sidebar , MVC View Component|
 |File Explorer | Orchestrates desktop navigation actions, routes queries to backend sub-engines, and coordinates data flow to the UI. | Explorer Control | WSL Execution, FileAccess, LoggingService | UC: Navigate Folders, View Folders/Files  , MVC Controller Component|
 |Search | Filters directory hierarchies and identifies files matching specified user search criteria. |  FileSearch |FileAccess, LoggingService | UC: Search Files|
