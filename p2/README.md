@@ -177,7 +177,7 @@ Drive management and file movement outside of the dedicated operating system met
 
 #### 2.1 [Product perspective and context]
 
-![Context Diagram](Context_Diagram.jpg)
+![Context Diagram](possible_remake.context-diagram.png)
 
 The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
 
