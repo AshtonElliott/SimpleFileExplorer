@@ -41,6 +41,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | Ashton Elliot | aee230007 | AshtonElliott |
 | George Chakiath Dani | gnc230001 | gchakiathUTDallas |
 | Rowan Egan | rje240001 |  |
+| Zachary Gregorc | |  |
 
 ---
 
@@ -834,9 +835,12 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 | Team member | Signature or initials | Date |
 |---|---|---|
 | Austin Robson | | |
-| | | |
-| | | |
-| | | |
+| George Chakiath Dani | GCD | 11/8/26 |
+| Ashton Elliot | | |
+| Yukai Ma | | |
+| Rowan Egan | | |
+| Zachary Gregory | | |
+
 
 <!--
 =====================================================================
