@@ -267,7 +267,7 @@ See section 9.1. for the requrirements traceability matrix.
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes
+| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes |
 | UC-02 | View Folders | "Explorer" part of file explorer, needs to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
 | UC-03 | Search terms | Prove that searching with simpler tools allows for faster results | Accepting a search term, finding matching files and folders, and finally displaying results. |
 
@@ -290,8 +290,8 @@ GUIDANCE
 | Supporting actors and external systems | WSL, GUI |
 | TUCBW (this use case begins when) | The user clicks on a file to view its details |
 | TUCEW (this use case ends when) | The user sees the selected file's attributes |
-| Preconditions | - The application was initiated successfully. The user has permission to read the file.  |
-| **Postconditions** | - The file's attributes are displayed on the GUI and are accurate to command line results. |
+| Preconditions | The application was initiated successfully. The user has permission to read the file.  |
+| **Postconditions** | The file's attributes are displayed on the GUI and are accurate to command line results. |
 | **Traces to requirements** | FR-01, CON-02 |
 
 | Actor input / action | System response |
@@ -306,7 +306,7 @@ GUIDANCE
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
 | A1 | 1 | The selected file cannot be accessed because of permissions set by the admin. | The system informs the user that the file couldn't be accessed. GUI directory remains unchanged.  | Ends |
-| A2 | 1 | The selected file is not longer available. | The system informs the user that the file is unavailable. | Ends |
+| A2 | 1 | The selected file is no longer available. | The system informs the user that the file is unavailable. | Ends |
 
 
 
