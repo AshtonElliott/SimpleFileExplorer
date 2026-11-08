@@ -92,7 +92,7 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Section 0.2 - Changes since the P1 baseline, documenting CH-01 through CH-03. | Commit: e5bc4b4 | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 10.2 - Plan to P3, documenting the milestones, owners, dates, and completion criteria for P3. | Commit: 741ceba | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
-| George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 646713c | No PR reviews as of 11/8/26 |
+| George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 9791fe6 | No PR reviews as of 11/8/26 |
 | Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
 | Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
 
@@ -177,7 +177,7 @@ Drive management and file movement outside of the dedicated operating system met
 
 #### 2.1 [Product perspective and context]
 
-![Context Diagram](Context_Diagram.jpg)
+![Context Diagram](possible_remake.context-diagram.png)
 
 The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
 
@@ -863,6 +863,7 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 | George Chakiath Dani | ChatGPT | Section 0.2: Helped organize and improve the wording of changes made since the P1 baseline. | Reviewed the changes against the actual P2 work and identified items requiring team confirmation. |
 | George Chakiath Dani | ChatGPT | Section 10: Helped organize and refine the P3 milestone plan and completion criteria. | Reviewed the milestones to ensure they reflect the project's planned implementation, integration, testing, and submission work. |
 | George Chakiath Dani | ChatGPT | Section 12: Helped clarify the baseline declaration and organize the team signature table | Checked that team members, signatures or initials, and dates were represented appropriately. |
+| Yukai | Gemini AI | Use Gemini to search for the information about component diagram, also use gemini AI to get some basic ideas of component's responsibility|I changed the component diagram and the responsibilities of the components.|
 
 <!--
 GUIDANCE
@@ -898,7 +899,7 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 | Austin Robson | AR | 11/8/26 |
 | George Chakiath Dani | GCD | 11/8/26 |
 | Ashton Elliot | | |
-| Yukai Ma | | |
+| Yukai Ma |YM | 11/8/26 |
 | Rowan Egan | | |
 | Zachary Gregory | ZG | 11/8/2026 |
 
