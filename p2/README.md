@@ -662,6 +662,7 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
 | **Where to see it** | Pending - test evidence and repository location have not yet been added. |
 
+|  |  |
 |---|---|
 | **Spike ID and title** | S-02: WFE search vs wsl find |
 | **Risk or decision it addresses** | R2 / ADR-01|
