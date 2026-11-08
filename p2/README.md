@@ -83,9 +83,14 @@ must agree with your repository history.
 | George Chakiath Dani | Section 8 - Prototype Evidence: Architecture Spike (S-01: ls parsing) | 30f03ac | No PR reviews as of 11/7/26 |
 | George Chakiath Dani | Section 9.1 - Extended Traceability Matrix: Section 9.2 - Gap Analysis | Commits: 2a64472, 9f791bc, e6cb1c7 | No PR reviews as of 11/7/26 |
 | Austin Robson | Updated section 5 | Commit 2f81e8f | N/A |
-| Yukai Ma | Finish Section 6, remade some previous diagrams,come out some suggestions for modifications | Commits: the merge history, 8470ba3, 6613443 | No PR reviews as for 11/8/2026 |
+| Yukai Ma | Finish Section 6, remade some previous diagrams,come out some suggestions for modifications | Commits: the merge history, 8470ba3, 6613443 | No PR reviews as of 11/8/2026 |
 | Austin Robson | Updated diagrams, added spike images | Commit 3b30dc6 | N/A |
-| George Chakiath Dani | Fixed Section 9: Traceability Matrix and Gap Analysis | Commit 5d788ea | N/A |
+| George Chakiath Dani | Fixed Section 7: Design Rationale, documenting ADR-01 through ADR-04 and the Section 7.2 trade-off summary. | Commit: 23e4264 | No PR reviews as of 11/8/2026 |
+| George Chakiath Dani | Fixed Section 8: Prototype Evidence, documenting spikes S-01 (ls parsing) | Commit: 123e82e | No PR reviews as of 11/8/2026 |
+| George Chakiath Dani | Fixed Section 9: Traceability Matrix and Gap Analysis | Commit 5d788ea | No PR reviews as of 11/8/2026 |
+| George Chakiath Dani | Updated Section 0.2 - Changes since the P1 baseline, documenting CH-01 through CH-03. | Commit: e5bc4b4 | No PR reviews as of 11/8/26 |
+| George Chakiath Dani | Updated Section 10.2 - Plan to P3, documenting the milestones, owners, dates, and completion criteria for P3. | Commit: 741ceba | No PR reviews as of 11/8/26 |
+| George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
 
 <!--
 GUIDANCE
