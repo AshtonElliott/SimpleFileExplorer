@@ -103,9 +103,9 @@ GUIDANCE
 
 | Change ID | What changed (IDs affected) | Why (P1 feedback, new finding, spike result) | Knock-on effect | Agreed on |
 |---|---|---|---|---|
-| CH-01 |  | | | |
-| CH-02 | | | | |
-| CH-03 | | | | |
+| CH-01 | Added architectural decisions ADR-01 through ADR-04, covering MVC, local Java/WSL execution, read-only access, and WSL Linux commands. | P2 design work clarified how the application will meet its functional requirements and constraints. | Established the architecture and component responsibilities in Sections 6 and 7. | Team confirmation needed. |
+| CH-02 | Added spike S-02 comparing Windows File Explorer and WSL search performance. | The comparison recorded Windows File Explorer at 39 seconds and WSL at 12 seconds, with 14 versus 223 results. | Supports the decision to use WSL commands in ADR-04. | Team confirmation needed. |
+| CH-03 | Added new risk R6 concerning whether Linux command output can be converted into data usable by the GUI. | Identified an additional integration risk during P2 design. | Added a mitigation task for Ashton; risk remains unresolved. | Team confirmation needed. |
 
 <!--
 GUIDANCE
