@@ -91,6 +91,7 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Section 0.2 - Changes since the P1 baseline, documenting CH-01 through CH-03. | Commit: e5bc4b4 | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 10.2 - Plan to P3, documenting the milestones, owners, dates, and completion criteria for P3. | Commit: 741ceba | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
+| George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 646713c | No PR reviews as of 11/8/26 |
 
 <!--
 GUIDANCE
