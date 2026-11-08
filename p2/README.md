@@ -162,7 +162,7 @@ The Simple File Explorer system allows users to search for files through a user 
 #### 3.4 Use cases
 
 <!-- [Use-case diagram and actor-goal list. Detailed expansion is in section 4.] -->
-![Use-case diagram (to be updated)](uc-diagram-v1.png)
+![Use-case diagram (to be updated)](uc-diagram-v2.png)
 
 #### 3.5 Traceability
 
@@ -653,14 +653,24 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | | |
 |---|---|
-| **Spike ID and title** | S-01: WSL ls command execution |
-| **Risk or decision it addresses** | R2 / ADR-[04]|
-| **Question (answerable yes or no)** | Can the Java application execute the WSL ls command and retrieve folder and file information? |
-| **Set-up** | A Java application was used to execute the Linux ls command through WSL to retrieve folder and file information. |
-| **How it was measured** | Checked whether the command executed successfully and whether Java captured the command output. |
-| **Result (numbers)** | [State whether execution and output capture succussed.] (Pending..) |
-| **What it changed or confirmed** | if successful, confirms that WSL Linux commands can be used by the application to retrieve folder and file information. |
-| **Where to see it** | Add the screenshot of the successful test (Pending..) |
+| **Spike ID and title** | S-01: ls parsing |
+| **Risk or decision it addresses** | R2 / ADR-[01]|
+| **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
+| **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
+| **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
+| **Result (numbers)** | Numeric measurements were not recorded |
+| **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
+| **Where to see it** | Pending - test evidence and repository location have not yet been added. |
+
+|---|---|
+| **Spike ID and title** | S-02: WFE search vs wsl find |
+| **Risk or decision it addresses** | R2 / ADR-01|
+| **Question (answerable yes or no)** | Are linux file searches faster than windows file explorer? |
+| **Set-up** | Both apps will be directed to the root of a drive, in this case Q:, and be searched for the string "3354" at 00 seconds. Completion times will be captured for both apps. Compare search and time results between the two. |
+| **How it was measured** | Starting from 00, seconds count on pc clock will be screen captured when search completes |
+| **Result (numbers)** | WFE: 39 seconds / WSL: 12 seconds |
+| **What it changed or confirmed** | Confirms searching for strings in filenames is faster in linux machines than windows. Additionally, WFE search was much more incomplete, containing only 14 results to WSL's 223. |
+| **Where to see it** | /spikes/s-02/ |
 
 
 <!--
@@ -737,9 +747,9 @@ you did. Budget: a quarter of a page.
 
 | Risk | Status since P1 | Likelihood / impact | Mitigation and owner |
 |---|---|---|---|
-| R1 | | | |
-| R2 | | | |
-| R6 (new) | | | |
+| R1: Team member(s) unable to get WSL and Java working on their machine. | Unresolved | Low / Low  | Ashton checks that every member has WSL installed and working on their computer. |
+| R2: Calling Linux commands from Java through WSL turns out slower than anticipated. | Answered | Medium / Medium | Austin runs a trial between searching "3354" in the file explorer and running "find . -name '*3354*'" in wsl, then compares the results to see which is faster. |
+| R6 (new): It is not possible to use linux commands to create workable data that can be interpreted by the GUI | Unresolved | Medium / Medium | Ashton finds other methods of file/folder lookup for the GUI. |
 
 <!--
 GUIDANCE
@@ -750,6 +760,12 @@ the spike or ADR that addresses each.
 ### 10.4 Repository
 
 [State the repository URL, the folder layout (`/docs/p2`, `/docs/p2/diagrams`, `/spikes`), your branch and pull-request rule, and confirm that the tag `p2` points at the commit containing this PDF.]
+https://github.com/AshtonElliott/SimpleFileExplorer
+- '/p2' contains diagrams and documents for P2 of the project
+- '/spikes' contains documentation of spikes performed for the project, organized in folders named '/s-0#'
+- Commits and PRs must have relevant titles describing their changes
+- 
+
 
 <!--
 GUIDANCE
