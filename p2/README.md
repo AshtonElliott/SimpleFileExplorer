@@ -802,6 +802,12 @@ deadline. A repository that cannot be opened at grading time cannot earn reposit
 | George Chakiath Dani | ChatGPT | Assisted with drafting ADR-01, ADR-02, ADR-03, and the Section 72 - Trade-off Summary | Reviewed and edited the proposed decisions, checked them against project constraints and requirements, and adjusted wording to reflect the team's actual decisions and approval status.|
 | George Chakiath Dani | ChatGPT | Assisted with drafting Section 8 - Prototype Evidence: Architecture Spike. |Reviewed the spike description, checked its connection to ADR-01 and R2, and clarified that missing measurement and test evidence should not be fabricated |
 | George Chakiath Dani | ChatGPT | Assisted with drafting Section 9 - Traceability Matrix and Gap Analysis | Reviewed requirement-to-use-case mappings, analysis classes, ADR references, and identified gaps requiring confirmation in Section 6 |
+| George Chakiath Dani | ChatGPT | Section 7: helped improve the wording, structure, and clarity of architecture decision records and the trade-off summary. | Reviewed the decisions, alternatives, consequences, and related requirements to ensure they reflected the project's architecture |
+| George Chakiath Dani | ChatGPT | Section 8: Helped improve the wording and organization of the architecture spike descriptions. | Checked the descriptions against the spike information and kept unrecorded results and missing evidence identified as pending. |
+| George Chakiath Dani | ChatGPT | Section 9: Helped review and improve the traceability analysis. | Checked the mappings against the project's requirements, use cases, analysis classes, components, and architecture decisions. |
+| George Chakiath Dani | ChatGPT | Section 0.2: Helped organize and improve the wording of changes made since the P1 baseline. | Reviewed the changes against the actual P2 work and identified items requiring team confirmation. |
+| George Chakiath Dani | ChatGPT | Section 10: Helped organize and refine the P3 milestone plan and completion criteria. | Reviewed the milestones to ensure they reflect the project's planned implementation, integration, testing, and submission work. |
+| George Chakiath Dani | ChatGPT | Section 12: Helped clarify the baseline declaration and organize the team signature table | Checked that team members, signatures or initials, and dates were represented appropriately. |
 
 <!--
 GUIDANCE
