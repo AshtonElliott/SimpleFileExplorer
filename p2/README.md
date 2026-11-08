@@ -670,7 +670,7 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | | |
 |---|---|
 | **Spike ID and title** | S-01: ls parsing |
-| **Risk or decision it addresses** | R2 / ADR-[01]|
+| **Risk or decision it addresses** | R2 / ADR-01|
 | **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
 | **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
 | **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
