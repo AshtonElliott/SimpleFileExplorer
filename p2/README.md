@@ -68,6 +68,7 @@ must agree with your repository history.
 | George Chakiath Dani | Finished up Section 7.1 - Architecture Decision Records (ADRs 01-03); Section 7.2 - Trade-off Summary | Commits: 273fb19, 86deee0, dcf7f83, 24d4394 | No PR reviews as of 11/6/26 |
 | George Chakiath Dani | Section 8 - Prototype Evidence: Architecture Spike (S-01: ls parsing) | 30f03ac | No PR reviews as of 11/7/26 |
 | George Chakiath Dani | Section 9.1 - Extended Traceability Matrix: Section 9.2 - Gap Analysis | Commits: 2a64472, 9f791bc, e6cb1c7 | No PR reviews as of 11/7/26 |
+|Yukai Ma |Finish Section 6, remade some previous diagrams,come out some suggestions for modifications| Commits: the merge history|No PR reviews as for 11/8/2026|
 
 <!--
 GUIDANCE
@@ -435,11 +436,14 @@ Budget: a quarter of a page.
 
 | QAS | Quality attribute | Stimulus | Artifact | Response | Response measure | From |
 |---|---|---|---|---|---|---|
-| QAS-01 | | | | | | QR-[ ] |
-| QAS-02 | | | | | | QR-[ ] |
-| QAS-03 | | | | | | QR-[ ] |
+| QAS-01 |Performance|When searching for a keyword in a folder which containing 1000 files |Search term |return all files related|the search should finish and return the correct result within 10 min | QR-[01] |
+| QAS-02 |Performance |When the user starts this app |GUI/File Explorer |the app starts successfully |Start times for the app will be measured to find if it successfully boots in under 5 minutes | QR-[04] |
+| QAS-03 |Availability|When an error occurs |Error handler |Error is logged to the report |trigger 10 different errors and verify that each is recorded in the system within 1 minute.| QR-[05] |
+
 
 **Constraints that shape the architecture:** CON-[ ], CON-[ ], CON-[ ]. [Two or three lines.]
+
+
 
 <!--
 GUIDANCE
@@ -458,11 +462,13 @@ within 2 s for 95% of requests · From QR-02.
 
 | Style considered | Drivers it serves | What it costs | Verdict |
 |---|---|---|---|
-| | | | **Chosen** |
-| | | | Rejected |
-| | | | Rejected |
+|Model-View-Controller |It separates the actions into three layers, GUI/search/sidebar can be the view; file explorer is the controller; folder, file and WSL commands can be the model. This provide maintainability(separate layer is easy to make changes), Performance,and Security(separate viewer and controller with model)  |RecoverabilityNeed carefully designed interface, need keep view update when directory is changed.| **Chosen** |
+|pipe-and-filter |Good for dealing with data flow, easier for search |poor performance | Rejected |
+|Event-driven |allow Asynchronous Operations, good for long-running searching |poor traceability  | Rejected |
+
 
 [One paragraph explaining the choice in terms of the scenarios in 6.1. ADR-01 in section 7 records this decision formally.]
+
 
 <!--
 GUIDANCE
@@ -475,7 +481,7 @@ GUIDANCE
 
 ### 6.3 Component view
 
-![Figure 6.3 Component diagram](diagrams/component-diagram.png)
+![Figure 6.3 Component diagram](component-diagram.png)
 
 *Figure 6.3 Component diagram: components, provided and required interfaces, external systems*
 
@@ -484,7 +490,12 @@ GUIDANCE
 | | | | | |
 | | | | | |
 | | | | | |
-
+|GUI Presentation |Captures user inputs and renders file lists, search results, sidebar links, and preview images on screen. |User Interaction |ExplorerControl, FileSearch, QuickAccess |UC: View Folders/Files, View Quick Access Sidebar , MVC View Component|
+|File Explorer | Orchestrates desktop navigation actions, routes queries to backend sub-engines, and coordinates data flow to the UI. | Explorer Control | WSL Execution, FileAccess, LoggingService | UC: Navigate Folders, View Folders/Files  , MVC Controller Component|
+|Search | Filters directory hierarchies and identifies files matching specified user search criteria. |  FileSearch |FileAccess, LoggingService | UC: Search Files|
+|Sidebar | Maintains user shortcuts, and recent navigation history for quick access. | Quick Access |File Access |UC: View Quick Access Sidebar, View Recent History|
+|WSL translator|Translates internal requests into POSIX commands and executes them within the Windows Subsystem for Linux. | WSL Execution | External WSL Environment | UC: Send Command to WSL & Execute|
+|Logger & Error Handler |Intercepts application failures, formats error reports, and appends diagnostic entries to persistent logs. |Logging Service | External Log Storage |UC: Display Error, Error Handler, Save Error Report to log|
 <!--
 GUIDANCE
 - Point at any box and say which use case, which quality scenario or which decision put it there. A box
@@ -496,15 +507,15 @@ GUIDANCE
 
 ### 6.4 Deployment view
 
-![Figure 6.4 UML deployment diagram](diagrams/deployment-diagram.png)
+![Figure 6.4 UML deployment diagram](deployment-diagram.png)
 
 *Figure 6.4 UML deployment diagram: nodes, execution environments, deployed artifacts, communication paths with protocols, trust boundaries*
 
 | Node | What runs on it (artifacts, components) | Communicates with (protocol) | Trust zone |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+|User PC |SFE.exe(GUI, File Explorer, Search, sidebar,etc.) |Host OS, WSL2 environment |Local machine zone |
+|Host OS |User files, log.txt |SFE.exe |Umanaged data zone, need permit to access |
+|WSL2 environment |Linux Kernel File, WSL Init Processes|SFE.exe |Less trust zone, need permit |
 
 <!--
 GUIDANCE
@@ -519,9 +530,12 @@ GUIDANCE
 
 | Analysis object (from 5.1 and 5.2) | Component that owns it (6.3) | Note (split, merged, external) |
 |---|---|---|
-| | | |
-| | | |
-| | | |
+|GUI |GUI |N/A|
+|File explorer, file, folder|file explorer |merged, as the file and folder is under control of file explorer |
+|search |search |N/A |
+|sidebar |sidebar |N/A |
+|Error log | Error habdler|N/A |
+|WSL translator |WSL translator |N/A |
 
 <!--
 GUIDANCE
@@ -533,12 +547,12 @@ was split, merged or left to an external system. Budget: a quarter of a page.
 
 | Principle | Where it shows in your design | Evidence (component, interface, ADR) |
 |---|---|---|
-| Separation of concerns | | |
-| Information hiding | | |
-| Low coupling | | |
-| High cohesion | | |
-| Design for change | | |
-| Keep it simple (KISS) | | |
+| Separation of concerns |Separation between file explorer and special logic:search |component: file explorer and search |
+| Information hiding |implement details are hidden behind WSL translator |component: WSL translator |
+| Low coupling |there's no complex stuff passed between components, just basic datatypes(name, path, time last modified, etc.)|Component: file explorer, interface between components|
+| High cohesion |merge file and folder into file explorer system |component: file explorer |
+| Design for change |MVC structure allow future replacement for GUI |component: GUI |
+| Keep it simple (KISS) |Using direct interface method calls between local components |interface: explorer control |
 
 <!--
 GUIDANCE
