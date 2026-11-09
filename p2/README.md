@@ -95,6 +95,7 @@ must agree with your repository history.
 | George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 9791fe6 | No PR reviews as of 11/8/26 |
 | Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
 | Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
+| Ashton Elliott | Merged Yukai's Work to Main. | Commit: 40b06a3 | N/A
 
 <!--
 GUIDANCE
@@ -899,7 +900,7 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 |---|---|---|
 | Austin Robson | AR | 11/8/26 |
 | George Chakiath Dani | GCD | 11/8/26 |
-| Ashton Elliot | | |
+| Ashton Elliot | AEE | 11/8/26 |
 | Yukai Ma |YM | 11/8/26 |
 | Rowan Egan | | |
 | Zachary Gregory | ZG | 11/8/2026 |
