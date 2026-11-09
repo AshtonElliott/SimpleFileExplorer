@@ -41,7 +41,7 @@ WHAT P2 DOES NOT ASK FOR (work placed in the wrong milestone is not credited)
 | Ashton Elliot | aee230007 | AshtonElliott |
 | George Chakiath Dani | gnc230001 | gchakiathUTDallas |
 | Rowan Egan | rje240001 |  |
-| Zachary Gregory | |  |
+| Zachary Gregory | dal465328 | ZacG-codes |
 
 ---
 
@@ -63,6 +63,7 @@ must agree with your repository history.
 | 1.5 | 11/7/26 | George Chakiath Dani | Updated section 8,9, added spike s-01 |
 | 1.6 | 11/7/26 | Yukai Ma | Updated section 6, added Component and Deployment diagrams, updated use case diagram |
 | 1.7 | 11/7/26 | Austin Robson | Added spike s-02 |
+| 1.8 | 11/8/26 | Austin Robson | Updated spike s-01 |
 
 ### 0.1 Individual contribution record (P2)
 
@@ -92,6 +93,8 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Section 10.2 - Plan to P3, documenting the milestones, owners, dates, and completion criteria for P3. | Commit: 741ceba | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 646713c | No PR reviews as of 11/8/26 |
+| Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
+| Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
 
 <!--
 GUIDANCE
@@ -110,9 +113,9 @@ GUIDANCE
 
 | Change ID | What changed (IDs affected) | Why (P1 feedback, new finding, spike result) | Knock-on effect | Agreed on |
 |---|---|---|---|---|
-| CH-01 | Added architectural decisions ADR-01 through ADR-04, covering MVC, local Java/WSL execution, read-only access, and WSL Linux commands. | P2 design work clarified how the application will meet its functional requirements and constraints. | Established the architecture and component responsibilities in Sections 6 and 7. | Team confirmation needed. |
-| CH-02 | Added spike S-02 comparing Windows File Explorer and WSL search performance. | The comparison recorded Windows File Explorer at 39 seconds and WSL at 12 seconds, with 14 versus 223 results. | Supports the decision to use WSL commands in ADR-04. | Team confirmation needed. |
-| CH-03 | Added new risk R6 concerning whether Linux command output can be converted into data usable by the GUI. | Identified an additional integration risk during P2 design. | Added a mitigation task for Ashton; risk remains unresolved. | Team confirmation needed. |
+| CH-01 | Added spike S-02 comparing Windows File Explorer and WSL search performance. | The comparison recorded Windows File Explorer at 39 seconds and WSL at 12 seconds, with 14 versus 223 results. | Supports the decision to use command line tools in ADR-04. | 11/7/26 |
+| CH-02 | Added new risk R6 concerning whether Linux command output can be converted into data usable by the GUI. | Identified an additional integration risk during P2 design. | Added a mitigation task for Ashton | 11/7/26 |
+| CH-03 | Added architectural decisions ADR-01 through ADR-04, covering MVC, local Java/command execution, read-only access, and command line tools. | Limiting file access to linux commands only was found to be difficult due to how linux commands display file info. P2 design work clarified how the application will meet its functional requirements and constraints through other means such as Java or powershell. | App will require different dependencies to run. Established architecture and component responsibilities in Sections 6 and 7. | 11/8/26 |
 
 <!--
 GUIDANCE
@@ -143,14 +146,76 @@ GUIDANCE
 
 ### 1 Introduction
 
+#### 1.1 [Purpose of this document and the system]
 Simple File Explorer (SFE) is a slimmed down reimagining of the stock file explorer on Windows, reducing lag and long loading times by leveraging linux commands in a simple GUI. 
+
+#### 1.2 [Scope]
+| In scope | Out of scope |
+| --- | --- |
+| GUI | Drive manager |
+| File probing | Settings |
+| Quick access sidebar | Networking |
+| Searching | File movement |
+
+Why the exclusions were excluded:
+Drive management and file movement outside of the dedicated operating system methods is tricky and potentially dangerous, and therefore out of scope for this file reader app. Network connectivity introduces vulnerabilities, and there are no options to necessitate a settings menu.
+
+#### 1.3 [Definitions, acronyms, and abbreviations
+| Term or abbreviation | Meaning as used in this project |
+| --- | --- |
+| SFE | Simplified File Explorer; Name of app |
+| WSL | Windows Subsystem Linux; App relies on it for linux use |
+| WFESE | Windows File Explorer Search Engine; Windows File Searcher that comes with all windows computers.  |
+
+#### 1.4 [References]
+1. Windows File Explorer (WFE)
+2. Windows Subsystem Linux (WSL)
+3. Java
+4. Powershell
 
 ### 2 Overall Description
 
+#### 2.1 [Product perspective and context]
 
-![Context Diagram](../Context_Diagram.jpg)
+![Context Diagram](possible-remake.context-Diagram.jpg)
 
 The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
+
+#### 2.2 [Stakeholders and how you reached them]
+| Stakeholder | Role | What they need | How we learned this |
+| --- | --- | --- | --- |
+| End users | Downloads and uses the app | A file searcher that takes less than 10 minutes to find the desired file from 300,000 files with the right path | We ran a test on Window’s File Explorer search engine to see how long it would take to find a file with the keyword “BERT”. It took 11 minutes and 9 seconds to find a file with the keyword “BERT”, but it was a cached path and not the actual file path. |
+| Software Testers | Tests functionality and performance of app | The app must return the accurate file paths and accurately find files within the required time. | Based on the Windows File Explorer test, which took 11 minutes and 9 seconds and returned a cached path. |
+| Regulator | Check if the app is legal | Need the app to obey the law (e.p protect private information) | To check all related law requirements before programming |
+| Software developers | Design, build and maintain the app | Develop a reliable and efficient file search app that demonstrates fast searching times for each file searched | Based on responsibilities of the development team and our group members |
+| Maintenance Team | Fixes Bugs and updates the app after release | Code that can be easy to maintain, along with useful messages and comments for future debugging. | Based on the need to keep the app working after development |
+
+#### 2.3 [User characteristics]
+
+The users are individuals who want to find files within their computer as soon as possible. They should know how to use a search engine and that Windows has a file search engine. What cannot be assumed that they know is the fact that said Windows file search engine is inefficient as it takes 11 minutes and 9 seconds to find a single result.
+
+#### 2.4 [Constraints]
+
+Must run locally
+Must follow the law to protect users’ information and documents.
+Must use functions and commands to make system calls
+
+#### 2.5 [Assumptions and dependencies]
+
+| '#' | Assumption/Dependency | What breaks if it does not hold |
+| --- | --- | --- |
+| A1 | WSL installed | The system will not be able to execute Linux comands, and the program will fail |
+| A2 | Java installed | The system will not be able to execute the program |
+| A3 | Java is able to interface with command line | Java will not be usable for completing this project |
+
+#### 2.6 [Feasibility Summary]
+
+| Feasibility gate | Verdict | Evidence behind the verdict |
+| --- | --- | --- |
+| Technical | Yes | A small test was conducted within a Linux Virtual Machine where the keyword “BERT” was searched throughout the entire Virtual Machine with grep. |
+| Operational | Yes | From the test, the system does increase the loading speed a lot. The end users who really want fast access to the file will choose to use it. |
+| Schedule | Yes | Through the team discussion, the estimated time is within the deadline. |
+| Economic / resource | Yes | Because this is a small app with no paid external dependencies, the economic cost will be little to none |
 
 ### 3 Requirements
 
@@ -171,19 +236,19 @@ The Simple File Explorer system allows users to search for files through a user 
 
 | ID | Requirement | Priority | Source | Verification |
 | --- | --- | --- | --- | --- |
-| QR-01 | Searches must complete within 10 minutes of their initialization | MUST | Devs | A tester can confirm this by tracking load times while searching files. |
-| QR-02 | Entering new folders should load their new content within 5 minutes of their opening | MUST | Devs | A tester can check whether the folder and documents are displayed in time |
+| QR-01 | Searches must complete within 10 minutes of their initialization | MUST | Devs | A tester can confirm this by tracking load times while searching files in a drive filled with 1TB of contents. |
+| QR-02 | Entering new folders should load their new content within 5 minutes of their opening | MUST | Devs | A tester can check whether the a folder of 250 children are displayed in time. |
 | QR-03 | Search results shall contain 20 results before needing to scroll | SHOULD | Devs | Search results containing >20 entries will create a scroll bar in the window |
-| QR-04 | The app shall open within 5 minutes of its starting | SHOULD | Devs | Start times for the app will be measured to find if it successfully boots in under 5 minutes |
+| QR-04 | The app shall open within 5 minutes of its starting | SHOULD | Devs | Start times for the app will be measured to find if it successfully boots in under 5 minutes in a folder of 250 children. |
 | QR-05 | Errors shall be logged within 1 minute of their occurrence | SHOULD | Maintenance Team | A tester can trigger 10 different errors and verify that each is recorded in the system within 1 minute. |
 
-#### 3.3 [Constraints]
+#### 3.3 [Constraint requirements]
 
 | ID | Constraint | Source | Why |
 | --- | --- | --- | --- |
 | CON-01 | Must run locally | Devs | Running with or through a third-party service creates unnecessary load times and opens up vulnerabilities |
 | CON-02 | The system doesn’t write, move or delete any user file | Devs | Read-only access removes the risk of data loss |
-| CON-03 | Must use Linux commands to make system calls | Devs | Use Linux commands that can achieve fast access to the file in memory |
+| CON-03 | Must use commands or functions to make system calls | Devs | Use Java, Linux, or other command line tools that can achieve fast access to the file in memory |
 
 #### 3.4 Use cases
 
@@ -198,13 +263,11 @@ See section 9.1. for the requrirements traceability matrix.
 
 ## 4 Use-Case Analysis
 
-*Chapter 7, first half. Take the use cases from section 3.4 and write the most important of them out turn by turn, still with the technology switched off.*
-
 ### 4.1 Use cases selected for analysis
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes
+| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes |
 | UC-02 | View Folders | "Explorer" part of file explorer, needs to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
 | UC-03 | Search terms | Prove that searching with simpler tools allows for faster results | Accepting a search term, finding matching files and folders, and finally displaying results. |
 
@@ -222,14 +285,13 @@ GUIDANCE
 <!-- Copy the block below once for each use case in 4.1. -->
 
 #### UC-01 **View files**
-Use Case Information:
 | Primary actor | End User |
 |---|---|
 | Supporting actors and external systems | WSL, GUI |
 | TUCBW (this use case begins when) | The user clicks on a file to view its details |
 | TUCEW (this use case ends when) | The user sees the selected file's attributes |
-| Preconditions | - The application was initiated successfully. The user has permission to read the file.  |
-| **Postconditions** | - The file's attributes are displayed on the GUI and are accurate to command line results. |
+| Preconditions | The application was initiated successfully. The user has permission to read the file.  |
+| **Postconditions** | The file's attributes are displayed on the GUI and are accurate to command line results. |
 | **Traces to requirements** | FR-01, CON-02 |
 
 | Actor input / action | System response |
@@ -244,12 +306,11 @@ Use Case Information:
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
 | A1 | 1 | The selected file cannot be accessed because of permissions set by the admin. | The system informs the user that the file couldn't be accessed. GUI directory remains unchanged.  | Ends |
-| A2 | 1 | The selected file is not longer available. | The system informs the user that the file is unavailable. | Ends |
+| A2 | 1 | The selected file is no longer available. | The system informs the user that the file is unavailable. | Ends |
 
 
 
 #### UC-02 **View folders**
-Use Case Information:
 | Primary actor | End User |
 |---|---|
 | Supporting actors and external systems | File System |
@@ -276,13 +337,12 @@ Use Case Information:
 
 
 #### UC-03 **Search terms**
-Use Case Information:
 | Primary actor | End User |
 |---|---|
 | Supporting actors and external systems | File System |
-| TUCBW (this use case begins when) | The user enters a search term to find matching files or folders.|
+| TUCBW (this use case begins when) | The user enters a search term to find matching files or folders. |
 | TUCEW (this use case ends when) | The user sees all the search results for their term. |
-| Preconditions | The application has started successfully. The user has access to the application. |
+| Preconditions | The application has started successfully. The user has access to the directories being searched. |
 | Postconditions | Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
 | Traces to requirements | FR-[03], QR-[01], CON-[01], CON-[02] |
 
@@ -298,7 +358,7 @@ Use Case Information:
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
 | A1 | 2 | No matching files or folders are found | The system informs the user that no matching results were found | Ends |
-| A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Ends |
+| A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Rejoins at 3 |
 
 <!--
 GUIDANCE: rules from Lesson 13, all of which are checked
@@ -328,7 +388,7 @@ turnover and the visitor option · ends.
 
 | Use case | Check from the Lesson 13 review checklist | Defect found | How it was fixed |
 |---|---|---|---|
-| UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 0, describing the currently displayed folder contents.  |
+| UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with the system. | Added step 0, describing the currently displayed folder contents.  |
 | UC-02 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | separated the user's search input from the system's response.|
 | UC-03 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
 
@@ -342,8 +402,6 @@ acceptable when it is true. Budget: a quarter of a page.
 ---
 
 ## 5 Analysis Models
-
-*Chapter 7, second half. What has to exist inside the system for the use cases in section 4 to happen, and how those parts talk to each other.*
 
 ### 5.1 Domain model
 
@@ -456,8 +514,6 @@ Budget: a quarter of a page.
 
 ## 6 High-Level Design (Architecture)
 
-*Chapter 8. A high-level design that does not say where things run, what they are built from and what that choice cost has not been done.*
-
 ### 6.1 Architectural drivers: quality-attribute scenarios
 
 | QAS | Quality attribute | Stimulus | Artifact | Response | Response measure | From |
@@ -465,11 +521,6 @@ Budget: a quarter of a page.
 | QAS-01 |Performance|When searching for a keyword in a folder which containing 1000 files |Search term |return all files related|the search should finish and return the correct result within 10 min | QR-[01] |
 | QAS-02 |Performance |When the user starts this app |GUI/File Explorer |the app starts successfully |Start times for the app will be measured to find if it successfully boots in under 5 minutes | QR-[04] |
 | QAS-03 |Availability|When an error occurs |Error handler |Error is logged to the report |trigger 10 different errors and verify that each is recorded in the system within 1 minute.| QR-[05] |
-
-
-**Constraints that shape the architecture:** CON-[ ], CON-[ ], CON-[ ]. [Two or three lines.]
-
-
 
 <!--
 GUIDANCE
@@ -492,10 +543,6 @@ within 2 s for 95% of requests · From QR-02.
 |pipe-and-filter |Good for dealing with data flow, easier for search |poor performance | Rejected |
 |Event-driven |allow Asynchronous Operations, good for long-running searching |poor traceability  | Rejected |
 
-
-[One paragraph explaining the choice in terms of the scenarios in 6.1. ADR-01 in section 7 records this decision formally.]
-
-
 <!--
 GUIDANCE
 - Name the style (or combination) you chose and at least two you rejected, using the vocabulary from
@@ -513,9 +560,6 @@ GUIDANCE
 
 | Component | Responsibility (one sentence) | Provides | Requires | Answers to (UC / QAS / ADR) |
 |---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
 |GUI Presentation |Captures user inputs and renders file lists, search results, sidebar links, and preview images on screen. |User Interaction |ExplorerControl, FileSearch, QuickAccess |UC: View Folders/Files, View Quick Access Sidebar , MVC View Component|
 |File Explorer | Orchestrates desktop navigation actions, routes queries to backend sub-engines, and coordinates data flow to the UI. | Explorer Control | WSL Execution, FileAccess, LoggingService | UC: Navigate Folders, View Folders/Files  , MVC Controller Component|
 |Search | Filters directory hierarchies and identifies files matching specified user search criteria. |  FileSearch |FileAccess, LoggingService | UC: Search Files|
@@ -607,12 +651,12 @@ connection · Decision: server push · Consequences: favors performance and fres
 management on the occupancy service and a fallback when push fails (A2 in UC-02) · Evidence: spike S-01.
 -->
 
-#### ADR-[01] [Using Model-View-Controller Architecture]
+#### ADR-01 [Using Model-View-Controller Architecture]
 
 | | |
 |---|---|
 | **Status** | Accepted |
-| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Date and owner** | 11/08/2026 - George |
 | **Context (drivers)** | The application contains a GUI, file navigation, and searching functionality. These responsibilities need to be separated to improve maintainability and make future changes easier |
 | **Options considered** | 1. Use a Pipe-and-Filter architecture. 2. Use an Event-Driven architecture. 3. Use Model-View-Controller (MVC) architecture. |
 | **Decision** | Use MVC architecture. The GUI acts as the View, File Explorer acts as the Controller, and file/folder data and WSL operations are handled by the Model. |
@@ -621,21 +665,21 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | **Related** | QAS-01, QAS-02, FR-01, FR-02, FR-03 |
 
 
-#### ADR-[02] [Running the Application Locally]
+#### ADR-02 [Running the Application Locally]
 
 | | |
 |---|---|
 | **Status** | Accepted |
-| **Date and owner** | 11/06/2026 - George (Drafted) |
+| **Date and owner** | 11/06/2026 - George |
 | **Context (drivers)** | The application needs to run on the user's computer and access local files. CON-01 requires the application to run locally rather than relying on an external server. |
-| **Options considered** | 1. Host the application on an external server and access it remotely. 2. Run the application locally using Java and WSL (Linux). |
+| **Options considered** | 1. Host the application on an external server and access it remotely. 2. Run the application locally using Java and command line tools. |
 | **Decision** | Run the application locally as a Java application that communicates with WSL to execute Linux commands. |
 | **Consequences** | Favors local accessibility and allows the application to work with files on the user's computer. The accepted cost is that users must have Java and WSL installed and properly configured. |
 | **Evidence** | CON-01 establishes the requirement for local execution. Section 6.3 identifies the Java GUI and application components, while Section 6.4 shows that the application runs on the user's PC. |
 | **Related** | CON-01, CON-03, FR-02, R1 |
 
 
-#### ADR-[03] [Read-Only File System Access]
+#### ADR-03 [Read-Only File System Access]
 
 | | |
 |---|---|
@@ -648,17 +692,17 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | **Evidence** | CON-02 establishes the read-only restriction. The project scope also excludes file movement and other file-modification features. |
 | **Related** | CON-02, FR-01, FR-02, FR-03, FR-07, FR-08 |
 
-#### ADR-[04] [Using WSL Linux Commands]
+#### ADR-04 [Using WSL Linux Commands]
 
 | | |
 |---|---|
-| **Status** | Accepted |
-| **Date and owner** | 11/07/2026 - George (Drafted) |
+| **Status** | Rejected |
+| **Date and owner** | 11/07/2026 - George (Drafted), Austin |
 | **Context (drivers)** | The application needs to search for files and retrieve folder information efficiently. CON-03 establishes the use of Linux commands through WSL. |
-| **Options considered** | 1. Use native Windows commands for searching and retrieving file information. 2. Use Linux commands through WSL, such as grep and ls. |
-| **Decision** | Use WSL Linux commands, including grep for searching and ls for retrieving file information. |
-| **Consequences** | Favors performance and supports file searching and folder retrieval. The accepted cost is that users must have WSL installed and configured. |
-| **Evidence** | A test using the Linux grep command successfully searched for the keyword "BERT". Section 6.3 also identifies WSL execution as part of the application architecture. |
+| **Options considered** | 1. Use native Windows commands for searching and retrieving file information. 2. Use Linux commands through WSL, such as grep and ls. 3. Use a mix of command line tools to achieve best results. |
+| **Decision** | 3. Use a mix of command line tools for best results. |
+| **Consequences** | Favors performance and supports file searching and folder retrieval. The accepted cost is that users must have Java, WSL, and Windows installed and configured. |
+| **Evidence** | App prototype currently uses java commands only. S-01 uses powershell to parse file data. |
 | **Related** | QR-01, FR-03, CON-03, R2 |
 
 
@@ -666,10 +710,10 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 
 | Quality favored | Architectural move | Cost accepted | Recorded in |
 |---|---|---|---|
-| Maintainability | Using MVC architecture to separate presentation, application control, and backend operations. | Additional coordination between components and the need to maintain clear interfaces. | ADR-[01] |
-| Local accessibility | Running the application locally using Java and WSL. | Users must have Java and WSL installed and configured. | ADR-[02] |
-| Data safety | Restricting the application to read-only file access. | Users cannot create, rename, move, or delete files through the application. | ADR-[03] |
-| Performance | Using WSL Linux commands (grep, ls) for searching and retrieving file information. | Users must have WSL installed and configured. | ADR-[04] |
+| Maintainability | Using MVC architecture to separate presentation, application control, and backend operations. | Additional coordination between components and the need to maintain clear interfaces. | ADR-01 |
+| Local accessibility | Running the application locally using Java. | Users must have Java and command line access installed and configured. | ADR-02 |
+| Data safety | Restricting the application to read-only file access. | Users cannot create, rename, move, or delete files through the application. | ADR-03 |
+| Performance | Using Java and command line for searching and retrieving file information. | Users must have Java installed and configured. | ADR-04 |
 
 <!-- GUIDANCE: One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page. -->
 
@@ -680,13 +724,13 @@ management on the occupancy service and a fallback when push fails (A2 in UC-02)
 | | |
 |---|---|
 | **Spike ID and title** | S-01: ls parsing |
-| **Risk or decision it addresses** | R2 / ADR-01|
-| **Question (answerable yes or no)** | Can the application use WSL to execute the Linux ls command and retrieve folder information? |
-| **Set-up** | Java application using WSL to execute Linux commands. The ls command was used to retrieve folder and file information. |
+| **Risk or decision it addresses** | R1,R2 / ADR-01|
+| **Question (answerable yes or no)** | Can the application parse command output to retrieve folder and file information? |
+| **Set-up** | Write a script to collect file information and export it as data that can be read by the application. Record timestamps of script execution and completion. |
 | **How it was measured** | Tested whether the command could execute successfully and whether its output could be collected and interpreted by the application. |
-| **Result (numbers)** | Numeric measurements were not recorded |
+| **Result (numbers)** | Powershell script displays working directory's children with details. Executes within 1 second.  |
 | **What it changed or confirmed** | Supports the decision to use WSL Linux commands (ADR-01) for retrieving file and folder information. |
-| **Where to see it** | Pending - test evidence and repository location have not yet been added. |
+| **Where to see it** | /spikes/s-01/ |
 
 |  |  |
 |---|---|
@@ -777,7 +821,10 @@ you did. Budget: a quarter of a page.
 |---|---|---|---|
 | R1: Team member(s) unable to get WSL and Java working on their machine. | Unresolved | Low / Low  | Ashton checks that every member has WSL installed and working on their computer. |
 | R2: Calling Linux commands from Java through WSL turns out slower than anticipated. | Answered | Medium / Medium | Austin runs a trial between searching "3354" in the file explorer and running "find . -name '*3354*'" in wsl, then compares the results to see which is faster. |
-| R6 (new): It is not possible to use linux commands to create workable data that can be interpreted by the GUI | Unresolved | Medium / Medium | Ashton finds other methods of file/folder lookup for the GUI. |
+| R3: External commitments like other classes or jobs leaving a person(s) unable to deliver their work by the deadlines. | Closed | Medium / High | Zac Gregory checks on everyone’s individual progress on days 10/28 and 11/1, names backups for each task, and reassigns work if something is more than 2 days behind schedule. |
+| R4 (updated): Requirements change informally. | Resolved | Medium / Medium | Austin documents research and reasoning for requirement changes and verifies sanity across traceability matrix and other requirements. |
+| R5: The design is built on an unresolved premise: Q1 and Q2 are open. | Resolved | Medium / High | Yukai Ma gets answers or a team decision recorded in section 5 by 10/20, and any change to the functional requirements or constraints goes through the revision history. |
+| R6 (new): It is not possible parse linux commands into workable data for the GUI | Resolved | Medium / Medium | Ashton finds other methods of file/folder lookup for the GUI. |
 
 <!--
 GUIDANCE
@@ -787,12 +834,11 @@ the spike or ADR that addresses each.
 
 ### 10.4 Repository
 
-[State the repository URL, the folder layout (`/docs/p2`, `/docs/p2/diagrams`, `/spikes`), your branch and pull-request rule, and confirm that the tag `p2` points at the commit containing this PDF.]
+<!-- [State the repository URL, the folder layout (`/docs/p2`, `/docs/p2/diagrams`, `/spikes`), your branch and pull-request rule, and confirm that the tag `p2` points at the commit containing this PDF.] -->
 https://github.com/AshtonElliott/SimpleFileExplorer
 - '/p2' contains diagrams and documents for P2 of the project
 - '/spikes' contains documentation of spikes performed for the project, organized in folders named '/s-0#'
 - Commits and PRs must have relevant titles describing their changes
-- 
 
 
 <!--
@@ -849,12 +895,12 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 
 | Team member | Signature or initials | Date |
 |---|---|---|
-| Austin Robson | | |
+| Austin Robson | AR | 11/8/26 |
 | George Chakiath Dani | GCD | 11/8/26 |
 | Ashton Elliot | | |
 | Yukai Ma | | |
 | Rowan Egan | | |
-| Zachary Gregory | | |
+| Zachary Gregory | ZG | 11/8/2026 |
 
 
 <!--
