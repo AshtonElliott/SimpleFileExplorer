@@ -98,6 +98,7 @@ must agree with your repository history.
 | Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
 | Ashton Elliott | Merged Yukai's Work to Main. | Commit: 40b06a3 | N/A |
 | Austin Robson | Updates to readme and domain diagram | Commit 8670599 | N/A |
+| Ashton Elliott | Converted Markdown to PDF. | Commit TBA | N/A
 
 <!--
 GUIDANCE
