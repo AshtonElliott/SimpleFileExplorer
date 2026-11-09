@@ -64,6 +64,7 @@ must agree with your repository history.
 | 1.6 | 11/7/26 | Yukai Ma | Updated section 6, added Component and Deployment diagrams, updated use case diagram |
 | 1.7 | 11/7/26 | Austin Robson | Added spike s-02 |
 | 1.8 | 11/8/26 | Austin Robson | Updated spike s-01 |
+| 1.9 | 11/8/26 | Austin Robson | Finalizing document sections and updated domain model |
 
 ### 0.1 Individual contribution record (P2)
 
@@ -95,7 +96,8 @@ must agree with your repository history.
 | George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 9791fe6 | No PR reviews as of 11/8/26 |
 | Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
 | Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
-| Ashton Elliott | Merged Yukai's Work to Main. | Commit: 40b06a3 | N/A
+| Ashton Elliott | Merged Yukai's Work to Main. | Commit: 40b06a3 | N/A |
+| Austin Robson | Updates to readme and domain diagram | Commit 8670599 | N/A |
 
 <!--
 GUIDANCE
