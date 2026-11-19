@@ -79,6 +79,8 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | Team member | What this person produced for P3 (name the sections and files) | Evidence | Verifiable at |
 |---|---|---|---|
 | | | | |
+| Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
+
 
 ### 0.3 Where your evidence lives
 
