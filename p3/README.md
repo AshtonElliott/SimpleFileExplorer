@@ -80,7 +80,7 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 |---|---|---|---|
 | | | | |
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
-| George Chakiath Dani |  |  | GitHub repository  |
+| George Chakiath Dani | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
 
 
 ### 0.3 Where your evidence lives
@@ -124,7 +124,7 @@ No background, no history of the team, no restating of the problem statement fro
 
 | | |
 |---|---|
-| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide suers with a way to brose directories and search through a graphical interface in a short amount of time. It uses operating-system commands and file-system information to support file exploration while keeping file access read-only. |
+| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide users with a way to brose directories and search through a graphical interface in a short amount of time. It uses operating-system commands and file-system information to support file exploration while keeping file access read-only. |
 | **What works end to end today** | TBD/ Work in progress - list the features that were verified successfully in the final application, including browsing, folder navigation, searching, and quick access, as applicable. |
 | **What does not work, or was not built** | TBD/ Work in progress - list known bugs, incomplete features, unsupported functionality, and features excluded from the project scope. |
 | **The single most important thing we learned** | Integrating a graphical interface with operating-system commands requires careful handling of command output, system dependencies, and the differences between the data returned by the operating system and the information displayed to the user. |
