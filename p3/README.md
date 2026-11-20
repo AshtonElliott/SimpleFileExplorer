@@ -31,13 +31,13 @@ credited for it.
 Weight 10% · 100 points · Due Wednesday 9 December 2026, 11:59 PM Central · One PDF per team on Canvas ·
 Late work is not accepted -->
 
-# [Project title]
+# Simple File Explorer
 
 | | |
 |---|---|
-| **Project title** | |
-| **Team number and section** | |
-| **Team members (name · net ID)** | |
+| **Project title** | Simple File Explorer |
+| **Team number and section** | Group 4 and Section Section .010 |
+| **Team members (name · net ID)** | George Chakiath Dani * gnc230001 |
 | **Repository URL** | |
 | **Release tag or final commit hash** | |
 | **Demonstration slot** | |
@@ -57,8 +57,8 @@ what a grader can actually open.
 
 | Version | Date | Author | Summary of change |
 |---|---|---|---|
-| 1.0 | | | P2 baseline |
-| 2.0 | | | P3 final |
+| 1.0 | 10/29/2026 | Team 04 | P2 baseline |
+| 2.0 | 11/19/2026 | Team 04 | P3 final - Initial additions, Getting P3 started |
 
 ### 0.2 Individual contribution record for P3
 
@@ -80,6 +80,7 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 |---|---|---|---|
 | | | | |
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
+| George Chakiath Dani |  |  | GitHub repository  |
 
 
 ### 0.3 Where your evidence lives
@@ -95,10 +96,10 @@ section. Documented edits are treated like commits and documented review comment
 
 | | |
 |---|---|
-| **Repository URL (code, tests, diagram sources)** | |
-| **Access: public, or instructor has read access?** | |
-| **Document collaboration platform, if not Git** | |
-| **Appendix A supplied? (required if the row above is filled)** | |
+| **Repository URL (code, tests, diagram sources)** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
+| **Access: public, or instructor has read access?** | Public GitHub repository (verify access before submission |
+| **Document collaboration platform, if not Git** | GitHub repository and team document collaboration platform, if applicable |
+| **Appendix A supplied? (required if the row above is filled)** | TBD - need to confirm whether Appendix A is included |
 
 ### 0.4 Changes since P2
 
@@ -106,7 +107,7 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 
 | P2 feedback or finding | What we changed | Where to see it |
 |---|---|---|
-| | | |
+| P2 established the baseline architecture, requirements, design decisions, prototype evidence, and implementation for P3.| P3 builds upon the P2 design and moves the project toward its implemented and tested final version. | GitHub commits, source code, tests, and P3 documentation |
 
 ---
 
@@ -123,10 +124,10 @@ No background, no history of the team, no restating of the problem statement fro
 
 | | |
 |---|---|
-| **What we built, in two sentences** | |
-| **What works end to end today** | |
-| **What does not work, or was not built** | |
-| **The single most important thing we learned** | |
+| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide suers with a way to brose directories and search through a graphical interface in a short amount of time. It uses operating-system commands and file-system information to support file exploration while keeping file access read-only. |
+| **What works end to end today** | TBD/ Work in progress - list the features that were verified successfully in the final application, including browsing, folder navigation, searching, and quick access, as applicable. |
+| **What does not work, or was not built** | TBD/ Work in progress - list known bugs, incomplete features, unsupported functionality, and features excluded from the project scope. |
+| **The single most important thing we learned** | Integrating a graphical interface with operating-system commands requires careful handling of command output, system dependencies, and the differences between the data returned by the operating system and the information displayed to the user. |
 
 ---
 
@@ -140,9 +141,16 @@ List the requirements from your P2 baseline that the delivered system actually s
 
 | Req ID | Requirement, in one line | Delivered? (Yes / Partly / No) |
 |---|---|---|
-| | | |
+| FR-01 | File information displayed in the GUI shall be accurate to its actual data. | Partly - Work in Progress |
+| FR-02 | Folders shall be navigable via mouse or keyboard actions. | Partly - Work in Progress |
+| FR-03 | Users shall search for strings in directory/file names and contents. | Partly - Work in Progress |
+| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Work in Progress |
+| FR-05 | Errors shall be reported within the GUI. | Partly - Work in Progress |
+| FR-06 | Images shall display with thumbnails. | Partly - Work in Progress |
 
-### 2.2 Dropped or deferred, and why
+
+### 2.2 Dropped or deferred, and why 
+(Pending final confirmation from the team). 
 
 <!--
 THIS SECTION EARNS MARKS; IT DOES NOT LOSE THEM
@@ -151,9 +159,10 @@ dropping a requirement and leaving it in the baseline is the thing that costs ma
 rest of your document untrustworthy.
 -->
 
-| Req ID | What we dropped or deferred | Why, and what we did instead |
+| Req ID | What we dropped or deferred | Why, and what we did instead | 
 |---|---|---|
-| | | |
+| FR-05 | GUI error reporting | Error handling was not completed or verified. |
+| FR-06 | Image thumbnail generation and display | Thumbnail functionality was optional and was deferred to prioritize core file browsing and searching. | 
 
 ---
 
@@ -426,6 +435,7 @@ assertions were wrong and were replaced
 | Member | Tool and version | What it was used for | How the output was verified |
 |---|---|---|---|
 | Austin Robson | Claude | Convert P3 template to markdown | Full readthrough to verify document structure before pushing to github |
+| George | Chakiath Dani | | |
 
 ---
 
