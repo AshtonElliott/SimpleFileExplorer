@@ -434,6 +434,7 @@ assertions were wrong and were replaced
 
  |---|---|---|---|
 | Austin Robson | Claude | Convert P3 template to markdown | Full readthrough to verify document structure before pushing to github |
+
 | George Chakiath Dani | ChatGPT | Used to formulate ideas, organize initial P3 documentation, clarify report content, and reference the requirements, design decisions, and information established in P1 and P2. | Reviewed and checked the suggestions against P1 and P2 and the team's P3 report to ensure consistency and accuracy. |
 
 ---
