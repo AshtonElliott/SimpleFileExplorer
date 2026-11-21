@@ -81,6 +81,7 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | | | | |
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
 | George Chakiath Dani | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
+| George Chakiath Dani | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository  |
 
 
 ### 0.3 Where your evidence lives
