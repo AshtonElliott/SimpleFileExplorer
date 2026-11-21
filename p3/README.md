@@ -170,7 +170,7 @@ rest of your document untrustworthy.
 
 <!-- Rubric criterion: Working system and implementation · 24 points · budget: 3 to 4 pages -->
 
-### 3.1 Build and run from a clean clone
+### 3.1 Build and run from a clean clone (Will need to be fixed later..)
 
 <!--
 THE CLAIM BEHIND EVERY DEMONSTRATION
@@ -183,13 +183,13 @@ is a defect. A credential in the repository is a serious one.
 
 | | |
 |---|---|
-| **Prerequisites and versions** | |
-| **Clone** | |
-| **Build (one command, if possible)** | |
-| **Run** | |
-| **Run the tests** | |
-| **Configuration not in the repository** | |
-| **Verified by (name, machine, date)** | |
+| **Prerequisites and versions** | Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies |
+| **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
+| **Build (one command, if possible)** | Pending verification |
+| **Run** | Pending verification |
+| **Run the tests** | Pending verification  |
+| **Configuration not in the repository** | Pending verification |
+| **Verified by (name, machine, date)** | Pending verification  |
 
 ### 3.2 Component inventory
 
@@ -202,7 +202,12 @@ Where the code is: /src/door/DoorController.java · State: Complete
 
 | Component (from P2 section 6) | What it does | Where the code is | State |
 |---|---|---|---|
-| | | | |
+| GUI | Provides the graphical interface through which users interact with Simple File Explorer | Pending Code Inspection |  Pending verification |
+| File | Represents individual files and their associated information. | Pending Code Inspection |  Pending verification |
+| Folder | Represents directories and supports folder navigation. | Pending Code Inspection |  Pending verification |
+| File System | Provides access to the local file system and its contents | Pending Code Inspection |  Pending verification |
+| Search Results | Displays the results returned by the application's search functionality | Pending Code Inspection |  Pending verification |
+| Quick Access | Provides access to commonly used folders and navigation shortcuts | Pending Code Inspection |  Pending verification |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
 
@@ -217,7 +222,7 @@ documentation, and it is the single most common way teams lose points on criteri
 
 | What the design said | What the code does | Why, and who decided |
 |---|---|---|
-| | | |
+| Pending comparison with P2 design | Pending implementation review | Pending team confirmatiion |
 
 ---
 
