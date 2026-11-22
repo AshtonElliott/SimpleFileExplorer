@@ -377,7 +377,7 @@ Take every row above that is not OK and say, in one line each, what it means for
 
 | ID | What the gap is | What it means for the user, and what we would do next |
 |---|---|---|
-| Pending | Identify requirements marked PARTIAL, DRIFTS, ORPHAN, NOT IMPLEMENTED, or NO EVIDENCE. |  |
+| Pending | Identify requirements marked PARTIAL, DRIFTS, ORPHAN, NOT IMPLEMENTED, or NO EVIDENCE. | Describe the impact and the proposed improvement or next step.  |
 
 ---
 
