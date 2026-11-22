@@ -38,7 +38,7 @@ Late work is not accepted -->
 | **Project title** | Simple File Explorer |
 | **Team number and section** | Group 4 and Section Section .010 |
 | **Team members (name · net ID)** | George Chakiath Dani * gnc230001 |
-| **Repository URL** | |
+| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
 | **Release tag or final commit hash** | |
 | **Demonstration slot** | |
 | **Document version** | 2.0 |
