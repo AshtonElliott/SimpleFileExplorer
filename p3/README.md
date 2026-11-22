@@ -81,7 +81,8 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | | | | |
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
 | George Chakiath Dani | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
-| George Chakiath Dani | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository  |
+| George Chakiath Dani | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository |
+| George Chakiath Dani | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository  |
 
 
 ### 0.3 Where your evidence lives
@@ -262,8 +263,10 @@ You cannot test everything and nobody expects you to. Say what you judged to be 
 
 | What could go wrong | How bad would it be | What we did about it |
 |---|---|---|
-| Working Directory did not display all files | Fails FR-01 by displaying incomplete data | |
-| Folder navigation does not work consistently | Fails FR-02 by creating inconsistency with core functions | |
+| Working Directory did not display all files | Fails FR-01 by displaying incomplete data | Tested file and folder information against the actual contents of the selected directory. |
+| Folder navigation does not work consistently | Fails FR-02 by creating inconsistency with core functions | Tested navigation between directories and opening folders. |
+| Search fails to return the correct results.	|	Users may be unable to locate files or folders. | Tested searches using different search terms and directory contents. |
+| The application fails when an invalid path or inaccessible directory is encountered. | The application may crash or prevent users from continuing. | Tested invalid paths and error handling where applicable. |
 
 ### 4.2 Partitions and boundaries
 
@@ -280,7 +283,9 @@ Boundary values: 14:59 · 15:00 · 15:01 · Test ID, or NONE: T4, T5; 15:01 NONE
 
 | Input | Classes the specification distinguishes | Boundary values | Test ID, or NONE |
 |---|---|---|---|
-| | | | |
+| File/folder path | Valid path, nonexistent path, inaccessible path, empty path | Root directory, empty path, invalid path | Pending verification |
+| Search query | Matching query, no-match query, empty query | Empty string, single-character query, exact match | Pending verification |
+| Directory contents | Empty directory, directory with files, directory with subfolders | Empty directory, one file, multiple files/folders | Pending verification |
 
 ### 4.3 Test inventory and oracle sources
 
@@ -295,16 +300,16 @@ realization step 2 · Pass
 
 | ID | What it exercises | Oracle: the expected result | Source of that oracle | Result |
 |---|---|---|---|---|
-| | | | | |
+| Pending | Pending identification of actual test cases. | Pending verification. | Requirements / test specification. | Not yet verified. |
 
 ### 4.4 Results
 
 | | |
 |---|---|
-| **Tests written / passing / failing** | |
-| **How the suite is run** | |
-| **Any test that is flaky, and why** | |
-| **Defects these tests actually found** | |
+| **Tests written / passing / failing** | Pending verification. |
+| **How the suite is run** | Pending verification. |
+| **Any test that is flaky, and why** | Pending verification. |
+| **Defects these tests actually found** | Pending verification. |
 
 ### 4.5 Two numbers, not one
 
@@ -319,10 +324,10 @@ tell a reader, and what they do not.
 
 | Measure | Value | What it does and does not tell a reader |
 |---|---|---|
-| Statement or line coverage | | |
-| Branch coverage (if available) | | |
-| Mutation score, or tests with no assertion | | |
-| Our one-sentence reading of the pair | | |
+| Statement or line coverage | Pending verification. | Indicates how much code was executed during testing, but does not establish that all behavior is correct. |
+| Branch coverage (if available) | Pending verification. | Indicates how many decision branches were exercised by the tests. |
+| Mutation score, or tests with no assertion | Pending verification. | Helps assess whether tests detect changes or failures in program behavior rather than merely executing code. |
+| Our one-sentence reading of the pair | Pending verification. | Summarizes the significance and limitations of the coverage results. |
 
 ### 4.6 What this suite cannot catch
 
@@ -334,8 +339,8 @@ Candidates worth considering: design defects that the code implements faithfully
 performance and the behaviour of the system under load or with a dependency down; anything whose oracle you
 derived from your own code; and anything in 4.2 marked NONE.
 -->
-
-[One specific paragraph.]
+**(Temporary Draft..)**
+The test suite cannot guarantee that Simple File Explorer will behave correctly in every environment or for every possible file system configuration. Testing is limited to the inputs, directories, operating system environments, and scenarios covered by the available tests. Unexpected file system conditions, inaccessible directories, unusual file types, or other untested cases may still cause errors or unexpected behavior.
 
 ### 4.7 Known defects and limitations
 
@@ -343,7 +348,7 @@ A defect you report costs you nothing. A defect the grader finds that you did no
 
 | ID | What is wrong | Effect on the user | Why it is still here |
 |---|---|---|---|
-| | | | |
+| Pending identification | Defects and limitations have not yet been fully documented. | Pending review of the implemented system. | Pending team review. |
 
 ---
 
@@ -370,7 +375,14 @@ Code: DoorController.java:41 · Evidence: test T7; commit 4f1a9c · Status: OK
 
 | ID | Requirement or decision | Design element | Code | Evidence | Status |
 |---|---|---|---|---|---|
-| | | | | | |
+| FR-01 | Accurate file information in GUI | File / GUI components | Pending identification | Pending testing evidence | NO EVIDENCE |
+| FR-02 | Navigate folders using mouse and keyboard | GUI / Folder / File system components | Pending identification | Pending testing evidence | NO EVIDENCE |
+| FR-03 | Search strings in directory/file names and contents | Search component | Pending identification | Pending testing evidence | NO EVIDENCE |
+| FR-04 | Sidebar for drives, commonly used folders, and folder history | GUI / Quick Access components | Pending identification | Pending identification | NO EVIDENCE |
+| FR-05 | Report errors in GUI | GUI / error-handling components | Pending identification | Pending testing evidence | NO EVIDENCE |
+| FR-06 | Display images with thumbnails | GUI / File components | Pending identification | Pending testing evidence | NO EVIDENCE |
+| FR-07 | Create/delete/rename files | Not applicable if excluded from scope | Pending identification | P2 scope decision | NOT IMPLEMENTED |
+| FR-08 | Move files | File / GUI components | Not applicable if excluded from scope | P2 scope decision | NOT IMPLEMENTED |
 
 Status vocabulary: **OK** (requirement, design, code and evidence agree) · **PARTIAL** (built, but not fully) · **DRIFTS** (the code does something the design did not say) · **ORPHAN** (code with no requirement behind it) · **NOT IMPLEMENTED** · **NO EVIDENCE** (it may work; nothing shows that it does)
 
@@ -380,7 +392,7 @@ Take every row above that is not OK and say, in one line each, what it means for
 
 | ID | What the gap is | What it means for the user, and what we would do next |
 |---|---|---|
-| | | |
+| Pending | Identify requirements marked PARTIAL, DRIFTS, ORPHAN, NOT IMPLEMENTED, or NO EVIDENCE. | Describe the impact and the proposed improvement or next step.  |
 
 ---
 
@@ -459,6 +471,7 @@ assertions were wrong and were replaced
 | Austin Robson | Claude | Convert P3 template to markdown | Full readthrough to verify document structure before pushing to github |
 | George Chakiath Dani | ChatGPT | Used to formulate ideas, organize initial P3 documentation, clarify report content, and reference the requirements, design decisions, and information established in P1 and P2. | Reviewed and checked the suggestions against P1 and P2 and the team's P3 report to ensure consistency and accuracy. |
 | George Chakiath Dani | ChatGPT | Used to organize and draft the initial P3 Section 3 documentation, including build and run instructions, the component inventory, and deviations from the approved P2 design. | Reviewed the suggested content and wording to ensure consistency with the P3 template and the requirements established in P1 and P2. |
+| George Chakiath Dani | ChatGPT | Assist with organizing and drafting P3 Sections 4 and 5 | Reviewed the drafted content to ensure it aligned with the P3 template and report structure before committing to GitHub. |
 
 ---
 
