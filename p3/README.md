@@ -36,9 +36,9 @@ Late work is not accepted -->
 | | |
 |---|---|
 | **Project title** | Simple File Explorer |
-| **Team number and section** | Group 4 and Section Section .010 |
-| **Team members (name · net ID)** | George Chakiath Dani * gnc230001 |
-| **Repository URL** | |
+| **Team number and section** | Team 4, Section .010 |
+| **Team members (name · net ID)** | George Chakiath Dani * gnc230001, Austin Robson * axr230166 |
+| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/p3 |
 | **Release tag or final commit hash** | |
 | **Demonstration slot** | |
 | **Document version** | 2.0 |
@@ -57,8 +57,8 @@ what a grader can actually open.
 
 | Version | Date | Author | Summary of change |
 |---|---|---|---|
-| 1.0 | 10/29/2026 | Team 04 | P2 baseline |
-| 2.0 | 11/19/2026 | Team 04 | P3 final - Initial additions, Getting P3 started |
+| 1.9 | 11/8/2026 | Team 04 | Finalizing document sections and updated domain model |
+| 2.0 | 11/19/2026 | Team 04 | P3 markdown creation, Initial additions, Getting P3 started |
 
 ### 0.2 Individual contribution record for P3
 
@@ -98,9 +98,9 @@ section. Documented edits are treated like commits and documented review comment
 | | |
 |---|---|
 | **Repository URL (code, tests, diagram sources)** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
-| **Access: public, or instructor has read access?** | Public GitHub repository (verify access before submission |
-| **Document collaboration platform, if not Git** | GitHub repository and team document collaboration platform, if applicable |
-| **Appendix A supplied? (required if the row above is filled)** | TBD - need to confirm whether Appendix A is included |
+| **Access: public, or instructor has read access?** | Public GitHub repository  |
+| **Document collaboration platform, if not Git** | N/A |
+| **Appendix A supplied? (required if the row above is filled)** | N/A |
 
 ### 0.4 Changes since P2
 
@@ -108,7 +108,17 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 
 | P2 feedback or finding | What we changed | Where to see it |
 |---|---|---|
+| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | | |
+| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | | |
+| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | | |
+| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | | |
+| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | | |
+| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | | |
+| Section 11 is missing entirely. | | |
+
+<!--
 | P2 established the baseline architecture, requirements, design decisions, prototype evidence, and implementation for P3.| P3 builds upon the P2 design and moves the project toward its implemented and tested final version. | GitHub commits, source code, tests, and P3 documentation |
+-->
 
 ---
 
@@ -125,10 +135,17 @@ No background, no history of the team, no restating of the problem statement fro
 
 | | |
 |---|---|
-| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide users with a way to brose directories and search through a graphical interface in a short amount of time. It uses operating-system commands and file-system information to support file exploration while keeping file access read-only. |
+| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide users with a way to browse directories and search through a graphical interface in a short amount of time. It uses java functions and command line tools to support file exploration while keeping file access read-only. |
+<!--
 | **What works end to end today** | TBD/ Work in progress - list the features that were verified successfully in the final application, including browsing, folder navigation, searching, and quick access, as applicable. |
 | **What does not work, or was not built** | TBD/ Work in progress - list known bugs, incomplete features, unsupported functionality, and features excluded from the project scope. |
 | **The single most important thing we learned** | Integrating a graphical interface with operating-system commands requires careful handling of command output, system dependencies, and the differences between the data returned by the operating system and the information displayed to the user. |
+
+Commenting this out, because placeholder text risks being mistaken as complete text.
+-->
+| **What works end to end today** |  |
+| **What does not work, or was not built** |  |
+| **The single most important thing we learned** |  |
 
 ---
 
@@ -142,16 +159,12 @@ List the requirements from your P2 baseline that the delivered system actually s
 
 | Req ID | Requirement, in one line | Delivered? (Yes / Partly / No) |
 |---|---|---|
-| FR-01 | File information displayed in the GUI shall be accurate to its actual data. | Partly - Work in Progress |
-| FR-02 | Folders shall be navigable via mouse or keyboard actions. | Partly - Work in Progress |
+| FR-01 | File information displayed in the GUI shall be accurate to its actual data. |  |
+| FR-02 | Folders shall be navigable via mouse or keyboard actions. |  |
 | FR-03 | Users shall search for strings in directory/file names and contents. | Partly - Work in Progress |
 | FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Work in Progress |
-| FR-05 | Errors shall be reported within the GUI. | Partly - Work in Progress |
-| FR-06 | Images shall display with thumbnails. | Partly - Work in Progress |
-
 
 ### 2.2 Dropped or deferred, and why 
-(Pending final confirmation from the team). 
 
 <!--
 THIS SECTION EARNS MARKS; IT DOES NOT LOSE THEM
@@ -162,8 +175,8 @@ rest of your document untrustworthy.
 
 | Req ID | What we dropped or deferred | Why, and what we did instead | 
 |---|---|---|
-| FR-05 | GUI error reporting | Error handling was not completed or verified. |
-| FR-06 | Image thumbnail generation and display | Thumbnail functionality was optional and was deferred to prioritize core file browsing and searching. | 
+| FR-05 | GUI error reporting |  |
+| FR-06 | Image thumbnail generation and display | Thumbnails would require auxilliary processing and systems (image creation, caching, storage, etc) that were beyond the scope of this project. | 
 
 ---
 
@@ -171,7 +184,7 @@ rest of your document untrustworthy.
 
 <!-- Rubric criterion: Working system and implementation · 24 points · budget: 3 to 4 pages -->
 
-### 3.1 Build and run from a clean clone (Will need to be fixed later..)
+### 3.1 Build and run from a clean clone
 
 <!--
 THE CLAIM BEHIND EVERY DEMONSTRATION
@@ -184,13 +197,14 @@ is a defect. A credential in the repository is a serious one.
 
 | | |
 |---|---|
-| **Prerequisites and versions** | Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies |
+| **Prerequisites and versions** |  |
 | **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
-| **Build (one command, if possible)** | Pending verification |
-| **Run** | Pending verification |
-| **Run the tests** | Pending verification  |
-| **Configuration not in the repository** | Pending verification |
-| **Verified by (name, machine, date)** | Pending verification  |
+| **Build (one command, if possible)** |  |
+| **Run** |  |
+| **Run the tests** |   |
+| **Configuration not in the repository** |  |
+| **Verified by (name, machine, date)** |   |
+<!-- Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies -->
 
 ### 3.2 Component inventory
 
@@ -201,14 +215,16 @@ EXAMPLE (delete): Component: (from P2 section 6) · What it does: Decides whethe
 Where the code is: /src/door/DoorController.java · State: Complete
 -->
 
+<!-- May need overhauling because actual application has developed differently -->
+
 | Component (from P2 section 6) | What it does | Where the code is | State |
 |---|---|---|---|
-| GUI | Provides the graphical interface through which users interact with Simple File Explorer | Pending Code Inspection |  Pending verification |
-| File | Represents individual files and their associated information. | Pending Code Inspection |  Pending verification |
-| Folder | Represents directories and supports folder navigation. | Pending Code Inspection |  Pending verification |
-| File System | Provides access to the local file system and its contents | Pending Code Inspection |  Pending verification |
-| Search Results | Displays the results returned by the application's search functionality | Pending Code Inspection |  Pending verification |
-| Quick Access | Provides access to commonly used folders and navigation shortcuts | Pending Code Inspection |  Pending verification |
+| GUI | Provides the graphical interface through which users interact with Simple File Explorer |  |  |
+| File | Represents individual files and their associated information. |  |  |
+| Folder | Represents directories and supports folder navigation. |  |  |
+| File System | Provides access to the local file system and its contents |  |  |
+| Search Results | Displays the results returned by the application's search functionality |  |  |
+| Quick Access | Provides access to commonly used folders and navigation shortcuts |  |  |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
 
@@ -223,7 +239,7 @@ documentation, and it is the single most common way teams lose points on criteri
 
 | What the design said | What the code does | Why, and who decided |
 |---|---|---|
-| Pending comparison with P2 design | Pending implementation review | Pending team confirmatiion |
+| SFE would use linux commands to navigate folders and read files | Code uses no linux commands, nearly all functionality is done in java | Java proved capable enough to handle most functionality itself; Decided by Ashton |
 
 ---
 
@@ -246,7 +262,8 @@ You cannot test everything and nobody expects you to. Say what you judged to be 
 
 | What could go wrong | How bad would it be | What we did about it |
 |---|---|---|
-| | | |
+| Working Directory did not display all files | Fails FR-01 by displaying incomplete data | |
+| Folder navigation does not work consistently | Fails FR-02 by creating inconsistency with core functions | |
 
 ### 4.2 Partitions and boundaries
 
