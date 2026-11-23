@@ -1,6 +1,7 @@
 // Java Imports
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -24,11 +25,14 @@ public class app {
         //JTextField folderField = new JTextField(System.getProperty("user.home"), 30);
         JTextField folderField = new JTextField(System.getProperty("user.dir"), 30);
         //Path workingDir = Paths.get(folderField.toString().trim());
+        JButton upButton = new JButton("Up");
 
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         //topPanel.add(label);
+
+        topPanel.add(upButton);
         topPanel.add(new JLabel("Folder:"));
         topPanel.add(folderField);
         topPanel.add(new JLabel("Name contains:"));
@@ -57,7 +61,7 @@ public class app {
                 protected Void doInBackground() throws IOException {
                     // Working directory
                     Path workingDir = Paths.get(folderField.getText());
-                    System.out.println("Working directory: " + workingDir.toString());
+                    //System.out.println("Working directory: " + workingDir.toString());
                     //JTextField workingDirField = new JTextField(workingDir.toString(), 30);
 
                     Stream<Path> resultsStream = Files.list(workingDir);
@@ -136,7 +140,22 @@ public class app {
         searchButton.addActionListener(e -> runSearch.run());
         searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
         */
+
+        Runnable upDir = () -> {
+            String currentPath = folderField.getText();
+            File currentDir = new File(currentPath);
+            File parentDir = currentDir.getParentFile();
+            if (parentDir != null) {
+                folderField.setText(parentDir.getAbsolutePath());
+                runWorkingDir.run();
+            } else {
+                status.setText("No parent directory.");
+            }
+        };
        
+        // Back button returns up to parent directory
+        upButton.addActionListener(e -> upDir.run());
+
         // Typing path in folder field and pressing enter updates working directory
         folderField.addActionListener(e -> runWorkingDir.run());
 
@@ -148,13 +167,15 @@ public class app {
                 if (e.getClickCount() == 2 && resultList.getSelectedValue() != null) {
                     try {
                         File f = new File(resultList.getSelectedValue());
-
+                        
+                        // If directory, change working directory
                         if (f.isDirectory()) {
                             folderField.setText(f.getAbsolutePath());
                             //workingDir = Paths.get(f.getAbsolutePath());
                             runWorkingDir.run();
                             //return;
                         }
+                        // Else, open file with default application
                         else {
                             Desktop.getDesktop().open(f);
                         }
