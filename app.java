@@ -15,22 +15,69 @@ public class app {
         // Setup
         JFrame frame = new JFrame("Simple File Explorer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(2000, 1000);
+        frame.setSize(1500, 1000);
         frame.setLayout(new BorderLayout());
-        JLabel label = new JLabel("Welcome to Simple File Explorer.");
+        //JLabel label = new JLabel("Welcome to Simple File Explorer.");
 
         // Search controls
-        JTextField folderField = new JTextField(System.getProperty("user.home"), 30);
+        //JTextField folderField = new JTextField(System.getProperty("user.home"), 30);
+        JTextField folderField = new JTextField(System.getProperty("user.dir"), 30);
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.add(label);
+        //topPanel.add(label);
         topPanel.add(new JLabel("Folder:"));
         topPanel.add(folderField);
         topPanel.add(new JLabel("Name contains:"));
         topPanel.add(searchField);
         topPanel.add(searchButton);
 
+        // Working directory
+        Path workingDir = Paths.get(System.getProperty("user.dir"));
+        JTextField workingDirField = new JTextField(workingDir.toString(), 30);
+		
+        // Results
+        DefaultListModel<String> results = new DefaultListModel<>();
+        JList<String> resultList = new JList<>(results);
+
+        // Gui elements
+        JLabel status = new JLabel(" ");
+        frame.add(topPanel, BorderLayout.NORTH);
+        frame.add(new JScrollPane(resultList), BorderLayout.CENTER);
+        frame.add(status, BorderLayout.SOUTH);
+
+        // Get contents of working directory
+        Runnable runWorkingDir = () -> {
+            Path root = Paths.get(folderField.getText().trim());
+            results.clear();
+            searchButton.setEnabled(false);
+            status.setText("Working...");
+
+            new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws IOException {
+                    Files.list(workingDir).forEach(path -> {
+                        results.addElement(path.toString());
+                    });
+
+                    return null;
+                }
+                @Override
+                protected void process(List<String> found) {
+                    found.forEach(results::addElement);
+                }
+                @Override
+                protected void done() {
+                    searchButton.setEnabled(true);
+                    status.setText(results.size() + " item(s).");
+                }
+            }.execute();
+        };
+
+        // Run the working directory on startup
+        runWorkingDir.run();
+
+/*
         // Results
         DefaultListModel<String> results = new DefaultListModel<>();
         JList<String> resultList = new JList<>(results);
@@ -95,7 +142,7 @@ public class app {
                     }
                 }
             }
-        });
+        });*/
         frame.setVisible(true);
     }
 }
