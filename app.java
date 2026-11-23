@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class app {
     public static void main(String[] args) {
@@ -19,9 +20,11 @@ public class app {
         frame.setLayout(new BorderLayout());
         //JLabel label = new JLabel("Welcome to Simple File Explorer.");
 
-        // Search controls
+        // Header controls
         //JTextField folderField = new JTextField(System.getProperty("user.home"), 30);
         JTextField folderField = new JTextField(System.getProperty("user.dir"), 30);
+        //Path workingDir = Paths.get(folderField.toString().trim());
+
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -31,10 +34,6 @@ public class app {
         topPanel.add(new JLabel("Name contains:"));
         topPanel.add(searchField);
         topPanel.add(searchButton);
-
-        // Working directory
-        Path workingDir = Paths.get(System.getProperty("user.dir"));
-        JTextField workingDirField = new JTextField(workingDir.toString(), 30);
 		
         // Results
         DefaultListModel<String> results = new DefaultListModel<>();
@@ -48,7 +47,7 @@ public class app {
 
         // Get contents of working directory
         Runnable runWorkingDir = () -> {
-            Path root = Paths.get(folderField.getText().trim());
+            //Path root = Paths.get(folderField.getText().trim());
             results.clear();
             searchButton.setEnabled(false);
             status.setText("Working...");
@@ -56,7 +55,13 @@ public class app {
             new SwingWorker<Void, String>() {
                 @Override
                 protected Void doInBackground() throws IOException {
-                    Files.list(workingDir).forEach(path -> {
+                    // Working directory
+                    Path workingDir = Paths.get(folderField.getText());
+                    System.out.println("Working directory: " + workingDir.toString());
+                    //JTextField workingDirField = new JTextField(workingDir.toString(), 30);
+
+                    Stream<Path> resultsStream = Files.list(workingDir);
+                    resultsStream.forEach(path -> {
                         results.addElement(path.toString());
                     });
 
@@ -130,19 +135,35 @@ public class app {
         };
         searchButton.addActionListener(e -> runSearch.run());
         searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
-        // Double-click a result to open it
+        */
+       
+        // Typing path in folder field and pressing enter updates working directory
+        folderField.addActionListener(e -> runWorkingDir.run());
+
+        // Double-click a result to open it or change directory
         resultList.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
+                // On double click
                 if (e.getClickCount() == 2 && resultList.getSelectedValue() != null) {
                     try {
-                        Desktop.getDesktop().open(new File(resultList.getSelectedValue()));
+                        File f = new File(resultList.getSelectedValue());
+
+                        if (f.isDirectory()) {
+                            folderField.setText(f.getAbsolutePath());
+                            //workingDir = Paths.get(f.getAbsolutePath());
+                            runWorkingDir.run();
+                            //return;
+                        }
+                        else {
+                            Desktop.getDesktop().open(f);
+                        }
                     } catch (IOException ex) {
                         status.setText("Could not open file: " + ex.getMessage());
                     }
                 }
             }
-        });*/
+        });
         frame.setVisible(true);
     }
 }
