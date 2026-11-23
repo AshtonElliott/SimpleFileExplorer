@@ -27,18 +27,29 @@ public class app {
         //Path workingDir = Paths.get(folderField.toString().trim());
         JButton upButton = new JButton("Up");
 
+        // Button for folder field
+        JButton goButton = new JButton("Go");
+
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         //topPanel.add(label);
 
+        // Directory controls
         topPanel.add(upButton);
         topPanel.add(new JLabel("Folder:"));
         topPanel.add(folderField);
-        topPanel.add(new JLabel("Name contains:"));
+        topPanel.add(goButton);
+
+        // Divider
+        topPanel.add(new JSeparator(SwingConstants.VERTICAL));
+
+        // Search controls
+        topPanel.add(new JLabel("Search:"));
         topPanel.add(searchField);
         topPanel.add(searchButton);
-		
+        
+
         // Results
         DefaultListModel<String> results = new DefaultListModel<>();
         JList<String> resultList = new JList<>(results);
@@ -64,11 +75,11 @@ public class app {
                     //System.out.println("Working directory: " + workingDir.toString());
                     //JTextField workingDirField = new JTextField(workingDir.toString(), 30);
 
-                    Stream<Path> resultsStream = Files.list(workingDir);
-                    resultsStream.forEach(path -> {
-                        results.addElement(path.toString());
-                    });
-
+                    try (Stream<Path> resultsStream = Files.list(workingDir)) {
+                        resultsStream.forEach(path -> {
+                            results.addElement(path.toString());
+                        });
+                    }
                     return null;
                 }
                 @Override
@@ -86,21 +97,14 @@ public class app {
         // Run the working directory on startup
         runWorkingDir.run();
 
-/*
-        // Results
-        DefaultListModel<String> results = new DefaultListModel<>();
-        JList<String> resultList = new JList<>(results);
-        JLabel status = new JLabel(" ");
-        frame.add(topPanel, BorderLayout.NORTH);
-        frame.add(new JScrollPane(resultList), BorderLayout.CENTER);
-        frame.add(status, BorderLayout.SOUTH);
+        // Searching
         Runnable runSearch = () -> {
             String query = searchField.getText().trim().toLowerCase();
             Path root = Paths.get(folderField.getText().trim());
-            if (query.isEmpty()) {
+            /*if (query.isEmpty()) {
                 status.setText("Type something to search for.");
                 return;
-            }
+            }*/
             if (!Files.isDirectory(root)) {
                 status.setText("Folder not found: " + root);
                 return;
@@ -137,9 +141,6 @@ public class app {
                 }
             }.execute();
         };
-        searchButton.addActionListener(e -> runSearch.run());
-        searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
-        */
 
         Runnable upDir = () -> {
             String currentPath = folderField.getText();
@@ -158,6 +159,12 @@ public class app {
 
         // Typing path in folder field and pressing enter updates working directory
         folderField.addActionListener(e -> runWorkingDir.run());
+        // Also works with go button
+        goButton.addActionListener(e -> runWorkingDir.run());
+
+        // Search button and enter key trigger search
+        searchButton.addActionListener(e -> runSearch.run());
+        searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
 
         // Double-click a result to open it or change directory
         resultList.addMouseListener(new java.awt.event.MouseAdapter() {
