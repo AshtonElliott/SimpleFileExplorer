@@ -82,7 +82,8 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
 | George Chakiath Dani - 3.0 | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
 | George Chakiath Dani - 4.0 | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository |
-| George Chakiath Dani - 5.0 | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository  |
+| George Chakiath Dani - 5.0 | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository |
+| George Chakiath Dani - 5.0 | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
 
 
 ### 0.3 Where your evidence lives
