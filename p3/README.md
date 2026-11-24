@@ -109,13 +109,13 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 
 | P2 feedback or finding | What we changed | Where to see it |
 |---|---|---|
-| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | | |
-| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | | |
-| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | | |
-| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | | |
-| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | | |
-| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | | |
-| Section 11 is missing entirely. | | |
+| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | No change yet to the P2 analysis domain model; P3 Section 3.2 still lists GUI, Search Results, and Quick Access alongside File, Folder, and File System and needs alignment with actual implementation. | P2 Section 5.1; P3 Section 3.2 (possible changes) |
+| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | No change yet to the P2 domain model notation; P3 does not re-draft the P2 analysis domain model. | P2 Section 5.1 |
+| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | No change yet to the P2 use-case realization steps; P3 does not rewrite P2 Section 5.2. | P2 Section 5.2.1–5.2.2 |
+| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | No change yet to P2 Section 5.3; P3 Section 5.1 instead marks functional requirements as NO EVIDENCE or NOT IMPLEMENTED until verified against actual code and tests. | P2 Section 5.3; P3 Section 5.1 |
+| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | No change yet to P2 QAS-01 in the draft; P3 Sections 4.4–4.5 still have pending test and performance measurements. | P2 Section 6.1 and Section 8 (Spike S-02); P3 Sections 4.4–4.5 |
+| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | Addressed partially in P3 Section 3.3 by documenting that the implementation moved away from WSL commands toward Java (app.java), while Section 3.2 still lists the P2-style component names pending verification of all files. | P3 Sections 3.2–3.3 |
+| Section 11 is missing entirely. | Corrected in the Nov 23 P2 grade update noting Section 11 (Open Questions) was in the P2 PDF before the baseline declaration; the P3 template ends at Section 10 (Appendices) and does not include a Section 11. | P2 Section 11; P3 structure |
 
 <!--
 | P2 established the baseline architecture, requirements, design decisions, prototype evidence, and implementation for P3.| P3 builds upon the P2 design and moves the project toward its implemented and tested final version. | GitHub commits, source code, tests, and P3 documentation |
