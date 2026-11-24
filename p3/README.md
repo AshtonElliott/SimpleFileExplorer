@@ -472,6 +472,7 @@ assertions were wrong and were replaced
 | George Chakiath Dani | ChatGPT | Used to formulate ideas, organize initial P3 documentation, clarify report content, and reference the requirements, design decisions, and information established in P1 and P2. | Reviewed and checked the suggestions against P1 and P2 and the team's P3 report to ensure consistency and accuracy. |
 | George Chakiath Dani | ChatGPT | Used to organize and draft the initial P3 Section 3 documentation, including build and run instructions, the component inventory, and deviations from the approved P2 design. | Reviewed the suggested content and wording to ensure consistency with the P3 template and the requirements established in P1 and P2. |
 | George Chakiath Dani | ChatGPT | Assist with organizing and drafting P3 Sections 4 and 5 | Reviewed the drafted content to ensure it aligned with the P3 template and report structure before committing to GitHub. |
+| Austin Robson | Claude | Creating code for table modeling and file attribute handling | Code readthrough to check consistency, test run with working app to verify functionality |
 
 ---
 
