@@ -64,6 +64,7 @@ must agree with your repository history.
 | 1.6 | 11/7/26 | Yukai Ma | Updated section 6, added Component and Deployment diagrams, updated use case diagram |
 | 1.7 | 11/7/26 | Austin Robson | Added spike s-02 |
 | 1.8 | 11/8/26 | Austin Robson | Updated spike s-01 |
+| 1.9 | 11/8/26 | Austin Robson | Finalizing document sections and updated domain model |
 
 ### 0.1 Individual contribution record (P2)
 
@@ -92,9 +93,12 @@ must agree with your repository history.
 | George Chakiath Dani | Updated Section 0.2 - Changes since the P1 baseline, documenting CH-01 through CH-03. | Commit: e5bc4b4 | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 10.2 - Plan to P3, documenting the milestones, owners, dates, and completion criteria for P3. | Commit: 741ceba | No PR reviews as of 11/8/26 |
 | George Chakiath Dani | Updated Section 12 - Baseline v1.0 Declaration and team signature table. | Commit: e36a14e | No PR reviews as of 11/8/26 |
-| George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 646713c | No PR reviews as of 11/8/26 |
+| George Chakiath Dani | Added the Context Diagram to Section 2 - Overall Description. | Commit: 9791fe6 | No PR reviews as of 11/8/26 |
 | Zachary Gregory | Updated formatting in 6.3 table - removed empty rows | Commit: fbd631a | No PR reviews as of 11/8/26 |
 | Austin Robson | Updated Spike S-01, updated information relying on S-01, updated P2 readme | Commit: df76320 | N/A |
+| Ashton Elliott | Merged Yukai's Work to Main. | Commit: 40b06a3 | N/A |
+| Austin Robson | Updates to readme and domain diagram | Commit 8670599 | N/A |
+| Ashton Elliott | Converted Markdown to PDF. | Commit 1072ab7 and 25fb9bb | N/A
 
 <!--
 GUIDANCE
@@ -177,7 +181,7 @@ Drive management and file movement outside of the dedicated operating system met
 
 #### 2.1 [Product perspective and context]
 
-![Context Diagram](Context_Diagram.jpg)
+![Context Diagram](possible_remake.context-diagram.png)
 
 The Simple File Explorer system allows users to search for files through a user interface. The system is responsible for handling user requests, translating them into WSL commands, processing search results, and tracking search history. The End User, Windows Subsystem for Linux (WSL), and Host OS/File System are outside the system boundary because they are not being developed as part of the project. Instead, the Simple File Explorer communicates with these external systems to execute searches and retrieve file information. This boundary defines what our project is responsible for building and what it relies on externally.  
 
@@ -267,7 +271,7 @@ See section 9.1. for the requrirements traceability matrix.
 
 | Use case | Name | Why it was selected | Non-trivial steps |
 |---|---|---|---|
-| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes
+| UC-01 | View Files | "File" part of file explorer, integral to successfully creating a file viewer | Click on file, run command to get file attributes, GUI displays file attributes |
 | UC-02 | View Folders | "Explorer" part of file explorer, needs to allow navigation of directories  | Double-click folder, run command to change directory to that folder, refresh GUI display to show folder's contents |
 | UC-03 | Search terms | Prove that searching with simpler tools allows for faster results | Accepting a search term, finding matching files and folders, and finally displaying results. |
 
@@ -290,8 +294,8 @@ GUIDANCE
 | Supporting actors and external systems | WSL, GUI |
 | TUCBW (this use case begins when) | The user clicks on a file to view its details |
 | TUCEW (this use case ends when) | The user sees the selected file's attributes |
-| Preconditions | - The application was initiated successfully. The user has permission to read the file.  |
-| **Postconditions** | - The file's attributes are displayed on the GUI and are accurate to command line results. |
+| Preconditions | The application was initiated successfully. The user has permission to read the file.  |
+| **Postconditions** | The file's attributes are displayed on the GUI and are accurate to command line results. |
 | **Traces to requirements** | FR-01, CON-02 |
 
 | Actor input / action | System response |
@@ -306,7 +310,7 @@ GUIDANCE
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
 | A1 | 1 | The selected file cannot be accessed because of permissions set by the admin. | The system informs the user that the file couldn't be accessed. GUI directory remains unchanged.  | Ends |
-| A2 | 1 | The selected file is not longer available. | The system informs the user that the file is unavailable. | Ends |
+| A2 | 1 | The selected file is no longer available. | The system informs the user that the file is unavailable. | Ends |
 
 
 
@@ -316,7 +320,7 @@ GUIDANCE
 | Supporting actors and external systems | File System |
 | TUCBW (this use case begins when) | The user selects a folder to navigate to |
 | TUCEW (this use case ends when) | The user sees the contents of the new folder |
-| Preconditions | The application was initiated successfully. The user has access to the applicaton.  |
+| Preconditions | The application was initiated successfully. The user has access to the directories being searched.  |
 | Postconditions | The selected folder's contents are displayed accurately. The user can view the contents of the new folder. |
 | Traces to requirements | FR-02, QR-02, CON-01, CON-02 |
 
@@ -344,7 +348,7 @@ GUIDANCE
 | TUCEW (this use case ends when) | The user sees all the search results for their term. |
 | Preconditions | The application has started successfully. The user has access to the application. |
 | Postconditions | Matching files and folders are displayed accurately. The user can view the locations of the matching results. |
-| Traces to requirements | FR-[03], QR-[01], CON-[01], CON-[02] |
+| Traces to requirements | FR-03, QR-01, CON-01, CON-02 |
 
 | Actor input / action | System response |
 |---|---|
@@ -358,7 +362,7 @@ GUIDANCE
 | Alt. flow | At step | Condition | What happens | Ends or rejoins at |
 |---|---|---|---|---|
 | A1 | 2 | No matching files or folders are found | The system informs the user that no matching results were found | Ends |
-| A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Ends |
+| A2 | 2 | Some locations cannot be accessed during the search. | The system informs the user that some results may be unavailable due to access restrictions. | Rejoins at 3 |
 
 <!--
 GUIDANCE: rules from Lesson 13, all of which are checked
@@ -388,7 +392,7 @@ turnover and the visitor option · ends.
 
 | Use case | Check from the Lesson 13 review checklist | Defect found | How it was fixed |
 |---|---|---|---|
-| UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with he system. | Added step 0, describing the currently displayed folder contents.  |
+| UC-01 | Does the use case start with step (0) | The orginal use case didn't explain what the user saw before interacting with the system. | Added step 0, describing the currently displayed folder contents.  |
 | UC-02 | Does every row hold exactly one turn? | The system search process and displaying results could be described as multiple actions in one step | separated the user's search input from the system's response.|
 | UC-03 | Does the use case end with an acknowledgment? | The original interaction did not clearly explain how the user knows the interaction was finished. | Added a final actor step where the user is able to review the displayed contents. |
 
@@ -409,11 +413,12 @@ acceptable when it is true. Budget: a quarter of a page.
 
 | Class | What it represents (one line) | Key attributes | Associations (with multiplicity) |
 |---|---|---|---|
-| File | Individual files in the file system | Name, path | File 1..\*:1 File system. File 0..*:1 Folder |
-| Folder | Folders/directories within the file system | Name, path | 1 Folder 1..\*:1 File system. Folder 1:0..* File |
+| GUI | How the system displays to the user and how the user interacts with the system | directory display, search bar, quick access sidebar | GUI 1:1 Quick access, GUI 1:1 Search results, GUI 1:0..\* Folder, GUI 1:0..\* File |
+| File | Individual files in the file system | Name, path | File 1..\*:1 File system. File 0..\*:1 Folder |
+| Folder | Folders/directories within the file system | Name, path | 1 Folder 1..\*:1 File system. Folder 1:0..\* File |
 | File system | Abstraction of what handles file specifics | Date last modified, size, children | File 1..\*:1 File system. Folder 1..\*:1 File system |
-| Search results| Files and folders listed after searching | List of search results | Search results 1:0..* File. Search results 1:0..* Folder. |
-| Quick Access | Easy access to drive folders and recent folders | Lists drive folders and recent folders | Quick access 1:1..* Folder |
+| Search results| Files and folders listed after searching | List of search results | Search results 1:0..\* File. Search results 1:0..\* Folder. |
+| Quick Access | Easy access to drive folders and recent folders | Lists drive folders and recent folders | Quick access 1:1..\* Folder |
 
 <!--
 GUIDANCE
@@ -433,7 +438,7 @@ OccupancyReading (time, state); Permit (type, valid until) * ── 1..* Lot "is
 
 #### 5.2.1 UC-01 **View Files**
 
-**(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
+**(a) Non-trivial steps.** 
 (1) The user selects a file.
 (2) The system finds and displays attributes for the selected file.
 (3) The user views the file attributes on the GUI.
@@ -455,7 +460,7 @@ OccupancyReading (time, state); Permit (type, valid until) * ── 1..* Lot "is
 
 #### 5.2.2 UC-2 **View Folders**
 
-**(a) Non-trivial steps.** [List the steps from 4.2 that need objects inside the system, and say in one line why each of the others is trivial.]
+**(a) Non-trivial steps.** 
 (1) The user selects a different folder.
 (2) The system redirects the GUI's current directory to the selected folder.
 (3) The user views the contents of the newly selected folder.
@@ -898,7 +903,7 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 |---|---|---|
 | Austin Robson | AR | 11/8/26 |
 | George Chakiath Dani | GCD | 11/8/26 |
-| Ashton Elliot | | |
+| Ashton Elliot | AEE | 11/8/26 |
 | Yukai Ma |YM | 11/8/26 |
 | Rowan Egan | | |
 | Zachary Gregory | ZG | 11/8/2026 |
