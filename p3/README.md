@@ -145,9 +145,9 @@ No background, no history of the team, no restating of the problem statement fro
 
 Commenting this out, because placeholder text risks being mistaken as complete text.
 -->
-| **What works end to end today** |  |
-| **What does not work, or was not built** |  |
-| **The single most important thing we learned** |  |
+| **What works end to end today** | Based on app.java, directory selection, substring file-name search via Files.walkFileTree, search-result display, and opening a selected file on double-click are present in code; other workflows remain to be verified against tests and Sections 3–5. |
+| **What does not work, or was not built** | Full end-to-end verification across all requirements and performance targets is not yet complete, and any P2 features outside the verified Java implementation remain unconfirmed or out of scope. |
+| **The single most important thing we learned** | Integrating a graphical interface with operating-system features requires verifying actual code behavior and data flow rather than assuming OS commands or unverified design elements work as intended. |
 
 ---
 
