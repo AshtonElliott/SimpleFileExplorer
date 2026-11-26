@@ -71,8 +71,15 @@ public class app {
         topPanel.add(folderField);
         topPanel.add(goButton);
 
-        // Quick access
-        
+        // Drive shortcuts
+        DefaultListModel<String> drives = new DefaultListModel<>();
+        JList<String> drivesList = new JList<>(drives);
+
+        for (File drive : File.listRoots()) {
+            //System.out.println(drive);
+            drives.addElement(drive.getAbsolutePath());
+            
+        }
 
         // Divider
         topPanel.add(new JSeparator(SwingConstants.VERTICAL));
@@ -85,9 +92,9 @@ public class app {
         // Add GUI elements to frame
         JLabel status = new JLabel(" ");
         frame.add(topPanel, BorderLayout.NORTH);
-        //frame.add(quickAccess, BorderLayout.WEST);
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(status, BorderLayout.SOUTH);
+        frame.add(new JScrollPane(drivesList), BorderLayout.WEST);
 
         // Get contents of working directory
         Runnable runWorkingDir = () -> {
@@ -231,6 +238,19 @@ public class app {
                 }
             }
         });
+
+        // Double-click a drive to change working directory to the drive root
+        drivesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                // On double click
+                if (e.getClickCount() == 2 && drivesList.getSelectedIndex() >= 0) {
+                    String selectedDrive = drivesList.getSelectedValue();
+                    folderField.setText(selectedDrive);
+                    runWorkingDir.run();
+                }
+            }
+        });
         
         // Run the working directory on startup
         runWorkingDir.run();
@@ -238,7 +258,7 @@ public class app {
         frame.setVisible(true);
     }
 
-    
+    // Helper to convert paths to rows for table
     private static Object[] toRow(Path p) {
         String name = p.getFileName() != null ? p.getFileName().toString() : p.toString();
         try {
