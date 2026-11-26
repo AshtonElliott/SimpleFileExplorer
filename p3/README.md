@@ -40,7 +40,7 @@ Late work is not accepted -->
 | **Team members (name · net ID)** | George Chakiath Dani * gnc230001, Austin Robson * axr230166 |
 | **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/ |
 | **Release tag or final commit hash** | p3 |
-| **Demonstration slot** | |
+| **Demonstration slot** | Tuesday 11/8 - 4pm |
 | **Document version** | 2.0 |
 | **Date** | |
 
@@ -82,8 +82,9 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
 | George Chakiath Dani | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
 | George Chakiath Dani | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository |
-| George Chakiath Dani | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository  |
-
+| George Chakiath Dani | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository |
+| George Chakiath Dani | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
+| George Chakiath Dani | Updated P3 report Section 1 (Executive summary) with verified capabilities from app.java, implementation gaps, and architectural takeaways. | Commit: 700ff05 | GitHub repository |
 
 ### 0.3 Where your evidence lives
 
@@ -99,7 +100,7 @@ section. Documented edits are treated like commits and documented review comment
 | | |
 |---|---|
 | **Repository URL (code, tests, diagram sources)** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
-| **Access: public, or instructor has read access?** | Public GitHub repository  |
+| **Access: public, or instructor has read access?** | Public GitHub repository |
 | **Document collaboration platform, if not Git** | N/A |
 | **Appendix A supplied? (required if the row above is filled)** | N/A |
 
@@ -128,7 +129,7 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 <!--
 Rubric criterion: all · budget: one page, and not more
 
-WRITE THIS SECTION LAST
+**WRITE THIS SECTION LAST**
 A reader who stops after this page should know what you built, what works, what does not, and what you
 would do next. Write it after sections 3 to 6 exist, because until then you do not yet know what it says.
 No background, no history of the team, no restating of the problem statement from P1.
@@ -160,10 +161,10 @@ List the requirements from your P2 baseline that the delivered system actually s
 
 | Req ID | Requirement, in one line | Delivered? (Yes / Partly / No) |
 |---|---|---|
-| FR-01 | File information displayed in the GUI shall be accurate to its actual data. |  |
-| FR-02 | Folders shall be navigable via mouse or keyboard actions. |  |
-| FR-03 | Users shall search for strings in directory/file names and contents. | Partly - Work in Progress |
-| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Work in Progress |
+| FR-01 | File information displayed in the GUI shall be accurate to its actual data. | Yes |
+| FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
+| FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
+| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. |  |
 
 ### 2.2 Dropped or deferred, and why 
 
@@ -220,12 +221,14 @@ Where the code is: /src/door/DoorController.java · State: Complete
 
 | Component (from P2 section 6) | What it does | Where the code is | State |
 |---|---|---|---|
-| GUI | Provides the graphical interface through which users interact with Simple File Explorer |  |  |
-| File | Represents individual files and their associated information. |  |  |
-| Folder | Represents directories and supports folder navigation. |  |  |
-| File System | Provides access to the local file system and its contents |  |  |
-| Search Results | Displays the results returned by the application's search functionality |  |  |
-| Quick Access | Provides access to commonly used folders and navigation shortcuts |  |  |
+| GUI | Provides the graphical interface through which users interact with Simple File Explorer | /app.java - bulk of the code pertains to GUI operations | Complete  |
+| File | Represents individual files and their associated information. | /app.java | Complete |
+| Folder | Represents directories and supports folder navigation. | /app.java | Complete |
+| File System | Provides access to the local file system and its contents | /app.java |  |
+| Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
+| Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java |  |
+| Error Handler | | | |
+| WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
 
