@@ -37,27 +37,10 @@ public class app {
         JButton searchButton = new JButton("Search");
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         //topPanel.add(label);
-
-        // Directory controls
-        topPanel.add(upButton);
-        topPanel.add(new JLabel("Folder:"));
-        topPanel.add(folderField);
-        topPanel.add(goButton);
-
-        // Divider
-        topPanel.add(new JSeparator(SwingConstants.VERTICAL));
-
-        // Search controls
-        topPanel.add(new JLabel("Search:"));
-        topPanel.add(searchField);
-        topPanel.add(searchButton);
         
-        // Results
-        DefaultListModel<String> results = new DefaultListModel<>();
-        JList<String> resultList = new JList<>(results);
-
         // Table for file data
         String[] columnNames = {"Name", "Date Modified", "Size", "Path"};
+
         DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -72,15 +55,37 @@ public class app {
             }
         };
 
+        // Results
+        //DefaultListModel<String> results = new DefaultListModel<>();
+        //JList<String> resultList = new JList<>(results);
 
+        // Table to hold results
         JTable table = new JTable(model);
 
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
 
+        // Directory controls
+        topPanel.add(upButton);
+        topPanel.add(new JLabel("Folder:"));
+        topPanel.add(folderField);
+        topPanel.add(goButton);
+
+        // Quick access
+        
+
+        // Divider
+        topPanel.add(new JSeparator(SwingConstants.VERTICAL));
+
+        // Search controls
+        topPanel.add(new JLabel("Search:"));
+        topPanel.add(searchField);
+        topPanel.add(searchButton);
+
         // Add GUI elements to frame
         JLabel status = new JLabel(" ");
         frame.add(topPanel, BorderLayout.NORTH);
+        //frame.add(quickAccess, BorderLayout.WEST);
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(status, BorderLayout.SOUTH);
 
@@ -118,9 +123,6 @@ public class app {
             }.execute();
         };
 
-        // Run the working directory on startup
-        runWorkingDir.run();
-
         // Searching
         Runnable runSearch = () -> {
             String query = searchField.getText().trim().toLowerCase();
@@ -137,13 +139,26 @@ public class app {
                 @Override
                 protected Void doInBackground() throws IOException {
                     Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
+                        // Include directories themselves
+                        @Override 
+                        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+                            //System.out.println(dir.getFileName().toString());
+                            if (dir.getFileName().toString().toLowerCase().contains(query)) {
+                                publish(toRow(dir));
+                            }
+                            return FileVisitResult.CONTINUE;
+                        }
+                        
+                        // Checking files for matches
                         @Override
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                            //System.out.println(file.getFileName().toString());
                             if (file.getFileName().toString().toLowerCase().contains(query)) {
                                 publish(toRow(file));
                             }
                             return FileVisitResult.CONTINUE;
                         }
+
                         @Override
                         public FileVisitResult visitFileFailed(Path file, IOException e) {
                             return FileVisitResult.CONTINUE; // skip folders we can't read
@@ -158,15 +173,11 @@ public class app {
                 @Override
                 protected void done() {
                     searchButton.setEnabled(true);
-                    status.setText(results.size() + " result(s) found.");
+                    status.setText(model.getRowCount() + " result(s) found.");
                 }
             }.execute();
         };
-
-        // Search button and enter key trigger search
-        searchButton.addActionListener(e -> runSearch.run());
-        searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
-
+        
         Runnable upDir = () -> {
             String currentPath = folderField.getText();
             File currentDir = new File(currentPath);
@@ -178,6 +189,10 @@ public class app {
                 status.setText("No parent directory.");
             }
         };
+
+        // Search button and enter key trigger search
+        searchButton.addActionListener(e -> runSearch.run());
+        searchField.addActionListener(e -> runSearch.run()); // pressing Enter also searches
        
         // Back button returns up to parent directory
         upButton.addActionListener(e -> upDir.run());
@@ -216,6 +231,10 @@ public class app {
                 }
             }
         });
+        
+        // Run the working directory on startup
+        runWorkingDir.run();
+
         frame.setVisible(true);
     }
 
