@@ -38,10 +38,10 @@ Late work is not accepted -->
 | **Project title** | Simple File Explorer |
 | **Team number and section** | Team 4, Section .010 |
 | **Team members (name · net ID)** | George Chakiath Dani * gnc230001, Austin Robson * axr230166 |
-| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/p3 |
-| **Release tag or final commit hash** | |
-| **Demonstration slot** | |
-| **Document version** | 5.2 - Placeholders Versions |
+| **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/ |
+| **Release tag or final commit hash** | p3 |
+| **Demonstration slot** | Tuesday 11/8 - 4pm |
+| **Document version** | 2.0 |
 | **Date** | |
 
 ---
@@ -80,12 +80,12 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 |---|---|---|---|
 | | | | |
 | Ashton Elliott | created .gitignore file and removed .class files in repo | Commits b63435a and 9251bbe | Main Repo Page |
-| George Chakiath Dani - 3.0 | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
-| George Chakiath Dani - 4.0 | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository |
-| George Chakiath Dani - 5.0 | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository |
-| George Chakiath Dani - 5.1 | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
-| George Chakiath Dani - 5.2 | Updated P3 report Section 1 (Executive summary) with verified capabilities from app.java, implementation gaps, and architectural takeaways. | Commit: 700ff05 | GitHub repository |
-
+| George Chakiath Dani | Added initial P3 report content, including the revision history, contribution record, and initial final-scope documentation (Section 0 to Section 2) | Commit: 9732787 | GitHub repository  |
+| George Chakiath Dani | Added initial content for Section 3, including build and run documentation with place holders for future changes, the component inventory, and deviations from the approved P2 design | Commit: 8b63e1c | GitHub repository |
+| George Chakiath Dani | Drafted initial P3 report content for Sections 4 (Testing and Quality Evidence) and 5 (End-to-End Traceability), including test-risk analysis, input partitions and boundaries, testing/coverage placeholders, limitations, known defects, requirement traceability, and gap analysis. | Commit: c4a4b6e | GitHub repository |
+| George Chakiath Dani | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
+| George Chakiath Dani | Updated P3 report Section 1 (Executive summary) with verified capabilities from app.java, implementation gaps, and architectural takeaways. | Commit: 700ff05 | GitHub repository |
+| Ashton Elliott | Reviewed and Merged Code branches together. | Commit 4aeadb0 | Github Repository |
 
 ### 0.3 Where your evidence lives
 
@@ -101,7 +101,7 @@ section. Documented edits are treated like commits and documented review comment
 | | |
 |---|---|
 | **Repository URL (code, tests, diagram sources)** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
-| **Access: public, or instructor has read access?** | Public GitHub repository  |
+| **Access: public, or instructor has read access?** | Public GitHub repository |
 | **Document collaboration platform, if not Git** | N/A |
 | **Appendix A supplied? (required if the row above is filled)** | N/A |
 
@@ -111,13 +111,13 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 
 | P2 feedback or finding | What we changed | Where to see it |
 |---|---|---|
-| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | No change yet to the P2 analysis domain model; P3 Section 3.2 still lists GUI, Search Results, and Quick Access alongside File, Folder, and File System and needs alignment with actual implementation. | P2 Section 5.1; P3 Section 3.2 (possible changes) |
-| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | No change yet to the P2 domain model notation; P3 does not re-draft the P2 analysis domain model. | P2 Section 5.1 |
-| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | No change yet to the P2 use-case realization steps; P3 does not rewrite P2 Section 5.2. | P2 Section 5.2.1–5.2.2 |
-| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | No change yet to P2 Section 5.3; P3 Section 5.1 instead marks functional requirements as NO EVIDENCE or NOT IMPLEMENTED until verified against actual code and tests. | P2 Section 5.3; P3 Section 5.1 |
-| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | No change yet to P2 QAS-01 in the draft; P3 Sections 4.4–4.5 still have pending test and performance measurements. | P2 Section 6.1 and Section 8 (Spike S-02); P3 Sections 4.4–4.5 |
-| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | Addressed partially in P3 Section 3.3 by documenting that the implementation moved away from WSL commands toward Java (app.java), while Section 3.2 still lists the P2-style component names pending verification of all files. | P3 Sections 3.2–3.3 |
-| Section 11 is missing entirely. | Corrected in the Nov 23 P2 grade update noting Section 11 (Open Questions) was in the P2 PDF before the baseline declaration; the P3 template ends at Section 10 (Appendices) and does not include a Section 11. | P2 Section 11; P3 structure |
+| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | | |
+| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | | |
+| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | | |
+| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | | |
+| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | | |
+| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | | |
+| Section 11 is missing entirely. | Discrepency brought to professor and corrections made in grading | p2/README.md |
 
 <!--
 | P2 established the baseline architecture, requirements, design decisions, prototype evidence, and implementation for P3.| P3 builds upon the P2 design and moves the project toward its implemented and tested final version. | GitHub commits, source code, tests, and P3 documentation |
@@ -130,7 +130,7 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 <!--
 Rubric criterion: all · budget: one page, and not more
 
-WRITE THIS SECTION LAST
+**WRITE THIS SECTION LAST**
 A reader who stops after this page should know what you built, what works, what does not, and what you
 would do next. Write it after sections 3 to 6 exist, because until then you do not yet know what it says.
 No background, no history of the team, no restating of the problem statement from P1.
@@ -146,9 +146,9 @@ No background, no history of the team, no restating of the problem statement fro
 
 Commenting this out, because placeholder text risks being mistaken as complete text.
 -->
-| **What works end to end today** | Based on app.java, directory selection, substring file-name search via Files.walkFileTree, search-result display, and opening a selected file on double-click are present in code; other workflows remain to be verified against tests and Sections 3–5. |
-| **What does not work, or was not built** | Full end-to-end verification across all requirements and performance targets is not yet complete, and any P2 features outside the verified Java implementation remain unconfirmed or out of scope. |
-| **The single most important thing we learned** | Integrating a graphical interface with operating-system features requires verifying actual code behavior and data flow rather than assuming OS commands or unverified design elements work as intended. |
+| **What works end to end today** |  |
+| **What does not work, or was not built** | Thumbnail generation - extraneous and ultimately out-of-scope feature for simple file explorer app |
+| **The single most important thing we learned** |  |
 
 ---
 
@@ -162,10 +162,11 @@ List the requirements from your P2 baseline that the delivered system actually s
 
 | Req ID | Requirement, in one line | Delivered? (Yes / Partly / No) |
 |---|---|---|
-| FR-01 | File information displayed in the GUI shall be accurate to its actual data. |  |
-| FR-02 | Folders shall be navigable via mouse or keyboard actions. |  |
-| FR-03 | Users shall search for strings in directory/file names and contents. | Partly - Work in Progress |
-| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Work in Progress |
+| FR-01 | File information displayed in the GUI shall be accurate to its actual data. | Yes |
+| FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
+| FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
+| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Separated into two different sidebars, only supports drives and folder history |
+| FR-05 | GUI error reporting |  |
 
 ### 2.2 Dropped or deferred, and why 
 
@@ -178,8 +179,9 @@ rest of your document untrustworthy.
 
 | Req ID | What we dropped or deferred | Why, and what we did instead | 
 |---|---|---|
-| FR-05 | GUI error reporting |  |
 | FR-06 | Image thumbnail generation and display | Thumbnails would require auxilliary processing and systems (image creation, caching, storage, etc) that were beyond the scope of this project. | 
+| FR-07 | Create/delete/rename files | File manipulation requires many safeguards and protections to ensure data security. This project is being made as a read only navigation app instead. |
+| FR-08 | Move files | Same as above |
 
 ---
 
@@ -202,11 +204,11 @@ is a defect. A credential in the repository is a serious one.
 |---|---|
 | **Prerequisites and versions** |  |
 | **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
-| **Build (one command, if possible)** |  |
-| **Run** |  |
+| **Build (one command, if possible)** | User must install java on their machine. Then, from cmd (command line): git clone https://github.com/AshtonElliott/SimpleFileExplorer.git; javac app.java |
+| **Run** | java app |
 | **Run the tests** |   |
-| **Configuration not in the repository** |  |
-| **Verified by (name, machine, date)** |   |
+| **Configuration not in the repository** | N/A |
+| **Verified by (name, machine, date)** |  |
 <!-- Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies -->
 
 ### 3.2 Component inventory
@@ -222,12 +224,14 @@ Where the code is: /src/door/DoorController.java · State: Complete
 
 | Component (from P2 section 6) | What it does | Where the code is | State |
 |---|---|---|---|
-| GUI | Provides the graphical interface through which users interact with Simple File Explorer |  |  |
-| File | Represents individual files and their associated information. |  |  |
-| Folder | Represents directories and supports folder navigation. |  |  |
-| File System | Provides access to the local file system and its contents |  |  |
-| Search Results | Displays the results returned by the application's search functionality |  |  |
-| Quick Access | Provides access to commonly used folders and navigation shortcuts |  |  |
+| GUI | Provides the graphical interface through which users interact with Simple File Explorer | /app.java - bulk of the code pertains to GUI operations | Complete  |
+| File | Represents individual files and their associated information. | /app.java | Complete |
+| Folder | Represents directories and supports folder navigation. | /app.java | Complete |
+| File System | Provides access to the local file system and its contents | /app.java | Complete |
+| Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
+| Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java | Complete |
+| Error Handler | | | |
+| WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
 
@@ -242,6 +246,7 @@ documentation, and it is the single most common way teams lose points on criteri
 
 | What the design said | What the code does | Why, and who decided |
 |---|---|---|
+| FR-02 - Drives, commonly used folders, and folder history shall be displayed in a sidebar | Drive shortcuts are present on the left, and folder history on the right. | "Commonly used" folders are not present, namely because the GUI currently only supports a single sidebar on the left and right; Decided by Austin |
 | SFE would use linux commands to navigate folders and read files | Code uses no linux commands, nearly all functionality is done in java | Java proved capable enough to handle most functionality itself; Decided by Ashton |
 
 ---
@@ -285,9 +290,9 @@ Boundary values: 14:59 · 15:00 · 15:01 · Test ID, or NONE: T4, T5; 15:01 NONE
 
 | Input | Classes the specification distinguishes | Boundary values | Test ID, or NONE |
 |---|---|---|---|
-| File/folder path | Valid path, nonexistent path, inaccessible path, empty path | Root directory, empty path, invalid path | Pending verification |
-| Search query | Matching query, no-match query, empty query | Empty string, single-character query, exact match | Pending verification |
-| Directory contents | Empty directory, directory with files, directory with subfolders | Empty directory, one file, multiple files/folders | Pending verification |
+| File/folder path | Valid path, nonexistent path, inaccessible path, empty path | Root directory, empty path, invalid path |  |
+| Search query | Matching query, no-match query, empty query | Empty string, single-character query, exact match |  |
+| Directory contents | Empty directory, directory with files, directory with subfolders | Empty directory, one file, multiple files/folders |  |
 
 ### 4.3 Test inventory and oracle sources
 
@@ -302,16 +307,16 @@ realization step 2 · Pass
 
 | ID | What it exercises | Oracle: the expected result | Source of that oracle | Result |
 |---|---|---|---|---|
-| Pending | Pending identification of actual test cases. | Pending verification. | Requirements / test specification. | Not yet verified. |
+| | | | | |
 
 ### 4.4 Results
 
 | | |
 |---|---|
-| **Tests written / passing / failing** | Pending verification. |
-| **How the suite is run** | Pending verification. |
-| **Any test that is flaky, and why** | Pending verification. |
-| **Defects these tests actually found** | Pending verification. |
+| **Tests written / passing / failing** |  |
+| **How the suite is run** |  |
+| **Any test that is flaky, and why** |  |
+| **Defects these tests actually found** |  |
 
 ### 4.5 Two numbers, not one
 
@@ -326,10 +331,10 @@ tell a reader, and what they do not.
 
 | Measure | Value | What it does and does not tell a reader |
 |---|---|---|
-| Statement or line coverage | Pending verification. | Indicates how much code was executed during testing, but does not establish that all behavior is correct. |
-| Branch coverage (if available) | Pending verification. | Indicates how many decision branches were exercised by the tests. |
-| Mutation score, or tests with no assertion | Pending verification. | Helps assess whether tests detect changes or failures in program behavior rather than merely executing code. |
-| Our one-sentence reading of the pair | Pending verification. | Summarizes the significance and limitations of the coverage results. |
+| Statement or line coverage |  | Indicates how much code was executed during testing, but does not establish that all behavior is correct. |
+| Branch coverage (if available) |  | Indicates how many decision branches were exercised by the tests. |
+| Mutation score, or tests with no assertion |  | Helps assess whether tests detect changes or failures in program behavior rather than merely executing code. |
+| Our one-sentence reading of the pair |  | Summarizes the significance and limitations of the coverage results. |
 
 ### 4.6 What this suite cannot catch
 
@@ -350,7 +355,7 @@ A defect you report costs you nothing. A defect the grader finds that you did no
 
 | ID | What is wrong | Effect on the user | Why it is still here |
 |---|---|---|---|
-| Pending identification | Defects and limitations have not yet been fully documented. | Pending review of the implemented system. | Pending team review. |
+|  |  |  |  |
 
 ---
 
@@ -377,14 +382,14 @@ Code: DoorController.java:41 · Evidence: test T7; commit 4f1a9c · Status: OK
 
 | ID | Requirement or decision | Design element | Code | Evidence | Status |
 |---|---|---|---|---|---|
-| FR-01 | Accurate file information in GUI | File / GUI components | Pending identification | Pending testing evidence | NO EVIDENCE |
-| FR-02 | Navigate folders using mouse and keyboard | GUI / Folder / File system components | Pending identification | Pending testing evidence | NO EVIDENCE |
-| FR-03 | Search strings in directory/file names and contents | Search component | Pending identification | Pending testing evidence | NO EVIDENCE |
-| FR-04 | Sidebar for drives, commonly used folders, and folder history | GUI / Quick Access components | Pending identification | Pending identification | NO EVIDENCE |
-| FR-05 | Report errors in GUI | GUI / error-handling components | Pending identification | Pending testing evidence | NO EVIDENCE |
-| FR-06 | Display images with thumbnails | GUI / File components | Pending identification | Pending testing evidence | NO EVIDENCE |
-| FR-07 | Create/delete/rename files | Not applicable if excluded from scope | Pending identification | P2 scope decision | NOT IMPLEMENTED |
-| FR-08 | Move files | File / GUI components | Not applicable if excluded from scope | P2 scope decision | NOT IMPLEMENTED |
+| FR-01 | Accurate file information in GUI |  | app.java:286 |  | OK |
+| FR-02 | Navigate folders using mouse and keyboard |  | app.java:224 |  | OK |
+| FR-03 | Search strings in directory/file names and contents |  | app.java:145 |  | OK |
+| FR-04 | Sidebar for drives, commonly used folders, and folder history |  | app.java:64,105 |  |  |
+| FR-05 | Report errors in GUI |  |  |  |  |
+| FR-06 | Display images with thumbnails | N/A | N/A | N/A  | NOT IMPLEMENTED |
+| FR-07 | Create/delete/rename files | N/A | N/A | N/A | NOT IMPLEMENTED |
+| FR-08 | Move files | File / GUI components | N/A | N/A | NOT IMPLEMENTED |
 
 Status vocabulary: **OK** (requirement, design, code and evidence agree) · **PARTIAL** (built, but not fully) · **DRIFTS** (the code does something the design did not say) · **ORPHAN** (code with no requirement behind it) · **NOT IMPLEMENTED** · **NO EVIDENCE** (it may work; nothing shows that it does)
 
@@ -394,7 +399,9 @@ Take every row above that is not OK and say, in one line each, what it means for
 
 | ID | What the gap is | What it means for the user, and what we would do next |
 |---|---|---|
-| Pending | Identify requirements marked PARTIAL, DRIFTS, ORPHAN, NOT IMPLEMENTED, or NO EVIDENCE. | Describe the impact and the proposed improvement or next step.  |
+| FR-06 | Display images with thumbnails | Files are not immediately distinguishable until reading the file extension. Future iterations could include static thumbnails for common filetypes such as text, images, pdf, etc. |
+| FR-07 | Create/delete/rename files | The app is read only, and users will not be able to modify files or the contents of folder. Future versions may add these features, but only after rigorous testing and safeguards to ensure file safety. |
+| FR-08 | Move files | Similar to above, app is read only and therefore users can't move files around. File moving may be added in future updates, but can be complicated with moving across drives, ensuring the move is completed, safely removing the file from the prior spot, etc. |
 
 ---
 
@@ -427,8 +434,8 @@ before you build your slides; they are what you are marked against.
 | **The end-to-end scenario we will show** | |
 | **Who presents which part** | |
 | **What we will show live vs. from a recording** | |
-| **Fallback if the live run fails** | |
-| **Data we will use (no real personal data, no credentials)** | |
+| **Fallback if the live run fails** | Demonstration recordings for each segment will be made in case of live errors |
+| **Data we will use (no real personal data, no credentials)** | Example folder, filled with example files and subfolders |
 
 ---
 
@@ -474,6 +481,8 @@ assertions were wrong and were replaced
 | George Chakiath Dani | ChatGPT | Used to formulate ideas, organize initial P3 documentation, clarify report content, and reference the requirements, design decisions, and information established in P1 and P2. | Reviewed and checked the suggestions against P1 and P2 and the team's P3 report to ensure consistency and accuracy. |
 | George Chakiath Dani | ChatGPT | Used to organize and draft the initial P3 Section 3 documentation, including build and run instructions, the component inventory, and deviations from the approved P2 design. | Reviewed the suggested content and wording to ensure consistency with the P3 template and the requirements established in P1 and P2. |
 | George Chakiath Dani | ChatGPT | Assist with organizing and drafting P3 Sections 4 and 5 | Reviewed the drafted content to ensure it aligned with the P3 template and report structure before committing to GitHub. |
+| Austin Robson | Claude | Creating code for table modeling and file attribute handling | Code readthrough to check consistency, test run with working app to verify functionality |
+| Austin Robson | Copilot free | Code autocompletes/inline suggestions for implementing path history |  |
 
 ---
 
