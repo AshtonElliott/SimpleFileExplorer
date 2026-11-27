@@ -164,7 +164,7 @@ List the requirements from your P2 baseline that the delivered system actually s
 | FR-01 | File information displayed in the GUI shall be accurate to its actual data. | Yes |
 | FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
 | FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
-| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. |  |
+| FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Separated into two different sidebars, only supports drives and folder history |
 | FR-05 | GUI error reporting |  |
 
 ### 2.2 Dropped or deferred, and why 
@@ -203,11 +203,11 @@ is a defect. A credential in the repository is a serious one.
 |---|---|
 | **Prerequisites and versions** |  |
 | **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
-| **Build (one command, if possible)** |  |
-| **Run** |  |
+| **Build (one command, if possible)** | User must install java on their machine. Then, from cmd (command line): git clone https://github.com/AshtonElliott/SimpleFileExplorer.git; javac app.java |
+| **Run** | java app |
 | **Run the tests** |   |
-| **Configuration not in the repository** |  |
-| **Verified by (name, machine, date)** |   |
+| **Configuration not in the repository** | N/A |
+| **Verified by (name, machine, date)** |  |
 <!-- Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies -->
 
 ### 3.2 Component inventory
@@ -226,9 +226,9 @@ Where the code is: /src/door/DoorController.java · State: Complete
 | GUI | Provides the graphical interface through which users interact with Simple File Explorer | /app.java - bulk of the code pertains to GUI operations | Complete  |
 | File | Represents individual files and their associated information. | /app.java | Complete |
 | Folder | Represents directories and supports folder navigation. | /app.java | Complete |
-| File System | Provides access to the local file system and its contents | /app.java |  |
+| File System | Provides access to the local file system and its contents | /app.java | Complete |
 | Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
-| Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java |  |
+| Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java | Complete |
 | Error Handler | | | |
 | WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
@@ -245,6 +245,7 @@ documentation, and it is the single most common way teams lose points on criteri
 
 | What the design said | What the code does | Why, and who decided |
 |---|---|---|
+| FR-02 - Drives, commonly used folders, and folder history shall be displayed in a sidebar | Drive shortcuts are present on the left, and folder history on the right. | "Commonly used" folders are not present, namely because the GUI currently only supports a single sidebar on the left and right; Decided by Austin |
 | SFE would use linux commands to navigate folders and read files | Code uses no linux commands, nearly all functionality is done in java | Java proved capable enough to handle most functionality itself; Decided by Ashton |
 
 ---
@@ -380,14 +381,14 @@ Code: DoorController.java:41 · Evidence: test T7; commit 4f1a9c · Status: OK
 
 | ID | Requirement or decision | Design element | Code | Evidence | Status |
 |---|---|---|---|---|---|
-| FR-01 | Accurate file information in GUI |  |  |  | OK |
-| FR-02 | Navigate folders using mouse and keyboard |  |  |  | OK |
-| FR-03 | Search strings in directory/file names and contents |  |  |  | OK |
-| FR-04 | Sidebar for drives, commonly used folders, and folder history |  |  |  |  |
+| FR-01 | Accurate file information in GUI |  | app.java:286 |  | OK |
+| FR-02 | Navigate folders using mouse and keyboard |  | app.java:224 |  | OK |
+| FR-03 | Search strings in directory/file names and contents |  | app.java:145 |  | OK |
+| FR-04 | Sidebar for drives, commonly used folders, and folder history |  | app.java:64,105 |  |  |
 | FR-05 | Report errors in GUI |  |  |  |  |
-| FR-06 | Display images with thumbnails |  | N/A | N/A  | NOT IMPLEMENTED |
-| FR-07 | Create/delete/rename files |  |  |  | NOT IMPLEMENTED |
-| FR-08 | Move files | File / GUI components |  |  | NOT IMPLEMENTED |
+| FR-06 | Display images with thumbnails | N/A | N/A | N/A  | NOT IMPLEMENTED |
+| FR-07 | Create/delete/rename files | N/A | N/A | N/A | NOT IMPLEMENTED |
+| FR-08 | Move files | File / GUI components | N/A | N/A | NOT IMPLEMENTED |
 
 Status vocabulary: **OK** (requirement, design, code and evidence agree) · **PARTIAL** (built, but not fully) · **DRIFTS** (the code does something the design did not say) · **ORPHAN** (code with no requirement behind it) · **NOT IMPLEMENTED** · **NO EVIDENCE** (it may work; nothing shows that it does)
 
@@ -480,6 +481,7 @@ assertions were wrong and were replaced
 | George Chakiath Dani | ChatGPT | Used to organize and draft the initial P3 Section 3 documentation, including build and run instructions, the component inventory, and deviations from the approved P2 design. | Reviewed the suggested content and wording to ensure consistency with the P3 template and the requirements established in P1 and P2. |
 | George Chakiath Dani | ChatGPT | Assist with organizing and drafting P3 Sections 4 and 5 | Reviewed the drafted content to ensure it aligned with the P3 template and report structure before committing to GitHub. |
 | Austin Robson | Claude | Creating code for table modeling and file attribute handling | Code readthrough to check consistency, test run with working app to verify functionality |
+| Austin Robson | Copilot free | Code autocompletes/inline suggestions for implementing path history |  |
 
 ---
 
