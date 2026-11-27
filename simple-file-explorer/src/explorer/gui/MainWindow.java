@@ -278,7 +278,7 @@ public class MainWindow {
             table.setEmptyText("Loading…");
         }
 
-        SwingWorker<Result, FileInfo> job = new SwingWorker<>() {
+        SwingWorker<Result, FileInfo> job = new SwingWorker<Result, FileInfo>() {
             @Override
             protected Result doInBackground() throws Exception {
                 return search.run(plan, this::publish, this::isCancelled);

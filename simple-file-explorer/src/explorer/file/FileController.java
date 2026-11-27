@@ -40,8 +40,9 @@ public class FileController {
 
     // ---------- simple queries ----------
 
+    /** The user's home folder (e.g. C:\Users\me), which makes sense however the app was launched. */
     public String startFolder() {
-        return Paths.get(System.getProperty("user.dir")).toAbsolutePath().toString();
+        return Paths.get(System.getProperty("user.home")).toAbsolutePath().toString();
     }
 
     public List<String> roots() {
@@ -169,7 +170,7 @@ public class FileController {
                 continue;
             }
             try {
-                Files.walkFileTree(root, new SimpleFileVisitor<>() {
+                Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
                     @Override
                     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes a) {
                         if (isCancelled.getAsBoolean()) return FileVisitResult.TERMINATE;

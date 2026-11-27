@@ -50,3 +50,13 @@ To change the colors or font, edit `src/explorer/ui/Theme.java`.
 
 - **Recent history** is kept between runs using Java's per-user preferences store.
 - **Error log:** `~/.simple-explorer/error.log`
+
+## Make it a clickable Windows app
+
+```
+powershell -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+This creates `dist\SimpleFileExplorer\SimpleFileExplorer.exe` (Java included, so it runs on PCs without Java). Pin it to Start/taskbar or make a desktop shortcut. Re-run the script after code changes.
+
+Add `out/`, `build/`, `dist/` and `*.jar` to `.gitignore`.

@@ -41,7 +41,9 @@ public final class Theme {
     static {
         String family = pickFontFamily("Segoe UI", "Helvetica Neue", "Inter", "Noto Sans",
                 "Fira Sans", "DejaVu Sans");
-        FONT = new Font(family, Font.PLAIN, 13);
+        // StyleContext (unlike "new Font") adds automatic fallback fonts, so Chinese, Japanese,
+        // emoji, etc. in file names still display even if the main font lacks those characters.
+        FONT = javax.swing.text.StyleContext.getDefaultStyleContext().getFont(family, Font.PLAIN, 13);
         FONT_BOLD = FONT.deriveFont(Font.BOLD);
         FONT_SMALL_BOLD = FONT.deriveFont(Font.BOLD, 11f);
     }
