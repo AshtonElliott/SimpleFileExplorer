@@ -40,8 +40,7 @@ public class app {
         
         // Table for file data
         String[] columnNames = {"Name", "Date Modified", "Size", "Path"};
-
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+        DefaultTableModel resultRows = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Make table cells non-editable
@@ -55,31 +54,34 @@ public class app {
             }
         };
 
-        // Results
-        //DefaultListModel<String> results = new DefaultListModel<>();
-        //JList<String> resultList = new JList<>(results);
-
         // Table to hold results
-        JTable table = new JTable(model);
+        JTable table = new JTable(resultRows);
 
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
+
+        // Drive shortcuts
+        DefaultListModel<String> drives = new DefaultListModel<>();
+        JList<String> drivesList = new JList<>(drives);
+        for (File drive : File.listRoots()) {
+            //System.out.println(drive);
+            drives.addElement(drive.getAbsolutePath());
+            
+        }
+
+        // History 
+        DefaultListModel<String> history = new DefaultListModel<>();
+        JList<String> historyList = new JList<>(history);
+
+        // Results
+        //DefaultListModel<String> results = new DefaultListModel<>();
+        //JList<String> resultList = new JList<>(results);
 
         // Directory controls
         topPanel.add(upButton);
         topPanel.add(new JLabel("Folder:"));
         topPanel.add(folderField);
         topPanel.add(goButton);
-
-        // Drive shortcuts
-        DefaultListModel<String> drives = new DefaultListModel<>();
-        JList<String> drivesList = new JList<>(drives);
-
-        for (File drive : File.listRoots()) {
-            //System.out.println(drive);
-            drives.addElement(drive.getAbsolutePath());
-            
-        }
 
         // Divider
         topPanel.add(new JSeparator(SwingConstants.VERTICAL));
@@ -95,11 +97,20 @@ public class app {
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(status, BorderLayout.SOUTH);
         frame.add(new JScrollPane(drivesList), BorderLayout.WEST);
+        frame.add(new JScrollPane(historyList), BorderLayout.EAST);
 
         // Get contents of working directory
         Runnable runWorkingDir = () -> {
+            // Safe previous path in history
+            if (folderField.getText().trim() != null && !folderField.getText().trim().isEmpty()) {
+                String currentPath = folderField.getText().trim();
+                if (!history.contains(currentPath)) {
+                    history.addElement(currentPath);
+                }
+            }
+
             //Path root = Paths.get(folderField.getText().trim());
-            model.setRowCount(0); // Clear previous results
+            resultRows.setRowCount(0); // Clear previous results
             searchButton.setEnabled(false);
             status.setText("Working...");
 
@@ -120,12 +131,12 @@ public class app {
 
                 @Override
                 protected void process(List<Object[]> rows) {
-                    rows.forEach(model::addRow);
+                    rows.forEach(resultRows::addRow);
                 }
                 @Override
                 protected void done() {
                     searchButton.setEnabled(true);
-                    status.setText(model.getRowCount() + " item(s).");
+                    status.setText(resultRows.getRowCount() + " item(s).");
                 }
             }.execute();
         };
@@ -139,7 +150,7 @@ public class app {
                 status.setText("Folder not found: " + root);
                 return;
             }
-            model.setRowCount(0); // Clear previous results
+            resultRows.setRowCount(0); // Clear previous results
             searchButton.setEnabled(false);
             status.setText("Searching...");
             new SwingWorker<Void, Object[]>() {
@@ -175,12 +186,12 @@ public class app {
                 }
                 @Override
                 protected void process(List<Object[]> rows) {
-                    rows.forEach(model::addRow);
+                    rows.forEach(resultRows::addRow);
                 }
                 @Override
                 protected void done() {
                     searchButton.setEnabled(true);
-                    status.setText(model.getRowCount() + " result(s) found.");
+                    status.setText(resultRows.getRowCount() + " result(s) found.");
                 }
             }.execute();
         };
@@ -217,7 +228,7 @@ public class app {
                 if (e.getClickCount() == 2 && table.getSelectedRow() >= 0) {
                     
                     int modelRow = table.convertRowIndexToModel(table.getSelectedRow());
-                    File f = new File((String) model.getValueAt(modelRow, 3));
+                    File f = new File((String) resultRows.getValueAt(modelRow, 3));
                         
                     try {
                         // If directory, change working directory
@@ -247,6 +258,19 @@ public class app {
                 if (e.getClickCount() == 2 && drivesList.getSelectedIndex() >= 0) {
                     String selectedDrive = drivesList.getSelectedValue();
                     folderField.setText(selectedDrive);
+                    runWorkingDir.run();
+                }
+            }
+        });
+
+        // Double-click a history item to change working directory to that path
+        historyList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                // On double click
+                if (e.getClickCount() == 2 && historyList.getSelectedIndex() >= 0) {
+                    String selectedPath = historyList.getSelectedValue();
+                    folderField.setText(selectedPath);
                     runWorkingDir.run();
                 }
             }
