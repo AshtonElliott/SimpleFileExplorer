@@ -86,6 +86,8 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | George Chakiath Dani | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
 | George Chakiath Dani | Updated P3 report Section 1 (Executive summary) with verified capabilities from app.java, implementation gaps, and architectural takeaways. | Commit: 700ff05 | GitHub repository |
 | Ashton Elliott | Reviewed and Merged Code branches together. | Commit 4aeadb0 | Github Repository |
+| George Chakiath Dani | Updated P3 requirements traceability (Section 5.1), including requirement status and design-element mapping. | Commit: a1fe6cb | GitHub repository |
+
 
 ### 0.3 Where your evidence lives
 
