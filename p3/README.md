@@ -37,7 +37,7 @@ Late work is not accepted -->
 |---|---|
 | **Project title** | Simple File Explorer |
 | **Team number and section** | Team 4, Section .010 |
-| **Team members (name · net ID)** | George Chakiath Dani * gnc230001, Austin Robson * axr230166 |
+| **Team members (name · net ID)** | George Chakiath Dani * gnc230001; Austin Robson * axr230166 ;Yukai Ma * dal833810 |
 | **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/ |
 | **Release tag or final commit hash** | p3 |
 | **Demonstration slot** | Tuesday 11/8 - 4pm |
@@ -86,6 +86,7 @@ a91c04, 4f1a9c; PR #28; review on PR #31 · Verifiable at: github.com/team07/com
 | George Chakiath Dani | Updated P3 report Section 0.4 (Changes since P2) with responses and status for the seven P2 feedback items. | Commit: eac6df8 | GitHub repository |
 | George Chakiath Dani | Updated P3 report Section 1 (Executive summary) with verified capabilities from app.java, implementation gaps, and architectural takeaways. | Commit: 700ff05 | GitHub repository |
 | Ashton Elliott | Reviewed and Merged Code branches together. | Commit 4aeadb0 | Github Repository |
+|Yukai Ma|edit section.6 |merge history|GitHub repository|
 | George Chakiath Dani | Updated P3 requirements traceability (Section 5.1), including requirement status and design-element mapping. | Commit: a1fe6cb | GitHub repository |
 
 
@@ -277,6 +278,7 @@ You cannot test everything and nobody expects you to. Say what you judged to be 
 | Search fails to return the correct results.	|	Users may be unable to locate files or folders. | Tested searches using different search terms and directory contents. |
 | The application fails when an invalid path or inaccessible directory is encountered. | The application may crash or prevent users from continuing. | Tested invalid paths and error handling where applicable. |
 
+
 ### 4.2 Partitions and boundaries
 
 <!--
@@ -419,9 +421,11 @@ Take every row above that is not OK and say, in one line each, what it means for
 
 Three to five items. Each one: the limitation, the risk it creates, and the first thing you would do about it with another two weeks.
 
-| Limitation | Risk it creates | First thing we would do next |
+|Limitation | Risk it creates | First thing we would do next |
 |---|---|---|
-| | | |
+|Search have no index(every name search walk the foldertree, search all drive may take a long time) |decrease the search speed |maybe prototype a background index |
+|Results are unlimited|may get too many results, may cause the program to crash|give an upper bound to the number of the searched results.|
+|The display doesn't refresh|after display,some changes have been made, this won't reflect on the current display if don't redo the search/view|add a button, which click it, it refresh(redo)|
 
 ---
 
@@ -440,8 +444,8 @@ before you build your slides; they are what you are marked against.
 | | |
 |---|---|
 | **The end-to-end scenario we will show** | |
-| **Who presents which part** | |
-| **What we will show live vs. from a recording** | |
+| **Who presents which part** |George Chakiath Dani : | Austin Robson : |Yukai Ma : ||||
+| **What we will show live vs. from a recording** |we will show the recording |
 | **Fallback if the live run fails** | Demonstration recordings for each segment will be made in case of live errors |
 | **Data we will use (no real personal data, no credentials)** | Example folder, filled with example files and subfolders |
 
