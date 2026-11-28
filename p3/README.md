@@ -37,7 +37,7 @@ Late work is not accepted -->
 |---|---|
 | **Project title** | Simple File Explorer |
 | **Team number and section** | Team 4, Section .010 |
-| **Team members (name · net ID)** | George Chakiath Dani * gnc230001; Austin Robson * axr230166 ;Yukai Ma * dal833810 |
+| **Team members (name · net ID)** | George Chakiath Dani * gnc230001; Austin Robson * axr230166; Yukai Ma * dal833810 |
 | **Repository URL** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main/ |
 | **Release tag or final commit hash** | p3 |
 | **Demonstration slot** | Tuesday 11/8 - 4pm |
@@ -139,9 +139,6 @@ would do next. Write it after sections 3 to 6 exist, because until then you do n
 No background, no history of the team, no restating of the problem statement from P1.
 -->
 
-| | |
-|---|---|
-| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide users with a way to browse directories and search through a graphical interface in a short amount of time. It uses java functions and command line tools to support file exploration while keeping file access read-only. |
 <!--
 | **What works end to end today** | TBD/ Work in progress - list the features that were verified successfully in the final application, including browsing, folder navigation, searching, and quick access, as applicable. |
 | **What does not work, or was not built** | TBD/ Work in progress - list known bugs, incomplete features, unsupported functionality, and features excluded from the project scope. |
@@ -149,7 +146,10 @@ No background, no history of the team, no restating of the problem statement fro
 
 Commenting this out, because placeholder text risks being mistaken as complete text.
 -->
-| **What works end to end today** | Users can browse directories, navigate folders, view file information, and search for files and folders through the graphical interface. |
+| | |
+|---|---|
+| **What we built, in two sentences** | Simple File Explorer (SFE) is a Java-based file exploration application designed to provide users with a way to browse directories and search through a graphical interface in a short amount of time. It uses java functions to support file exploration while keeping file access read-only. |
+| **What works end to end today** | File viewing and opening, folder navigation, drive shortcuts, folder history, searching keywords |
 | **What does not work, or was not built** | Thumbnail generation - extraneous and ultimately out-of-scope feature for simple file explorer app. |
 | **The single most important thing we learned** | Developing a functional file explorer requires more than displaying files; reliable navigation, accurate file information, and effective search are essential to providing a useful user experience. |
 
@@ -169,7 +169,7 @@ List the requirements from your P2 baseline that the delivered system actually s
 | FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
 | FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
 | FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Separated into two different sidebars, only supports drives and folder history |
-| FR-05 | GUI error reporting | No – GUI error reporting was deferred and not fully implemented.  |
+| FR-05 | GUI error reporting |  |
 
 ### 2.2 Dropped or deferred, and why 
 
@@ -233,7 +233,7 @@ Where the code is: /src/door/DoorController.java · State: Complete
 | File System | Provides access to the local file system and its contents | /app.java | Complete |
 | Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
 | Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java | Complete |
-| Error Handler | Handles errors encountered during file system operations and user interactions. | /app.java | Partially Implemented |
+| Error Handler | Handles errors encountered during file system operations and user interactions. | /app.java |  |
 | WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
@@ -311,11 +311,11 @@ realization step 2 · Pass
 
 | ID | What it exercises | Oracle: the expected result | Source of that oracle | Result |
 |---|---|---|---|---|
-| TC-01 | Displaying file information | File information displayed in the GUI matches the actual file data. | FR-01 | |
-| TC-02 | Folder navigation | Users can navigate between folders using mouse or keyboard actions. | FR-02 | |
-| TC-03 | Searching for files and folders | Search returns the appropriate matching files and folders for the entered query. | FR-03 | |
-| TC-04 | Sidebar navigation | Sidebar displays supported drives and folder history for navigation. | FR-04 | |
-| TC-05 | Error handling | 	Errors encountered during file system operations are handled without causing unexpected application failure. | FR-05 | |
+| T-01 | Displaying file information | File information displayed in the GUI matches the actual file data. | FR-01 | |
+| T-02 | Folder navigation | Users can navigate between folders using mouse or keyboard actions. | FR-02 | |
+| T-03 | Searching for files and folders | Search returns the appropriate matching files and folders for the entered query. | FR-03 | |
+| T-04 | Sidebar navigation | Sidebar displays supported drives and folder history for navigation. | FR-04 | |
+| T-05 | Error handling | 	Errors encountered during file system operations are handled without causing unexpected application failure. | FR-05 | |
 
 ### 4.4 Results
 
@@ -421,11 +421,12 @@ Take every row above that is not OK and say, in one line each, what it means for
 
 Three to five items. Each one: the limitation, the risk it creates, and the first thing you would do about it with another two weeks.
 
-|Limitation | Risk it creates | First thing we would do next |
+| Limitation | Risk it creates | First thing we would do next |
 |---|---|---|
-|Search have no index(every name search walk the foldertree, search all drive may take a long time) |decrease the search speed |maybe prototype a background index |
-|Results are unlimited|may get too many results, may cause the program to crash|give an upper bound to the number of the searched results.|
-|The display doesn't refresh|after display,some changes have been made, this won't reflect on the current display if don't redo the search/view|add a button, which click it, it refresh(redo)|
+| Searches have no indexing | Long searches could become unstable, or otherwise take a long time each time they happen | Prototype file indexing on first run, or first search of a drive |
+| Search and folder results are unlimited | Large folders/searches may cause instability or crashes | Experiment with dynamic loading, pagination, lazy loading, or other methods of optimization |
+| GUI does not update if folder contents change | GUI will not reflect changes made to folder contents if they are made after loading the display | Experiment with live/auto updates to check for changes in current directory |
+
 
 ---
 
