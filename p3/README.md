@@ -169,7 +169,7 @@ List the requirements from your P2 baseline that the delivered system actually s
 | FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
 | FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
 | FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Separated into two different sidebars, only supports drives and folder history |
-| FR-05 | GUI error reporting |  |
+| FR-05 | GUI error reporting | Partly - Certain errors, such as "Folder not found", will be reported in GUI status footer. Errors not specified in the code will not be caught and displayed in the footer. |
 
 ### 2.2 Dropped or deferred, and why 
 
@@ -209,7 +209,7 @@ is a defect. A credential in the repository is a serious one.
 | **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
 | **Build (one command, if possible)** | User must install java on their machine. Then, from cmd (command line): git clone https://github.com/AshtonElliott/SimpleFileExplorer.git; javac app.java |
 | **Run** | java app |
-| **Run the tests** | No separate automated test command documented. |
+| **Run the tests** |  |
 | **Configuration not in the repository** | N/A |
 | **Verified by (name, machine, date)** | |
 <!-- Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies -->
@@ -233,7 +233,7 @@ Where the code is: /src/door/DoorController.java · State: Complete
 | File System | Provides access to the local file system and its contents | /app.java | Complete |
 | Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
 | Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java | Complete |
-| Error Handler | Handles errors encountered during file system operations and user interactions. | /app.java |  |
+| Error Handler | Handles errors encountered during file system operations and user interactions. | /app.java | Partial |
 | WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
@@ -395,7 +395,7 @@ Code: DoorController.java:41 · Evidence: test T7; commit 4f1a9c · Status: OK
 | FR-01 | Accurate file information in GUI |  | app.java:286 |  | OK |
 | FR-02 | Navigate folders using mouse and keyboard |  | app.java:224 |  | OK |
 | FR-03 | Search strings in directory/file names and contents |  | app.java:145 |  | OK |
-| FR-04 | Sidebar for drives, commonly used folders, and folder history |  | app.java:64,105 |  |  |
+| FR-04 | Sidebar for drives, commonly used folders, and folder history |  | app.java:64,105 |  | OK |
 | FR-05 | Report errors in GUI |  |  |  |  |
 | FR-06 | Display images with thumbnails | N/A | N/A | N/A  | NOT IMPLEMENTED |
 | FR-07 | Create/delete/rename files | N/A | N/A | N/A | NOT IMPLEMENTED |

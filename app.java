@@ -101,6 +101,15 @@ public class app {
 
         // Get contents of working directory
         Runnable runWorkingDir = () -> {
+            
+            Path workingDir = Paths.get(folderField.getText());
+
+            // Check directory exists
+            if (!Files.isDirectory(workingDir)) {
+                status.setText("Folder not found: " + workingDir);
+                return;
+            }
+
             // Safe previous path in history
             if (folderField.getText().trim() != null && !folderField.getText().trim().isEmpty()) {
                 String currentPath = folderField.getText().trim();
@@ -118,7 +127,7 @@ public class app {
                 @Override
                 protected Void doInBackground() throws IOException {
                     // Working directory
-                    Path workingDir = Paths.get(folderField.getText());
+                    //workingDir = Paths.get(folderField.getText());
                     //System.out.println("Working directory: " + workingDir.toString());
                     //JTextField workingDirField = new JTextField(workingDir.toString(), 30);
 
@@ -145,6 +154,7 @@ public class app {
         Runnable runSearch = () -> {
             String query = searchField.getText().trim().toLowerCase();
             Path root = Paths.get(folderField.getText().trim());
+            //System.out.println("Searching for: " + query + " in " + root.toString());
 
             if (!Files.isDirectory(root)) {
                 status.setText("Folder not found: " + root);
@@ -166,7 +176,7 @@ public class app {
                             }
                             return FileVisitResult.CONTINUE;
                         }
-                        
+
                         // Checking files for matches
                         @Override
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
