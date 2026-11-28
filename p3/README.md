@@ -491,6 +491,7 @@ assertions were wrong and were replaced
 | George Chakiath Dani | ChatGPT | Assist with organizing and drafting P3 Sections 4 and 5 | Reviewed the drafted content to ensure it aligned with the P3 template and report structure before committing to GitHub. |
 | Austin Robson | Claude | Creating code for table modeling and file attribute handling | Code readthrough to check consistency, test run with working app to verify functionality |
 | Austin Robson | Copilot free | Code autocompletes/inline suggestions for implementing path history |  |
+| George Chakiath Dani | ChatGPT | Assist with completing and refining the first half of the P3 report, including Sections 1–5 | Used ChatGPT to help organize, draft, and refine available report sections, clarify project requirements, document implementation status, and align the content with the P3 template before reviewing and committing the updates to GitHub in my branch. |
 
 ---
 
