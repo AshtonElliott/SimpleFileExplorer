@@ -102,8 +102,8 @@ section. Documented edits are treated like commits and documented review comment
 |---|---|
 | **Repository URL (code, tests, diagram sources)** | https://github.com/AshtonElliott/SimpleFileExplorer/tree/main |
 | **Access: public, or instructor has read access?** | Public GitHub repository |
-| **Document collaboration platform, if not Git** | N/A |
-| **Appendix A supplied? (required if the row above is filled)** | N/A |
+| **Document collaboration platform, if not Git** | GitHub was used for source code management and team collaboration. |
+| **Appendix A supplied? (required if the row above is filled)** | 	Project source code and related evidence are available through the public GitHub repository. |
 
 ### 0.4 Changes since P2
 
@@ -111,12 +111,12 @@ One row per piece of P2 feedback you received, and what you did about it. "No ch
 
 | P2 feedback or finding | What we changed | Where to see it |
 |---|---|---|
-| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | | |
-| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | | |
-| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | | |
-| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | | |
-| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | | |
-| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | | |
+| The domain model is populated with software and screen elements rather than domain concepts: GUI is a class whose attributes are 'directory display, search bar, quick access sidebar', and the class list runs GUI, search, sidebar, Error log, WSL translator. An analysis-level domain model carries no technology and no screen widgets - a file explorer's domain is files, folders, permissions and attributes. | Review and revise the domain model to represent file-system concepts such as files, folders, permissions, and attributes rather than GUI components. | P3 report – Domain Model. |
+| The multiplicity notation ('GUI 1:1 Quick access', '1 Folder 1..*:1 File system') is not UML. | Review and correct the UML relationships and multiplicities to follow standard UML notation. | P3 report – Updated UML diagrams |
+| The non-trivial-step analysis lists the actor's own inputs as non-trivial. | Review the use-case analysis and distinguish meaningful system interactions from inputs provided directly by the actor. | P3 report – Use Case Analysis |
+| And 5.3 reports six bare passes, which cannot all be true once 5.1 contains UI objects. | Reassess the design review results and ensure that reported passes are supported by the updated design and evidence. | P3 report – Design Review |
+| In section 6, QAS-01 allows ten minutes to search a folder of 1,000 files - that is not a quality target, and your own S-02 measured a competitor at 39 seconds. | Review the search performance target and make it more measurable and appropriate for the expected system performance. | P3 report – Quality Attribute Scenarios |
+| 6.5 maps GUI to GUI, search to search and sidebar to sidebar, which means no architectural work happened between sections 5 and 6. | Review the architecture mapping and clarify how the design components realize the system's responsibilities. | P3 report – Architecture Mapping |
 | Section 11 is missing entirely. | Discrepency brought to professor and corrections made in grading | p2/README.md |
 
 <!--
@@ -146,9 +146,9 @@ No background, no history of the team, no restating of the problem statement fro
 
 Commenting this out, because placeholder text risks being mistaken as complete text.
 -->
-| **What works end to end today** |  |
-| **What does not work, or was not built** | Thumbnail generation - extraneous and ultimately out-of-scope feature for simple file explorer app |
-| **The single most important thing we learned** |  |
+| **What works end to end today** | Users can browse directories, navigate folders, view file information, and search for files and folders through the graphical interface. |
+| **What does not work, or was not built** | Thumbnail generation - extraneous and ultimately out-of-scope feature for simple file explorer app. |
+| **The single most important thing we learned** | Developing a functional file explorer requires more than displaying files; reliable navigation, accurate file information, and effective search are essential to providing a useful user experience. |
 
 ---
 
@@ -166,7 +166,7 @@ List the requirements from your P2 baseline that the delivered system actually s
 | FR-02 | Folders shall be navigable via mouse or keyboard actions. | Yes |
 | FR-03 | Users shall search for strings in directory/file names and contents. | Yes |
 | FR-04 | Drives, commonly used folders, and folder history shall be displayed in a sidebar. | Partly - Separated into two different sidebars, only supports drives and folder history |
-| FR-05 | GUI error reporting |  |
+| FR-05 | GUI error reporting | No – GUI error reporting was deferred and not fully implemented.  |
 
 ### 2.2 Dropped or deferred, and why 
 
@@ -202,13 +202,13 @@ is a defect. A credential in the repository is a serious one.
 
 | | |
 |---|---|
-| **Prerequisites and versions** |  |
+| **Prerequisites and versions** | Java JDK installed and configured on the system PATH.  |
 | **Clone** | git clone https://github.com/AshtonElliott/SimpleFileExplorer.git |
 | **Build (one command, if possible)** | User must install java on their machine. Then, from cmd (command line): git clone https://github.com/AshtonElliott/SimpleFileExplorer.git; javac app.java |
 | **Run** | java app |
-| **Run the tests** |   |
+| **Run the tests** | No separate automated test command documented. |
 | **Configuration not in the repository** | N/A |
-| **Verified by (name, machine, date)** |  |
+| **Verified by (name, machine, date)** | |
 <!-- Specified the required Java version, operating system, WSL (If applicable), and any additional dependencies -->
 
 ### 3.2 Component inventory
@@ -230,7 +230,7 @@ Where the code is: /src/door/DoorController.java · State: Complete
 | File System | Provides access to the local file system and its contents | /app.java | Complete |
 | Search Results | Displays the results returned by the application's search functionality | app.java | Complete |
 | Sidebar | Provides access to commonly used folders and navigation shortcuts | /app.java | Complete |
-| Error Handler | | | |
+| Error Handler | Handles errors encountered during file system operations and user interactions. | /app.java | Partially Implemented |
 | WSL Translator | Use user inputs to build and linux commands, and parse their output | N/A - Component dropped in favor of full java code | Not Built |
 
 State: use one of **Complete · Partial · Not built · Replaced** (the design said one thing, the code does another; explain in 3.3).
@@ -290,9 +290,9 @@ Boundary values: 14:59 · 15:00 · 15:01 · Test ID, or NONE: T4, T5; 15:01 NONE
 
 | Input | Classes the specification distinguishes | Boundary values | Test ID, or NONE |
 |---|---|---|---|
-| File/folder path | Valid path, nonexistent path, inaccessible path, empty path | Root directory, empty path, invalid path |  |
-| Search query | Matching query, no-match query, empty query | Empty string, single-character query, exact match |  |
-| Directory contents | Empty directory, directory with files, directory with subfolders | Empty directory, one file, multiple files/folders |  |
+| File/folder path | Valid path, nonexistent path, inaccessible path, empty path | Root directory, empty path, invalid path | T-01, T-02, T-03, T-04 |
+| Search query | Matching query, no-match query, empty query | Empty string, single-character query, exact match | T-05, T-06, T-07 |
+| Directory contents | Empty directory, directory with files, directory with subfolders | Empty directory, one file, multiple files/folders | T-08, T-09, T-10 |
 
 ### 4.3 Test inventory and oracle sources
 
@@ -307,7 +307,11 @@ realization step 2 · Pass
 
 | ID | What it exercises | Oracle: the expected result | Source of that oracle | Result |
 |---|---|---|---|---|
-| | | | | |
+| TC-01 | Displaying file information | File information displayed in the GUI matches the actual file data. | FR-01 | |
+| TC-02 | Folder navigation | Users can navigate between folders using mouse or keyboard actions. | FR-02 | |
+| TC-03 | Searching for files and folders | Search returns the appropriate matching files and folders for the entered query. | FR-03 | |
+| TC-04 | Sidebar navigation | Sidebar displays supported drives and folder history for navigation. | FR-04 | |
+| TC-05 | Error handling | 	Errors encountered during file system operations are handled without causing unexpected application failure. | FR-05 | |
 
 ### 4.4 Results
 
@@ -355,7 +359,9 @@ A defect you report costs you nothing. A defect the grader finds that you did no
 
 | ID | What is wrong | Effect on the user | Why it is still here |
 |---|---|---|---|
-|  |  |  |  |
+| ID-01 | Sidebar functionality is limited to supported drives and folder history; other expected shortcuts are not fully implemented. | Users have fewer navigation shortcuts than originally intended. | The sidebar functionality was reduced in scope and not fully implemented. |
+| ID-02 | GUI error reporting is not fully implemented. | Users have fewer navigation shortcuts than originally intended. | Error handling/reporting was not completed within the project scope and time constraints. |
+
 
 ---
 
